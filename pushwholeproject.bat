@@ -4,7 +4,7 @@ echo.
 echo *********************** Push everything ***********************
 echo.
 set message=%date%_%username%
-set /p "message = Your Commit-Message: "
+set /p "message=Your Commit-Message: "
 
 git add .
 git commit -m "%message%"
