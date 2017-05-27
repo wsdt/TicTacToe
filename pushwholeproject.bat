@@ -5,8 +5,6 @@ color c
 echo.
 echo *********************** Push everything ***********************
 echo.
-
-
 echo git add .
 echo git commit -m [your message]
 echo git push
@@ -27,6 +25,7 @@ echo.
 set "works=Y"
 echo Did it work? [Y/N]
 set /p works=[--- 
+REM Update/Merge local repository, then push your own changes. 
 if /i "%works%"=="N" git pull https://github.com/wsdt/tictactoe.git&timeout 5&goto retry
 pause >nul
 exit
