@@ -5,4 +5,6 @@ beide spieler fragen ob bereit
 tic tac toe (2 spieler lokal)
 in highscore speichern
 
-Bat getestet
+Todo: 
+- [X] Projektvorstellung (PowerPoint, Layout)
+- [ ] Datenbankdesign (ER-Modell) bis 30.05.2017
