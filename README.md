@@ -7,4 +7,4 @@ in highscore speichern
 
 Todo: 
 - [X] Projektvorstellung (PowerPoint, Layout)
-- [ ] Datenbankdesign (ER-Modell) bis 30.05.2017
+- [X] Datenbankdesign (ER-Modell) bis 30.05.2017
