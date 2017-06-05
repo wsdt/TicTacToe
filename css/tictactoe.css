@@ -209,3 +209,34 @@ main #highscore_table .highscore_table_row_caption .highscore_table_cell {
 main #highscore_table .highscore_table_row_caption .highscore_table_cell:last-child {
   border-right: none;
 }
+
+/* line 196, ../sass/tictactoe.scss */
+#socialbuttons {
+  width: 60%;
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+/* line 204, ../sass/tictactoe.scss */
+.overlayLogin {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+/* line 215, ../sass/tictactoe.scss */
+.overlayLogin .overlay {
+  width: 50%;
+  min-height: 50%;
+  background-color: #fff;
+  margin: 10% auto 10% auto;
+  box-shadow: 3px 3px 5px #999;
+  position: relative;
+}

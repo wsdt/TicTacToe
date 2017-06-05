@@ -107,6 +107,32 @@
         -->
     </div>
     <div class="col-xs-5 col-md-5"><!-- let empty --></div>
+
+    <div class="overlayLogin">
+        <div class="overlay">
+            <form action="login.php" method="post">
+                <table>
+                    <tr>
+                        <th>Username </th>
+                        <td><input id="login" name="login"></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td></td>
+                        <td>No account? <a link href="register.php" target="_blank">Register here</a></</td>
+                    </tr>
+                    <tr>
+                        <th>Passwort </th>
+                        <td><input id="pass" name="pass" type="password"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button>Login</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
 </footer>
 </body>
 </html>
