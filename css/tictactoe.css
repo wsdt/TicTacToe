@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /* @import "mixinFallback" */
 /* line 41, ../sass/tictactoe.scss */
 span.show {
@@ -220,7 +220,7 @@ main #highscore_table .highscore_table_row_caption .highscore_table_cell:last-ch
 }
 
 /* line 204, ../sass/tictactoe.scss */
-.overlayLogin {
+#overlayLogin {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -232,7 +232,7 @@ main #highscore_table .highscore_table_row_caption .highscore_table_cell:last-ch
   overflow-y: auto;
 }
 /* line 215, ../sass/tictactoe.scss */
-.overlayLogin .overlay {
+#overlayLogin #overlay {
   width: 50%;
   min-height: 50%;
   background-color: #fff;

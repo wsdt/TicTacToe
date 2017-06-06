@@ -201,7 +201,7 @@ main {
   display:flex;
 }
 
-.overlayLogin {
+#overlayLogin {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -212,7 +212,7 @@ main {
   overflow-x: hidden;
   overflow-y: auto;
 
-  .overlay {
+  #overlay {
     width: 50%;
     min-height: 50%;
     background-color: #fff;

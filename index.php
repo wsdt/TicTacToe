@@ -8,6 +8,7 @@
     <link href="bootstrap/bootstrap-social-gh-pages/bootstrap-social.css" rel="stylesheet"/>
     <link href="css/tictactoe.css" rel="stylesheet">
 
+    <script type="text/javascript" src="js/tictactoe.js"></script>
     <script type="text/javascript" src="jquery/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
@@ -108,8 +109,8 @@
     </div>
     <div class="col-xs-5 col-md-5"><!-- let empty --></div>
 
-    <div class="overlayLogin">
-        <div class="overlay">
+    <div id="overlayLogin">
+        <div id="overlay">
             <form action="login.php" method="post">
                 <table>
                     <tr>
@@ -127,7 +128,9 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><button>Login</button></td>
+                        <td><input type="button" value="Login"/>
+                        <input name="schliesse" type="button" onclick="closebox();" value="X"/></td>
+                        
                     </tr>
                 </table>
             </form>
