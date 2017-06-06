@@ -99,9 +99,9 @@
     <div class="col-xs-5 col-md-5"><!-- let empty --></div>
     <div id="socialbuttons" class="col-xs-2 col-md-2">
         <!-- TODO: Social-Icons werden nicht angezeigt -->
-        <div id="fb_button" class="btn btn-block btn-social btn-facebook"><span class="fa fa-facebook"></span> Facebook</div>
-        <div id="tw_button" class="btn btn-block btn-social btn-twitter"><span class="fa fa-twitter"></span> Twitter</div>
-        <div id="yt_button" class="btn btn-block btn-social btn-github"><span class="fa fa-github"></span> Github</div>
+        <div id="fb_button" class="btn btn-block btn-social btn-facebook"><span class="fa fa-facebook"></span> Facebook</div>&nbsp;
+        <div id="tw_button" class="btn btn-block btn-social btn-twitter"><span class="fa fa-twitter"></span> Twitter</div>&nbsp;
+        <div id="yt_button" class="btn btn-block btn-social btn-github"><span class="fa fa-github"></span> Github</div>&nbsp;
         <div id="ig_button" class="btn btn-block btn-social btn-instagram"><span class="fa fa-instagram"></span> Instagram</div>
         <!-- If you want more Social-Media-Buttons: (Classes here)
         https://lipis.github.io/bootstrap-social/
