@@ -24,10 +24,41 @@ function playGame(modus) {
 
 function playGameSingleplayer() {
   //Firstly stop prev game (with[out] saving in database) if game is active
-  document.getElementById('ttt_square2').innerHTML = "O";
+  //document.getElementById('ttt_square2').innerHTML = "O";
 }
 
 function playGameMultiplayer() {
   //Firstly stop prev game (with[out] saving in database) if game is active
 
 }
+
+
+//Resize set Attributes (X/O) in TTT-Field
+/*
+window.onload = function() {
+  for (let i of document.getElementsByClassName('ttt_square')) {
+    var oDiv = i;
+    oDiv.style.overflow = "auto"; //for Firefox, but won't ruin for other browsers
+    var fontSize = 50;
+    var changes = 0;
+    var blnSuccess = true;
+    while (oDiv.scrollWidth <= oDiv.clientWidth) {
+      oDiv.style.fontSize = fontSize + "px";
+      fontSize++;
+      changes++;
+      if (changes > 500) {
+        //failsafe..
+        blnSuccess = false;
+        break;
+      }
+    }
+    if (changes > 0) {
+      //upon failure, revert to original font size:
+      if (blnSuccess)
+        fontSize -= 2;
+      else
+        fontSize -= changes;
+      oDiv.style.fontSize = fontSize + "px";
+    }
+  }
+};*/
