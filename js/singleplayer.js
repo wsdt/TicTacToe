@@ -29,31 +29,6 @@ var turn = 0;
 var mode = 1;
 var field_content = '<img src="images/trans_squarefield.png" class="ttt_square_img">';
 
-function onclick_event(id) {
-    //console.log("ID: "+id);
-    console.log("HTML: "+document.getElementById('ttt_square'+id).innerHTML);
-    console.log("FIELD: "+field_content);
-    if(document.getElementById('ttt_square'+id).innerHTML == field_content && turn == 0 && mode == 1) {
-        document.getElementById('ttt_square'+id).innerHTML = 'X';
-        sqr1T = 1;
-        turn = 1;
-        vari();
-        check();
-    } else if(document.getElementById('ttt_square'+id).innerHTML == field_content && turn == 1 && mode == 2) {
-        document.getElementById('ttt_square'+id).innerHTML = 'X';
-        sqr1T = 1;
-        turn = 0;
-        vari();
-        player1Check();
-    } else if(document.getElementById('ttt_square'+id).innerHTML == field_content && turn == 0 && mode == 2) {
-        document.getElementById('ttt_square'+id).innerHTML = 'O';
-        sqr1T = 1;
-        turn = 1;
-        vari();
-        player1Check();
-    }
-    drawCheck();
-}
 
 function vari() {
     sqr1 = document.getElementById('ttt_square1');

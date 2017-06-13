@@ -20,7 +20,7 @@
                 echo "<div class='row ttt_row' id='ttt_row".$i."'>\n"; echo "<!-- ".$i.". Row of TTT-Field -->\n";
                 for ($j=1;$j<=3;$j++) {
                     $z++;
-                    echo "<div class='col-xs-4 col-md-4 ttt_square' id='ttt_square".($z)."' onclick=\"onclick_event('".($z)."');\">".
+                    echo "<div class='col-xs-4 col-md-4 ttt_square' id='ttt_square".($z)."' onclick=\"setZug('".($z)."');\">".
                         "<img src='images/trans_squarefield.png' class='ttt_square_img'/></div>";
                 }
                 echo "</div>\n";
@@ -86,8 +86,8 @@
     <!-- TTT-Mode -->
     <div class="row"><div class="col-xs-12 col-md-12"><!-- let empty --></div></div>
     <div id="play_buttons">
-        <input type="button" onclick="playGame(0)" value="Single Player" class="btn btn-default" id="bt_singleplayer"/>
-        <input type="button" onclick="playGame(1)" value="Multiplayer" class="btn btn-default" id="bt_multiplayer"/>
+        <input type="button" onclick="changeMode(0)" value="Single Player" class="btn btn-primary" id="bt_singleplayer"/>
+        <input type="button" onclick="changeMode(1)" value="Multiplayer" class="btn btn-default" id="bt_multiplayer"/>
     </div>
 
     <!-- HIGHSCORE
