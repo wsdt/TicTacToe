@@ -98,7 +98,7 @@ main {
     }
   }
   #ttt_field {
-    height: $ttt_field_height+px;
+    height: auto;//$ttt_field_height+px;
     background-color: $ttt_field_bgcolor;
     width: 33.3333333%;
     /*:nth-child(1) { margin-right:2px;margin-bottom:2px; } //Mache Abstände zwischen Kästchen gleichmaessig
@@ -128,10 +128,17 @@ main {
       @include transition-duration(200ms);
       @include transition-timing-function(linear);
     }
+	
+	.ttt_square_img {
+	width:100%;
+	height:auto;
+	}
   }
   .ttt_row {
-    height: $ttt_square_height+px; // = same height as width by Bootstrap
+    height: auto;//$ttt_square_height+px; // = same height as width by Bootstrap
   }
+  
+  
 
   //HIGHSCORE --> Create Table-layout without tables
   #highscore_table {
