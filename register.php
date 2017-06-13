@@ -6,25 +6,14 @@
     <link href="css/tictactoe.css" rel="stylesheet">
 </head>
 <body>
-<h2>Registrierung</h2>
-<form>
-    <table>
-        <tr>
-            <th>Benutzername</th>
-            <td><input id="name" name="name"></td>
-        </tr>
-        <tr>
-            <th>Passwort</th>
-            <td><input id="pass" name="pass"></td>
-        </tr><tr>
-            <th>Passwort wiederholen</th>
-            <td><input id="pass" name="pass"></td>
-        </tr>
-        <tr>
-            <th></th>
-            <td><button>Registrieren</button></td>
-        </tr>
-    </table>
-</form>
+<div class="loginmodal-container">
+    <h1>Neu registrieren</h1><br>
+        <form method="get" action="php/insertNewUser.php" name="formreg">
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="passwort" placeholder="Passwort">
+            <input type="password" name="passwort2" placeholder="Passwort wiederholen">
+            <input type="submit" name="submit" class="login loginmodal-submit" value="Registrieren">
+        </form>
+    </div>
 </body>
 </html>

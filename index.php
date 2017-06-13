@@ -1,3 +1,20 @@
+<?php
+
+include("dbNewConnection.php");
+session_start();
+
+$message="";
+if(!empty($_GET["login"])) {
+    $result = mysqli_query($tunnel,"SELECT * FROM Users WHERE username='" . $_GET["username"] . "' and passwort = '". $_GET["passwort"]."'");
+    $row  = mysqli_fetch_array($result);
+    if(is_array($row)) {
+        $_SESSION["username"] = $row['username'];
+        echo "Anmeldung erfolgreich";
+    } else {
+        $message = "Invalid Username or Password!";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -28,6 +45,7 @@
 
 </head>
 <body>
+<a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
 <header>
     <div class="row toprow">
         <div class="col-xs-11 col-md-11">
@@ -135,31 +153,20 @@
     </div>
     <div class="col-xs-5 col-md-5"><!-- let empty --></div>
 
-    <div id="overlayLogin">
-        <div id="overlay">
-            <form action="login.php" method="post">
-                <table>
-                    <tr>
-                        <th>Username </th>
-                        <td><input id="login" name="login"></td>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <td></td>
-                        <td>No account? <a link href="register.php" target="_blank">Register here</a></</td>
-                    </tr>
-                    <tr>
-                        <th>Passwort </th>
-                        <td><input id="pass" name="pass" type="password"></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="button" value="Login"/>
-                        <input name="schliesse" type="button" onclick="closebox();" value="X"/></td>
-                        
-                    </tr>
-                </table>
-            </form>
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="loginmodal-container">
+                <h1>Login</h1><br>
+                <form method="get" action="">
+                    <input type="text" name="username" placeholder="Username">
+                    <input type="password" name="passwort" placeholder="Passwort">
+                    <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+                </form>
+
+                <div class="login-help">
+                    <a href="register.php" target="_blank">Neu registrieren</a>
+                </div>
+            </div>
         </div>
     </div>
 </footer>
