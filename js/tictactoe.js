@@ -34,20 +34,21 @@ function setZug(id) {
 }
 
 function playGameSingleplayer(id) {
+  unsetVar();
   if(document.getElementById('ttt_square'+id).innerHTML == field_content && turn == 0 && mode == 1) {
-    document.getElementById('ttt_square'+id).innerHTML = 'X';
+    document.getElementById('ttt_square'+id).innerHTML = field_content+'X';
     sqr1T = 1;
     turn = 1;
     vari();
     check();
   } else if(document.getElementById('ttt_square'+id).innerHTML == field_content && turn == 1 && mode == 2) {
-    document.getElementById('ttt_square'+id).innerHTML = 'X';
+    document.getElementById('ttt_square'+id).innerHTML = field_content+'X';
     sqr1T = 1;
     turn = 0;
     vari();
     player1Check();
   } else if(document.getElementById('ttt_square'+id).innerHTML == field_content && turn == 0 && mode == 2) {
-    document.getElementById('ttt_square'+id).innerHTML = 'O';
+    document.getElementById('ttt_square'+id).innerHTML = field_content+'O';
     sqr1T = 1;
     turn = 1;
     vari();

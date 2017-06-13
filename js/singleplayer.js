@@ -29,6 +29,30 @@ var turn = 0;
 var mode = 1;
 var field_content = '<img src="images/trans_squarefield.png" class="ttt_square_img">';
 
+function unsetVar() {
+    var sqr1;
+    var sqr2;
+    var sqr3;
+    var sqr4;
+    var sqr5;
+    var sqr6;
+    var sqr7;
+    var sqr8;
+    var sqr9;
+    var sqr1T = 0;
+    var sqr2T = 0;
+    var sqr3T = 0;
+    var sqr4T = 0;
+    var sqr5T = 0;
+    var sqr6T = 0;
+    var sqr7T = 0;
+    var sqr8T = 0;
+    var sqr9T = 0;
+    var moveCount = 0;
+    var turn = 0;
+    var mode = 1;
+}
+
 
 function vari() {
     sqr1 = document.getElementById('ttt_square1');
@@ -617,7 +641,7 @@ function AI()
     }
     else if( document.getElementById('ttt_square8').innerHTML == field_content && turn == 1)
     {
-        document.getElementById('ttt_square8').value = field_content+"O";
+        document.getElementById('ttt_square8').innerHTML = field_content+"O";
         turn = 0;
         sqr8T = 1;
     }
@@ -644,15 +668,15 @@ function AI()
 
 function reset()
 {
-    /*document.tic.sqr1.value = field_content;
-    document.tic.sqr2.value = field_content;
-    document.tic.sqr3.value = field_content;
-    document.tic.sqr4.value = field_content;
-    document.tic.sqr5.value = field_content;
-    document.tic.sqr6.value = field_content;
-    document.tic.sqr7.value = field_content;
-    document.tic.sqr8.value = field_content;
-    document.tic.sqr9.value = field_content;*/
+    /*document.tic.sqr1.innerHTML = field_content;
+    document.tic.sqr2.innerHTML = field_content;
+    document.tic.sqr3.innerHTML = field_content;
+    document.tic.sqr4.innerHTML = field_content;
+    document.tic.sqr5.innerHTML = field_content;
+    document.tic.sqr6.innerHTML = field_content;
+    document.tic.sqr7.innerHTML = field_content;
+    document.tic.sqr8.innerHTML = field_content;
+    document.tic.sqr9.innerHTML = field_content;*/
     sqr1T = 0;
     sqr2T = 0;
     sqr3T = 0;
@@ -673,15 +697,15 @@ function resetter()
 
 /*
 <FORM NAME="tic" method="post">
-    <INPUT TYPE="button" NAME="sqr1" class="tictac" value=field_content onClick="if(document.tic.sqr1.value == '     ' && turn == 0 && mode == 1) {document.tic.sqr1.value = ' X '; sqr1T = 1; turn = 1; vari(); check();} else if(document.tic.sqr1.value == '     ' && turn == 1 && mode == 2) {document.tic.sqr1.value = ' X '; sqr1T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr1.value == '     ' && turn == 0 && mode == 2) {document.tic.sqr1.value = ' O '; sqr1T = 1; turn = 1; vari(); player1Check()} drawCheck()">
-    <INPUT TYPE="button" NAME="sqr2" class="tictac" value=field_content onClick="if(document.tic.sqr2.value == '     ' && turn == 0 && mode == 1) {document.tic.sqr2.value = ' X '; sqr2T = 1; turn = 1; vari(); check();} else if(document.tic.sqr2.value == '     ' && turn == 1 && mode == 2) {document.tic.sqr2.value = ' X '; sqr2T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr2.value == '     ' && turn == 0 && mode == 2) {document.tic.sqr2.value = ' O '; sqr2T = 1; turn = 1; vari(); player1Check()} drawCheck()">
-    <INPUT TYPE="button" NAME="sqr3" class="tictac" value=field_content onClick="if(document.tic.sqr3.value == '     ' && turn == 0 && mode == 1) {document.tic.sqr3.value = ' X '; sqr3T = 1; turn = 1; vari(); check();} else if(document.tic.sqr3.value == '     ' && turn == 1 && mode == 2) {document.tic.sqr3.value = ' X '; sqr3T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr3.value == '     ' && turn == 0 && mode == 2) {document.tic.sqr3.value = ' O '; sqr3T = 1; turn = 1; vari(); player1Check()} drawCheck()"><br />
-    <INPUT TYPE="button" NAME="sqr4" class="tictac" value=field_content onClick="if(document.tic.sqr4.value == '     ' && turn == 0 && mode == 1) {document.tic.sqr4.value = ' X '; sqr4T = 1; turn = 1; vari(); check();} else if(document.tic.sqr4.value == '     ' && turn == 1 && mode == 2) {document.tic.sqr4.value = ' X '; sqr4T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr4.value == '     ' && turn == 0 && mode == 2) {document.tic.sqr4.value = ' O '; sqr4T = 1; turn = 1; vari(); player1Check()} drawCheck()">
-    <INPUT TYPE="button" NAME="sqr5" class="tictac" value=field_content onClick="if(document.tic.sqr5.value == '     ' && turn == 0 && mode == 1) {document.tic.sqr5.value = ' X '; sqr5T = 1; turn = 1; vari(); check();} else if(document.tic.sqr5.value == '     ' && turn == 1 && mode == 2) {document.tic.sqr5.value = ' X '; sqr5T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr5.value == '     ' && turn == 0 && mode == 2) {document.tic.sqr5.value = ' O '; sqr5T = 1; turn = 1; vari(); player1Check()} drawCheck()">
-    <INPUT TYPE="button" NAME="sqr6" class="tictac" value=field_content onClick="if(document.tic.sqr6.value == '     ' && turn == 0 && mode == 1) {document.tic.sqr6.value = ' X '; sqr6T = 1; turn = 1; vari(); check();} else if(document.tic.sqr6.value == '     ' && turn == 1 && mode == 2) {document.tic.sqr6.value = ' X '; sqr6T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr6.value == '     ' && turn == 0 && mode == 2) {document.tic.sqr6.value = ' O '; sqr6T = 1; turn = 1; vari(); player1Check()} drawCheck()"><br />
-    <INPUT TYPE="button" NAME="sqr7" class="tictac" value=field_content onClick="if(document.tic.sqr7.value == '     ' && turn == 0 && mode == 1) {document.tic.sqr7.value = ' X '; sqr7T = 1; turn = 1; vari(); check();} else if(document.tic.sqr7.value == '     ' && turn == 1 && mode == 2) {document.tic.sqr7.value = ' X '; sqr7T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr7.value == '     ' && turn == 0 && mode == 2) {document.tic.sqr7.value = ' O '; sqr7T = 1; turn = 1; vari(); player1Check()} drawCheck()">
-    <INPUT TYPE="button" NAME="sqr8" class="tictac" value=field_content onClick="if(document.tic.sqr8.value == '     ' && turn == 0 && mode == 1) {document.tic.sqr8.value = ' X '; sqr8T = 1; turn = 1; vari(); check();} else if(document.tic.sqr8.value == '     ' && turn == 1 && mode == 2) {document.tic.sqr8.value = ' X '; sqr8T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr8.value == '     ' && turn == 0 && mode == 2) {document.tic.sqr8.value = ' O '; sqr8T = 1; turn = 1; vari(); player1Check()} drawCheck()">
-    <INPUT TYPE="button" NAME="sqr9" class="tictac" value=field_content onClick="if(document.tic.sqr9.value == '     ' && turn == 0 && mode == 1) {document.tic.sqr9.value = ' X '; sqr9T = 1; turn = 1; vari(); check();} else if(document.tic.sqr9.value == '     ' && turn == 1 && mode == 2) {document.tic.sqr9.value = ' X '; sqr9T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr9.value == '     ' && turn == 0 && mode == 2) {document.tic.sqr9.value = ' O '; sqr9T = 1; turn = 1; vari(); player1Check()} drawCheck()">
+    <INPUT TYPE="button" NAME="sqr1" class="tictac" innerHTML=field_content onClick="if(document.tic.sqr1.innerHTML == '     ' && turn == 0 && mode == 1) {document.tic.sqr1.innerHTML = ' X '; sqr1T = 1; turn = 1; vari(); check();} else if(document.tic.sqr1.innerHTML == '     ' && turn == 1 && mode == 2) {document.tic.sqr1.innerHTML = ' X '; sqr1T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr1.innerHTML == '     ' && turn == 0 && mode == 2) {document.tic.sqr1.innerHTML = ' O '; sqr1T = 1; turn = 1; vari(); player1Check()} drawCheck()">
+    <INPUT TYPE="button" NAME="sqr2" class="tictac" innerHTML=field_content onClick="if(document.tic.sqr2.innerHTML == '     ' && turn == 0 && mode == 1) {document.tic.sqr2.innerHTML = ' X '; sqr2T = 1; turn = 1; vari(); check();} else if(document.tic.sqr2.innerHTML == '     ' && turn == 1 && mode == 2) {document.tic.sqr2.innerHTML = ' X '; sqr2T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr2.innerHTML == '     ' && turn == 0 && mode == 2) {document.tic.sqr2.innerHTML = ' O '; sqr2T = 1; turn = 1; vari(); player1Check()} drawCheck()">
+    <INPUT TYPE="button" NAME="sqr3" class="tictac" innerHTML=field_content onClick="if(document.tic.sqr3.innerHTML == '     ' && turn == 0 && mode == 1) {document.tic.sqr3.innerHTML = ' X '; sqr3T = 1; turn = 1; vari(); check();} else if(document.tic.sqr3.innerHTML == '     ' && turn == 1 && mode == 2) {document.tic.sqr3.innerHTML = ' X '; sqr3T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr3.innerHTML == '     ' && turn == 0 && mode == 2) {document.tic.sqr3.innerHTML = ' O '; sqr3T = 1; turn = 1; vari(); player1Check()} drawCheck()"><br />
+    <INPUT TYPE="button" NAME="sqr4" class="tictac" innerHTML=field_content onClick="if(document.tic.sqr4.innerHTML == '     ' && turn == 0 && mode == 1) {document.tic.sqr4.innerHTML = ' X '; sqr4T = 1; turn = 1; vari(); check();} else if(document.tic.sqr4.innerHTML == '     ' && turn == 1 && mode == 2) {document.tic.sqr4.innerHTML = ' X '; sqr4T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr4.innerHTML == '     ' && turn == 0 && mode == 2) {document.tic.sqr4.innerHTML = ' O '; sqr4T = 1; turn = 1; vari(); player1Check()} drawCheck()">
+    <INPUT TYPE="button" NAME="sqr5" class="tictac" innerHTML=field_content onClick="if(document.tic.sqr5.innerHTML == '     ' && turn == 0 && mode == 1) {document.tic.sqr5.innerHTML = ' X '; sqr5T = 1; turn = 1; vari(); check();} else if(document.tic.sqr5.innerHTML == '     ' && turn == 1 && mode == 2) {document.tic.sqr5.innerHTML = ' X '; sqr5T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr5.innerHTML == '     ' && turn == 0 && mode == 2) {document.tic.sqr5.innerHTML = ' O '; sqr5T = 1; turn = 1; vari(); player1Check()} drawCheck()">
+    <INPUT TYPE="button" NAME="sqr6" class="tictac" innerHTML=field_content onClick="if(document.tic.sqr6.innerHTML == '     ' && turn == 0 && mode == 1) {document.tic.sqr6.innerHTML = ' X '; sqr6T = 1; turn = 1; vari(); check();} else if(document.tic.sqr6.innerHTML == '     ' && turn == 1 && mode == 2) {document.tic.sqr6.innerHTML = ' X '; sqr6T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr6.innerHTML == '     ' && turn == 0 && mode == 2) {document.tic.sqr6.innerHTML = ' O '; sqr6T = 1; turn = 1; vari(); player1Check()} drawCheck()"><br />
+    <INPUT TYPE="button" NAME="sqr7" class="tictac" innerHTML=field_content onClick="if(document.tic.sqr7.innerHTML == '     ' && turn == 0 && mode == 1) {document.tic.sqr7.innerHTML = ' X '; sqr7T = 1; turn = 1; vari(); check();} else if(document.tic.sqr7.innerHTML == '     ' && turn == 1 && mode == 2) {document.tic.sqr7.innerHTML = ' X '; sqr7T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr7.innerHTML == '     ' && turn == 0 && mode == 2) {document.tic.sqr7.innerHTML = ' O '; sqr7T = 1; turn = 1; vari(); player1Check()} drawCheck()">
+    <INPUT TYPE="button" NAME="sqr8" class="tictac" innerHTML=field_content onClick="if(document.tic.sqr8.innerHTML == '     ' && turn == 0 && mode == 1) {document.tic.sqr8.innerHTML = ' X '; sqr8T = 1; turn = 1; vari(); check();} else if(document.tic.sqr8.innerHTML == '     ' && turn == 1 && mode == 2) {document.tic.sqr8.innerHTML = ' X '; sqr8T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr8.innerHTML == '     ' && turn == 0 && mode == 2) {document.tic.sqr8.innerHTML = ' O '; sqr8T = 1; turn = 1; vari(); player1Check()} drawCheck()">
+    <INPUT TYPE="button" NAME="sqr9" class="tictac" innerHTML=field_content onClick="if(document.tic.sqr9.innerHTML == '     ' && turn == 0 && mode == 1) {document.tic.sqr9.innerHTML = ' X '; sqr9T = 1; turn = 1; vari(); check();} else if(document.tic.sqr9.innerHTML == '     ' && turn == 1 && mode == 2) {document.tic.sqr9.innerHTML = ' X '; sqr9T = 1; turn = 0; vari(); player1Check()} else if(document.tic.sqr9.innerHTML == '     ' && turn == 0 && mode == 2) {document.tic.sqr9.innerHTML = ' O '; sqr9T = 1; turn = 1; vari(); player1Check()} drawCheck()">
     </form>
 */
 
