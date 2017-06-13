@@ -11,16 +11,17 @@
     <script type="text/javascript" src="js/tictactoe.js"></script>
     <script type="text/javascript" src="jquery/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/singleplayer.js"></script>
 
     <?php
         function createTTTField() {
             for ($i=1;$i<=3;$i++) {
-                echo "<div class='row ttt_row' id='ttt_row".$i."'>"; echo "<!-- ".$i.". Row of TTT-Field -->";
+                echo "<div class='row ttt_row' id='ttt_row".$i."'>\n"; echo "<!-- ".$i.". Row of TTT-Field -->\n";
                 for ($j=1;$j<=3;$j++) {
-                    echo "<div class='col-xs-4 col-md-4 ttt_square' id='ttt_square".($j*$i)."'>".
+                    echo "<div class='col-xs-4 col-md-4 ttt_square' id='ttt_square".($j*$i)."' onclick=\"onclick_event('".($j*$i)."');\">".
                         "<img src='images/trans_squarefield.png' class='ttt_square_img'/></div>";
                 }
-                echo "</div>";
+                echo "</div>\n";
             }
             echo "";
         }
