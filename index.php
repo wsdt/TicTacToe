@@ -13,8 +13,16 @@
     <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
 
     <?php
-        function createTransSquareImg() {
-            echo "<img src='images/trans_squarefield.png' class='ttt_square_img'/>";
+        function createTTTField() {
+            for ($i=1;$i<=3;$i++) {
+                echo "<div class='row ttt_row' id='ttt_row".$i."'>"; echo "<!-- ".$i.". Row of TTT-Field -->";
+                for ($j=1;$j<=3;$j++) {
+                    echo "<div class='col-xs-4 col-md-4 ttt_square' id='ttt_square".($j*$i)."'>".
+                        "<img src='images/trans_squarefield.png' class='ttt_square_img'/></div>";
+                }
+                echo "</div>";
+            }
+            echo "";
         }
     ?>
 
@@ -49,22 +57,25 @@
     </div>
     <div class="row"><!-- TicTacToe positionieren-->
         <div class="col-xs-4 col-md-4"><!-- let empty --></div>
-        <div class="col-xs-3 col-md-3" id="ttt_field"><!-- FIELD HERE -->
-            <div class="row ttt_row" id="ttt_row1"> <!-- 1. Row of TTT-Field -->
-                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square1"><?php createTransSquareImg(); ?></div>
-                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square2"><?php createTransSquareImg(); ?></div>
-                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square3"><?php createTransSquareImg(); ?></div>
+        <div class="col-xs-3 col-md-3" id="ttt_field">
+            <!-- FIELD HERE -->
+            <?php createTTTField(); ?>
+            <!-- OLD-STATIC VERSION
+            <div class="row ttt_row" id="ttt_row1"> <!-- 1. Row of TTT-Field
+                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square1"></div>
+                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square2"></div>
+                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square3"></div>
             </div>
-            <div class="row ttt_row" id="ttt_row2"> <!-- 1. Row of TTT-Field -->
-                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square4"><?php createTransSquareImg(); ?></div>
-                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square5"><?php createTransSquareImg(); ?></div>
-                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square6"><?php createTransSquareImg(); ?></div>
+            <div class="row ttt_row" id="ttt_row2"> <!-- 1. Row of TTT-Field
+                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square4"></div>
+                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square5"></div>
+                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square6"></div>
             </div>
-            <div class="row ttt_row" id="ttt_row3"> <!-- 1. Row of TTT-Field -->
-                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square7"><?php createTransSquareImg(); ?></div>
-                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square8"><?php createTransSquareImg(); ?></div>
-                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square9"><?php createTransSquareImg(); ?></div>
-            </div>
+            <div class="row ttt_row" id="ttt_row3"> <!-- 1. Row of TTT-Field
+                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square7"></div>
+                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square8"></div>
+                <div class="col-xs-4 col-md-4 ttt_square" id="ttt_square9"></div>
+            </div>-->
         </div>
         <div class="col-xs-5 col-md-5"><!-- let empty --></div>
     </div>
