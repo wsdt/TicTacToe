@@ -67,7 +67,7 @@ main #label_roundofrounds {
 }
 /* line 100, ../sass/tictactoe.scss */
 main #ttt_field {
-  height: auto;/*400px;*/
+  height: auto; /*400px;*/
   background-color: #000;
   width: 33.3333333%;
   /*:nth-child(1) { margin-right:2px;margin-bottom:2px; } //Mache Abstände zwischen Kästchen gleichmaessig
@@ -76,6 +76,12 @@ main #ttt_field {
   :nth-child(4) { margin-right:2px;margin-bottom:2px;margin-top:2px; }
   :nth-child(5) { margin-right:2px;margin-bottom:2px;margin-top:2px;margin-left:2px; }*/
 }
+
+.ttt_xoSet {
+  color:#fff;
+  font-size:50px;
+}
+
 /* line 110, ../sass/tictactoe.scss */
 main .ttt_square {
   background-color: #444;
@@ -84,6 +90,11 @@ main .ttt_square {
   border-width: 2px;
   border-color: #000;
   width: 33.3333333%;
+  /* Layout of text content of fields */
+  color:#fff;
+  font-size:100px;
+  text-align:center;
+
   -moz-transition-property: background-color;
   -o-transition-property: background-color;
   -webkit-transition-property: background-color;
