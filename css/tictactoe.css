@@ -131,6 +131,13 @@ main .ttt_square_img {
 main .ttt_row {
   height: auto;
 }
+
+/*PLAY-Buttons*/
+#play_buttons {
+    text-align:center;
+    margin-top:6px;
+  }
+
 /* line 137, ../sass/tictactoe.scss */
 main #highscore_table {
   margin-top: 50px;

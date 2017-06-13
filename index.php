@@ -79,6 +79,14 @@
         </div>
         <div class="col-xs-5 col-md-5"><!-- let empty --></div>
     </div>
+
+    <!-- TTT-Mode -->
+    <div class="row"><div class="col-xs-12 col-md-12"><!-- let empty --></div></div>
+    <div id="play_buttons">
+        <input type="button" onclick="playGame(0)" value="Single Player" class="btn btn-default" id="bt_singleplayer"/>
+        <input type="button" onclick="playGame(1)" value="Multiplayer" class="btn btn-default" id="bt_multiplayer"/>
+    </div>
+
     <!-- HIGHSCORE
     TODO: Use DivID 'highscore_anchor' as an anchor (lightbox etc.) and scroll with a transition down -->
     <div id="highscore_anchor" class="row"> <!-- Highscore is placed in one 'row' -->
