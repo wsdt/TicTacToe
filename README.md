@@ -8,6 +8,6 @@ in highscore speichern
 Todo: 
 - [X] Projektvorstellung (PowerPoint, Layout)
 - [X] Datenbankdesign (ER-Modell) bis 30.05.2017
-- [ ] Single/Multiplayer
+- [X] Single/Multiplayer
 - [ ] Höhe TTT-Feld
 - [ ] Lightbox BT
