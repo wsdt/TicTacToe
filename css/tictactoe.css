@@ -225,15 +225,25 @@ main #highscore_table .highscore_table_row_caption .highscore_table_cell:last-ch
   border-right: none;
 }
 
-/*#socialbuttons {
-  width: 60%;
-  float: none;
+/* line 217, ../sass/tictactoe.scss */
+#socialbuttons {
+  margin-top: 10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+/* line 221, ../sass/tictactoe.scss */
+#socialbuttons div {
+  width: 150px;
+  display: inline;
+  margin-right: 6px;
+  /*float: none;
   margin-left: auto;
   margin-right: auto;
   display:flex;
-  height: 34px;
+  height: 34px;*/
 }
 
+/*
 #overlayLogin {
   position: absolute;
   top: 0;
@@ -254,12 +264,12 @@ main #highscore_table .highscore_table_row_caption .highscore_table_cell:last-ch
     position: relative;
   }
 }*/
-/* line 247, ../sass/tictactoe.scss */
+/* line 255, ../sass/tictactoe.scss */
 body {
   padding: 30px 0px;
 }
 
-/* line 251, ../sass/tictactoe.scss */
+/* line 259, ../sass/tictactoe.scss */
 #lightbox .modal-content {
   display: inline-block;
   text-align: center;

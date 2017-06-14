@@ -68,7 +68,7 @@ function vari() {
 
 function check()
 {
-    console.log("startet check");
+    //console.log("startet check");
 
     if(sqr1 === field_content+"X" && sqr2 === field_content+"X" && sqr3 === field_content+"X") {
         alert("You Win!");
