@@ -214,15 +214,23 @@ main {
   }
 }
 
-/*#socialbuttons {
-  width: 60%;
-  float: none;
-  margin-left: auto;
-  margin-right: auto;
-  display:flex;
-  height: 34px;
+#socialbuttons {
+  margin-top:10px;
+  margin-right:auto;
+  margin-left:auto;
+  div {
+    width: 150px;
+    display: inline;
+    //float: left;
+    margin-right: 6px;
+    /*float: none;
+    margin-left: auto;
+    margin-right: auto;
+    display:flex;
+    height: 34px;*/
+  }
 }
-
+/*
 #overlayLogin {
   position: absolute;
   top: 0;

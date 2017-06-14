@@ -1,7 +1,7 @@
 <?php
 if (empty($_GET["debug"])) {
 
-    include("unused_SQL/db/dbNewConnection.php");
+    include("php/db/dbNewConnection.php");
     session_start();
 
     $message = "";
@@ -100,6 +100,7 @@ if (empty($_GET["debug"])) {
     <div id="play_buttons">
         <input type="button" onclick="changeMode(0)" value="Single Player" class="btn btn-primary" id="bt_singleplayer"/>
         <input type="button" onclick="changeMode(1)" value="Multiplayer" class="btn btn-default" id="bt_multiplayer"/>
+        <input type="button" onclick="restartGame()" value="Restart Game" class="btn btn-danger" id="bt_restart"/>
     </div>
 
     <!-- HIGHSCORE
@@ -137,8 +138,8 @@ if (empty($_GET["debug"])) {
 </main>
 <footer>
     <!-- Follow us - Social Buttons -->
-    <div class="col-xs-5 col-md-5"><!-- let empty --></div>
-    <div id="socialbuttons" class="col-xs-2 col-md-2">
+    <div class="col-xs-4 col-md-4"><!-- let empty --></div>
+    <div id="socialbuttons" class="col-xs-4 col-md-4">
         <!-- TODO: Social-Icons werden nicht angezeigt -->
         <div id="fb_button" class="btn btn-block btn-social btn-facebook"><span class="fa fa-facebook"></span> Facebook</div>&nbsp;
         <div id="tw_button" class="btn btn-block btn-social btn-twitter"><span class="fa fa-twitter"></span> Twitter</div>&nbsp;
@@ -148,7 +149,7 @@ if (empty($_GET["debug"])) {
         https://lipis.github.io/bootstrap-social/
         -->
     </div>
-    <div class="col-xs-5 col-md-5"><!-- let empty --></div>
+    <div class="col-xs-4 col-md-4"><!-- let empty --></div>
 
     <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
