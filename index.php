@@ -1,7 +1,7 @@
 <?php
 if (empty($_GET["debug"])) {
 
-    include("unused_SQL/db/dbNewConnection.php");
+    include("php/db/dbNewConnection.php");
     session_start();
 
     $message = "";
