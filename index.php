@@ -42,6 +42,12 @@ if (empty($_GET["debug"])) {
 
 </head>
 <body>
+<!-- Following code should be the first code after body -->
+<div id="notification"><span id="notification_text">ERROR: This should not be shown. Please contact system-administrator. </span><div id="close_notfication" onclick="close_notification();">X</div></div>
+
+
+<!-- END first code after body -->
+
 <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
 <header>
     <div class="row toprow">

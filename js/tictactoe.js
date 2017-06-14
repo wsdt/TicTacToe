@@ -4,6 +4,26 @@ function closebox() {
   document.getElementById('overlay').style.display = "none";
 }
 
+// NOTIFICATIONS -----------------------------------------------------------------------------------
+//Close Notification
+function close_notification() {
+    var not_bar = document.getElementById('notification');
+  //document.getElementById('notification').className = ""; //Because notification is an Id
+    not_bar.style.top = '-23px';
+}
+
+function show_notification(bgcolor, text) {
+  if (bgcolor === '#fff' || bgcolor === '#ffffff' || bgcolor === 'black') {
+    console.warn("WARNING: You won't see your text with that background-color!");
+  }
+  var not_bar = document.getElementById('notification');
+  //not_bar.className = "notification_active";
+  not_bar.style.top = 0;
+  document.getElementById('notification_text').innerHTML = text;
+  not_bar.style.backgroundColor = bgcolor;
+}
+
+// -------------------------------------------------------------------------------------------------
 //Start-Game
 function changeMode(modus) {
   console.log("Try to change Gamemode; Mode: "+modus); //0 = Single Player ; 1 = Multiplayer
@@ -24,6 +44,7 @@ function changeMode(modus) {
 }
 
 function setZug(id) {
+  close_notification();
   var modus = 1;
   if (document.getElementById('bt_singleplayer').className === "btn btn-primary") {
     modus = 0;
@@ -60,14 +81,23 @@ function playGameSingleplayer(id) {
 var multiplayer_spieler_zug = 1; //Zweiter Zustand f. Spieler 2 = '2'
 function playGameMultiplayer(id) {
   unsetVar();
+  var curr_field = document.getElementById('ttt_square'+id);
   if (multiplayer_spieler_zug === 1) {
-      document.getElementById('ttt_square'+id).innerHTML = field_content+'X';
-      multiplayer_spieler_zug = 2;
-      player1Check();
+      if (curr_field.innerHTML === field_content) {
+          curr_field.innerHTML = field_content + 'X';
+          multiplayer_spieler_zug = 2;
+          player1Check();
+      } else {
+        show_notification('#000','MELDUNG: Dieses Feld wurde bereits ausgewählt!');
+      }
   } else if (multiplayer_spieler_zug === 2) {
-      document.getElementById('ttt_square'+id).innerHTML = field_content+'O';
-      multiplayer_spieler_zug = 1;
-      player2Check();
+      if (curr_field.innerHTML === field_content) {
+          curr_field.innerHTML = field_content + 'O';
+          multiplayer_spieler_zug = 1;
+          player2Check();
+      } else {
+          show_notification('#000','MELDUNG: Dieses Feld wurde bereits ausgewählt!');
+      }
   } else {
     console.error("ERROR: Spiel nur zwischen 2 Spielern möglich bzw. ungültiger Spieler zum Zug angefordert!");
   }
@@ -77,5 +107,7 @@ function restartGame() {
   for (tmp of document.getElementsByClassName('ttt_square')) {
     tmp.innerHTML = field_content;
   }
+
+  document.getElementById('notification').style.top = '-23px';
 }
 

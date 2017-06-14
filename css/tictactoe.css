@@ -29,43 +29,107 @@ header #label_loggedinas {
   margin-left: 5px;
 }
 
-/* line 73, ../sass/tictactoe.scss */
+/* line 71, ../sass/tictactoe.scss */
+#notification {
+  position: absolute;
+  top: -23px;
+  width: 100%;
+  height: 22px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  background-color: #00CCFF;
+  border-bottom: solid;
+  border-bottom-color: #fff;
+  border-bottom-width: 1px;
+  vertical-align: middle;
+  -moz-transition-property: top;
+  -o-transition-property: top;
+  -webkit-transition-property: top;
+  transition-property: top;
+  -moz-transition-delay: 0ms;
+  -o-transition-delay: 0ms;
+  -webkit-transition-delay: 0ms;
+  transition-delay: 0ms;
+  -moz-transition-duration: 400ms;
+  -o-transition-duration: 400ms;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+  -moz-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+/* line 93, ../sass/tictactoe.scss */
+#notification .notification_active {
+  top: 0;
+  -moz-transition-property: top;
+  -o-transition-property: top;
+  -webkit-transition-property: top;
+  transition-property: top;
+  -moz-transition-delay: 0ms;
+  -o-transition-delay: 0ms;
+  -webkit-transition-delay: 0ms;
+  transition-delay: 0ms;
+  -moz-transition-duration: 400ms;
+  -o-transition-duration: 400ms;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+  -moz-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  -webkit-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+}
+
+/* line 103, ../sass/tictactoe.scss */
+#close_notfication {
+  color: #ff0000;
+  float: right;
+  margin-right: 10px;
+  font-size: 16px;
+  background-color: #fff;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+/* line 121, ../sass/tictactoe.scss */
 main #label_tictactoe {
   font-weight: bold !important;
   text-align: left !important;
   margin-left: -20px;
 }
 @media only screen and (max-width: 890px) {
-  /* line 73, ../sass/tictactoe.scss */
+  /* line 121, ../sass/tictactoe.scss */
   main #label_tictactoe {
     font-size: 20px;
   }
 }
 @media only screen and (max-width: 710px) {
-  /* line 73, ../sass/tictactoe.scss */
+  /* line 121, ../sass/tictactoe.scss */
   main #label_tictactoe {
     font-size: 14px;
   }
 }
-/* line 86, ../sass/tictactoe.scss */
+/* line 134, ../sass/tictactoe.scss */
 main #label_roundofrounds {
   text-align: left !important;
   margin-top: -10px;
   margin-left: -20px;
 }
 @media only screen and (max-width: 890px) {
-  /* line 86, ../sass/tictactoe.scss */
+  /* line 134, ../sass/tictactoe.scss */
   main #label_roundofrounds {
     font-size: 16px;
   }
 }
 @media only screen and (max-width: 710px) {
-  /* line 86, ../sass/tictactoe.scss */
+  /* line 134, ../sass/tictactoe.scss */
   main #label_roundofrounds {
     font-size: 10px;
   }
 }
-/* line 100, ../sass/tictactoe.scss */
+/* line 148, ../sass/tictactoe.scss */
 main #ttt_field {
   height: 400px;
   background-color: #000;
@@ -76,7 +140,7 @@ main #ttt_field {
   :nth-child(4) { margin-right:2px;margin-bottom:2px;margin-top:2px; }
   :nth-child(5) { margin-right:2px;margin-bottom:2px;margin-top:2px;margin-left:2px; }*/
 }
-/* line 111, ../sass/tictactoe.scss */
+/* line 159, ../sass/tictactoe.scss */
 main .ttt_square {
   background-color: #444;
   height: 100%;
@@ -104,7 +168,7 @@ main .ttt_square {
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
 }
-/* line 127, ../sass/tictactoe.scss */
+/* line 175, ../sass/tictactoe.scss */
 main .ttt_square:hover {
   background-color: #aaa;
   -moz-transition-property: background-color;
@@ -124,23 +188,23 @@ main .ttt_square:hover {
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
 }
-/* line 136, ../sass/tictactoe.scss */
+/* line 184, ../sass/tictactoe.scss */
 main .ttt_square .ttt_square_img {
   width: 100%;
   height: auto;
 }
-/* line 142, ../sass/tictactoe.scss */
+/* line 190, ../sass/tictactoe.scss */
 main .ttt_row {
   height: 133.33333px;
 }
-/* line 148, ../sass/tictactoe.scss */
+/* line 196, ../sass/tictactoe.scss */
 main #play_buttons {
   text-align: center;
   margin-top: 4px;
   /*margin-left:auto;
   margin-right:auto;*/
 }
-/* line 158, ../sass/tictactoe.scss */
+/* line 206, ../sass/tictactoe.scss */
 main #highscore_table {
   margin-top: 50px;
   margin-bottom: 10px;
@@ -149,7 +213,7 @@ main #highscore_table {
   border-width: 1px;
   border-color: #ccc;
 }
-/* line 166, ../sass/tictactoe.scss */
+/* line 214, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row {
   display: table-row;
   -moz-transition-property: background-color;
@@ -169,7 +233,7 @@ main #highscore_table .highscore_table_row {
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
 }
-/* line 173, ../sass/tictactoe.scss */
+/* line 221, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row:hover {
   background-color: #ccc;
   -moz-transition-property: background-color;
@@ -189,7 +253,7 @@ main #highscore_table .highscore_table_row:hover {
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
 }
-/* line 182, ../sass/tictactoe.scss */
+/* line 230, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row .highscore_table_cell {
   text-align: center;
   display: table-cell;
@@ -197,22 +261,22 @@ main #highscore_table .highscore_table_row .highscore_table_cell {
   border-width: 1px;
   border-color: #ccc;
 }
-/* line 186, ../sass/tictactoe.scss */
+/* line 234, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row .highscore_table_cell:last-child {
   border-right: none;
 }
-/* line 193, ../sass/tictactoe.scss */
+/* line 241, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row_caption {
   display: table-row;
 }
-/* line 195, ../sass/tictactoe.scss */
+/* line 243, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row_caption .highscore_table_caption {
   font-weight: bold;
   border-bottom: solid;
   border-color: #ccc;
   border-width: 1px;
 }
-/* line 203, ../sass/tictactoe.scss */
+/* line 251, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row_caption .highscore_table_cell {
   text-align: center;
   display: table-cell;
@@ -220,18 +284,18 @@ main #highscore_table .highscore_table_row_caption .highscore_table_cell {
   border-width: 1px;
   border-color: #ccc;
 }
-/* line 207, ../sass/tictactoe.scss */
+/* line 255, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row_caption .highscore_table_cell:last-child {
   border-right: none;
 }
 
-/* line 217, ../sass/tictactoe.scss */
+/* line 265, ../sass/tictactoe.scss */
 #socialbuttons {
   margin-top: 10px;
   margin-right: auto;
   margin-left: auto;
 }
-/* line 221, ../sass/tictactoe.scss */
+/* line 269, ../sass/tictactoe.scss */
 #socialbuttons div {
   width: 150px;
   display: inline;
@@ -264,12 +328,12 @@ main #highscore_table .highscore_table_row_caption .highscore_table_cell:last-ch
     position: relative;
   }
 }*/
-/* line 255, ../sass/tictactoe.scss */
+/* line 303, ../sass/tictactoe.scss */
 body {
   padding: 30px 0px;
 }
 
-/* line 259, ../sass/tictactoe.scss */
+/* line 307, ../sass/tictactoe.scss */
 #lightbox .modal-content {
   display: inline-block;
   text-align: center;

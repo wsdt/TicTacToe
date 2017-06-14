@@ -67,6 +67,54 @@ header {
 }
 
 // </HEADER>
+//Notification Bar
+#notification {
+  position:absolute;
+  top:-23px; //come per transitions down
+  width:100%;
+  height:22px;
+  color:#fff;
+  font-size:14px;
+  text-align:center;
+  font-weight: bold;
+  background-color:#00CCFF; //change per js to green if won or red if lost or orange if draw
+  border-bottom:solid;
+  border-bottom-color:#fff;
+  border-bottom-width: 1px;
+  //padding:1px;
+  vertical-align: middle;
+
+  //Hide bar transition
+  @include transition-property(top);
+  @include transition-delay(0ms);
+  @include transition-duration(400ms);
+  @include transition-timing-function(ease-out);
+
+  .notification_active {
+    top:0; //color etc. are added per js
+
+    //Show bar transition
+    @include transition-property(top);
+    @include transition-delay(0ms);
+    @include transition-duration(400ms);
+    @include transition-timing-function(ease-in);
+  }
+}
+#close_notfication {
+  color:#ff0000;
+  //text-align:right;
+  float:right;
+  margin-right:10px;
+  font-size:16px;
+  background-color:#fff;
+  padding-left:2px;
+  padding-right:2px;
+}
+
+
+
+
+
 
 // <MAIN>
 main {

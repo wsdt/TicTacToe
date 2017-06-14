@@ -53,7 +53,6 @@ function unsetVar() {
     var mode = 1;
 }
 
-
 function vari() {
     sqr1 = document.getElementById('ttt_square1').innerHTML;
     sqr2 = document.getElementById('ttt_square2').innerHTML;
@@ -71,47 +70,47 @@ function check()
     //console.log("startet check");
 
     if(sqr1 === field_content+"X" && sqr2 === field_content+"X" && sqr3 === field_content+"X") {
-        alert("You Win!");
+        show_notification('#00aa00','Gratuliere, du hast das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr4 === field_content+"X" && sqr5 === field_content+"X" && sqr6 === field_content+"X")
     {
-        alert("You Win!");
+        show_notification('#00aa00','Gratuliere, du hast das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr7 === field_content+"X" && sqr8 === field_content+"X" && sqr9 === field_content+"X")
     {
-        alert("You Win!");
+        show_notification('#00aa00','Gratuliere, du hast das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr1 === field_content+"X" && sqr5 === field_content+"X" && sqr9 === field_content+"X")
     {
-        alert("You Win!");
+        show_notification('#00aa00','Gratuliere, du hast das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr1 === field_content+"X" && sqr4 === field_content+"X" && sqr7 === field_content+"X")
     {
-        alert("You Win!");
+        show_notification('#00aa00','Gratuliere, du hast das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr2 === field_content+"X" && sqr5 === field_content+"X" && sqr8 === field_content+"X")
     {
-        alert("You Win!");
+        show_notification('#00aa00','Gratuliere, du hast das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr3 === field_content+"X" && sqr6 === field_content+"X" && sqr9 === field_content+"X")
     {
-        alert("You Win!");
+        show_notification('#00aa00','Gratuliere, du hast das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr1 === field_content+"X" && sqr5 === field_content+"X" && sqr9 === field_content+"X")
     {
-        alert("You Win!");
+        show_notification('#00aa00','Gratuliere, du hast das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr3 === field_content+"X" && sqr5 === field_content+"X" && sqr7 === field_content+"X")
     {
-        alert("You Win!");
+        show_notification('#00aa00','Gratuliere, du hast das Spiel GEWONNEN!');
         reset();
     }
     else
@@ -128,47 +127,47 @@ function check2()
     drawCheck();
     if(sqr1 === field_content+"O" && sqr2 === field_content+"O" && sqr3 === field_content+"O")
     {
-        alert("You Lose!");
+        show_notification('#aa0000','Weiter üben, du hast das Spiel VERLOREN!');
         reset();
     }
     else if(sqr4 === field_content+"O" && sqr5 === field_content+"O" && sqr6 === field_content+"O")
     {
-        alert("You Lose!");
+        show_notification('#aa0000','Weiter üben, du hast das Spiel VERLOREN!');
         reset();
     }
     else if(sqr7 === field_content+"O" && sqr8 === field_content+"O" && sqr9 === field_content+"O")
     {
-        alert("You Lose!");
+        show_notification('#aa0000','Weiter üben, du hast das Spiel VERLOREN!');
         reset();
     }
     else if(sqr1 === field_content+"O" && sqr5 === field_content+"O" && sqr9 === field_content+"O")
     {
-        alert("You Lose!");
+        show_notification('#aa0000','Weiter üben, du hast das Spiel VERLOREN!');
         reset();
     }
     else if(sqr1 === field_content+"O" && sqr4 === field_content+"O" && sqr7 === field_content+"O")
     {
-        alert("You Lose!");
+        show_notification('#aa0000','Weiter üben, du hast das Spiel VERLOREN!');
         reset();
     }
     else if(sqr2 === field_content+"O" && sqr5 === field_content+"O" && sqr8 === field_content+"O")
     {
-        alert("You Lose!");
+        show_notification('#aa0000','Weiter üben, du hast das Spiel VERLOREN!');
         reset();
     }
     else if(sqr3 === field_content+"O" && sqr6 === field_content+"O" && sqr9 === field_content+"O")
     {
-        alert("You Lose!");
+        show_notification('#aa0000','Weiter üben, du hast das Spiel VERLOREN!');
         reset();
     }
     else if(sqr1 === field_content+"O" && sqr5 === field_content+"O" && sqr9 === field_content+"O")
     {
-        alert("You Lose!");
+        show_notification('#aa0000','Weiter üben, du hast das Spiel VERLOREN!');
         reset();
     }
     else if(sqr3 === field_content+"O" && sqr5 === field_content+"O" && sqr7 === field_content+"O")
     {
-        alert("You Lose!");
+        show_notification('#aa0000','Weiter üben, du hast das Spiel VERLOREN!');
         reset();
     }
 }
@@ -180,47 +179,47 @@ function player1Check()
 
     if(sqr1 === field_content+"X" && sqr2 === field_content+"X" && sqr3 === field_content+"X")
     {
-        alert("Player 1 wins!");
+        show_notification('#0000aa','Spieler 1 (= X) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr4 === field_content+"X" && sqr5 === field_content+"X" && sqr6 === field_content+"X")
     {
-        alert("Player 1 wins!");
+        show_notification('#0000aa','Spieler 1 (= X) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr7 === field_content+"X" && sqr8 === field_content+"X" && sqr9 === field_content+"X")
     {
-        alert("Player 1 wins!");
+        show_notification('#0000aa','Spieler 1 (= X) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr1 === field_content+"X" && sqr5 === field_content+"X" && sqr9 === field_content+"X")
     {
-        alert("Player 1 wins!");
+        show_notification('#0000aa','Spieler 1 (= X) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr1 === field_content+"X" && sqr4 === field_content+"X" && sqr7 === field_content+"X")
     {
-        alert("Player 1 wins!");
+        show_notification('#0000aa','Spieler 1 (= X) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr2 === field_content+"X" && sqr5 === field_content+"X" && sqr8 === field_content+"X")
     {
-        alert("Player 1 wins!");
+        show_notification('#0000aa','Spieler 1 (= X) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr3 === field_content+"X" && sqr6 === field_content+"X" && sqr9 === field_content+"X")
     {
-        alert("Player 1 wins!");
+        show_notification('#0000aa','Spieler 1 (= X) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr1 === field_content+"X" && sqr5 === field_content+"X" && sqr9 === field_content+"X")
     {
-        alert("Player 1 wins!");
+        show_notification('#0000aa','Spieler 1 (= X) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr3 === field_content+"X" && sqr5 === field_content+"X" && sqr7 === field_content+"X")
     {
-        alert("Player 1 wins!");
+        show_notification('#0000aa','Spieler 1 (= X) hat das Spiel GEWONNEN!');
         reset();
     }
     else
@@ -236,47 +235,47 @@ function player2Check()
     drawCheck();
     if(sqr1 === field_content+"O" && sqr2 === field_content+"O" && sqr3 === field_content+"O")
     {
-        alert("Player 2 wins!");
+        show_notification('#0000aa','Spieler 2 (= O) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr4 === field_content+"O" && sqr5 === field_content+"O" && sqr6 === field_content+"O")
     {
-        alert("Player 2 wins!");
+        show_notification('#0000aa','Spieler 2 (= O) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr7 === field_content+"O" && sqr8 === field_content+"O" && sqr9 === field_content+"O")
     {
-        alert("Player 2 wins!");
+        show_notification('#0000aa','Spieler 2 (= O) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr1 === field_content+"O" && sqr5 === field_content+"O" && sqr9 === field_content+"O")
     {
-        alert("Player 2 wins!");
+        show_notification('#0000aa','Spieler 2 (= O) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr1 === field_content+"O" && sqr4 === field_content+"O" && sqr7 === field_content+"O")
     {
-        alert("Player 2 wins!");
+        show_notification('#0000aa','Spieler 2 (= O) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr2 === field_content+"O" && sqr5 === field_content+"O" && sqr8 === field_content+"O")
     {
-        alert("Player 2 wins!");
+        show_notification('#0000aa','Spieler 2 (= O) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr3 === field_content+"O" && sqr6 === field_content+"O" && sqr9 === field_content+"O")
     {
-        alert("Player 2 wins!");
+        show_notification('#0000aa','Spieler 2 (= O) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr1 === field_content+"O" && sqr5 === field_content+"O" && sqr9 === field_content+"O")
     {
-        alert("Player 2 wins!");
+        show_notification('#0000aa','Spieler 2 (= O) hat das Spiel GEWONNEN!');
         reset();
     }
     else if(sqr3 === field_content+"O" && sqr5 === field_content+"O" && sqr7 === field_content+"O")
     {
-        alert("Player 2 wins!");
+        show_notification('#0000aa','Spieler 2 (= O) hat das Spiel GEWONNEN!');
         reset();
     }
 }
@@ -288,7 +287,7 @@ function drawCheck()
     if(moveCount === 9)
     {
         reset();
-        alert("Draw");
+        show_notification('#FFA500','Spiel unentschieden! (DRAW)');
     }
 }
 
