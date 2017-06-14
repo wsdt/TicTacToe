@@ -98,7 +98,7 @@ main {
     }
   }
   #ttt_field {
-    height: auto;//$ttt_field_height+px;
+    height: $ttt_field_height+px; //auto;
     background-color: $ttt_field_bgcolor;
     width: 33.3333333%;
     /*:nth-child(1) { margin-right:2px;margin-bottom:2px; } //Mache Abstände zwischen Kästchen gleichmaessig
@@ -140,14 +140,16 @@ main {
 
   }
   .ttt_row {
-    height: auto;//$ttt_square_height+px; // = same height as width by Bootstrap
+    height: $ttt_square_height+px; // = same height as width by Bootstrap ; auto;
   }
 
 
   //PLAY-Buttons
   #play_buttons {
-    margin-left:auto;
-    margin-right:auto;
+    text-align:center;
+    margin-top:4px;
+    /*margin-left:auto;
+    margin-right:auto;*/
   }
   
   

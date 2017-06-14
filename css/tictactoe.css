@@ -1,4 +1,4 @@
-﻿@charset "UTF-8";
+@charset "UTF-8";
 /* @import "mixinFallback" */
 /* line 41, ../sass/tictactoe.scss */
 span.show {
@@ -67,7 +67,7 @@ main #label_roundofrounds {
 }
 /* line 100, ../sass/tictactoe.scss */
 main #ttt_field {
-  height: auto; /*400px;*/
+  height: 400px;
   background-color: #000;
   width: 33.3333333%;
   /*:nth-child(1) { margin-right:2px;margin-bottom:2px; } //Mache Abstände zwischen Kästchen gleichmaessig
@@ -76,13 +76,7 @@ main #ttt_field {
   :nth-child(4) { margin-right:2px;margin-bottom:2px;margin-top:2px; }
   :nth-child(5) { margin-right:2px;margin-bottom:2px;margin-top:2px;margin-left:2px; }*/
 }
-
-.ttt_xoSet {
-  color:#fff;
-  font-size:50px;
-}
-
-/* line 110, ../sass/tictactoe.scss */
+/* line 111, ../sass/tictactoe.scss */
 main .ttt_square {
   background-color: #444;
   height: 100%;
@@ -90,11 +84,9 @@ main .ttt_square {
   border-width: 2px;
   border-color: #000;
   width: 33.3333333%;
-  /* Layout of text content of fields */
-  color:#fff;
-  font-size:100px;
-  text-align:center;
-
+  color: #fff;
+  font-size: 100px;
+  text-align: center;
   -moz-transition-property: background-color;
   -o-transition-property: background-color;
   -webkit-transition-property: background-color;
@@ -112,7 +104,7 @@ main .ttt_square {
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
 }
-/* line 123, ../sass/tictactoe.scss */
+/* line 127, ../sass/tictactoe.scss */
 main .ttt_square:hover {
   background-color: #aaa;
   -moz-transition-property: background-color;
@@ -132,24 +124,23 @@ main .ttt_square:hover {
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
 }
-
-main .ttt_square_img {
-	width:100%;
-	height:auto;
-	}
-
-/* line 132, ../sass/tictactoe.scss */
-main .ttt_row {
+/* line 136, ../sass/tictactoe.scss */
+main .ttt_square .ttt_square_img {
+  width: 100%;
   height: auto;
 }
-
-/*PLAY-Buttons*/
-#play_buttons {
-    text-align:center;
-    margin-top:6px;
-  }
-
-/* line 137, ../sass/tictactoe.scss */
+/* line 142, ../sass/tictactoe.scss */
+main .ttt_row {
+  height: 133.33333px;
+}
+/* line 148, ../sass/tictactoe.scss */
+main #play_buttons {
+  text-align: center;
+  margin-top: 4px;
+  /*margin-left:auto;
+  margin-right:auto;*/
+}
+/* line 158, ../sass/tictactoe.scss */
 main #highscore_table {
   margin-top: 50px;
   margin-bottom: 10px;
@@ -158,7 +149,7 @@ main #highscore_table {
   border-width: 1px;
   border-color: #ccc;
 }
-/* line 145, ../sass/tictactoe.scss */
+/* line 166, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row {
   display: table-row;
   -moz-transition-property: background-color;
@@ -178,7 +169,7 @@ main #highscore_table .highscore_table_row {
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
 }
-/* line 152, ../sass/tictactoe.scss */
+/* line 173, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row:hover {
   background-color: #ccc;
   -moz-transition-property: background-color;
@@ -198,7 +189,7 @@ main #highscore_table .highscore_table_row:hover {
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
 }
-/* line 161, ../sass/tictactoe.scss */
+/* line 182, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row .highscore_table_cell {
   text-align: center;
   display: table-cell;
@@ -206,22 +197,22 @@ main #highscore_table .highscore_table_row .highscore_table_cell {
   border-width: 1px;
   border-color: #ccc;
 }
-/* line 165, ../sass/tictactoe.scss */
+/* line 186, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row .highscore_table_cell:last-child {
   border-right: none;
 }
-/* line 172, ../sass/tictactoe.scss */
+/* line 193, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row_caption {
   display: table-row;
 }
-/* line 174, ../sass/tictactoe.scss */
+/* line 195, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row_caption .highscore_table_caption {
   font-weight: bold;
   border-bottom: solid;
   border-color: #ccc;
   border-width: 1px;
 }
-/* line 182, ../sass/tictactoe.scss */
+/* line 203, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row_caption .highscore_table_cell {
   text-align: center;
   display: table-cell;
@@ -229,127 +220,47 @@ main #highscore_table .highscore_table_row_caption .highscore_table_cell {
   border-width: 1px;
   border-color: #ccc;
 }
-/* line 186, ../sass/tictactoe.scss */
+/* line 207, ../sass/tictactoe.scss */
 main #highscore_table .highscore_table_row_caption .highscore_table_cell:last-child {
   border-right: none;
 }
 
-/* line 196, ../sass/tictactoe.scss */
-#socialbuttons {
+/*#socialbuttons {
   width: 60%;
   float: none;
   margin-left: auto;
   margin-right: auto;
-  display: flex;
+  display:flex;
+  height: 34px;
 }
 
-*{
-  font-family: 'Arial', sans-serif;
-}
-
-/****** LOGIN MODAL ******/
-.loginmodal-container {
-  padding: 30px;
-  max-width: 350px;
-  width: 100% !important;
-  background-color: #F7F7F7;
-  margin: 0 auto;
-  border-radius: 2px;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-}
-
-.loginmodal-container h1 {
-  text-align: center;
-  font-size: 1.8em;
-}
-
-.loginmodal-container input[type=submit] {
-  width: 100%;
+#overlayLogin {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
   display: block;
-  margin-bottom: 10px;
-  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  #overlay {
+    width: 50%;
+    min-height: 50%;
+    background-color: #fff;
+    margin: 10% auto 10% auto;
+    box-shadow: 3px 3px 5px #999;
+    position: relative;
+  }
+}*/
+/* line 247, ../sass/tictactoe.scss */
+body {
+  padding: 30px 0px;
 }
 
-.loginmodal-container input[type=text], input[type=password] {
-  height: 44px;
-  font-size: 16px;
-  width: 100%;
-  margin-bottom: 10px;
-  -webkit-appearance: none;
-  background: #fff;
-  border: 1px solid #d9d9d9;
-  border-top: 1px solid #c0c0c0;
-  /* border-radius: 2px; */
-  padding: 0 8px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-}
-
-.loginmodal-container input[type=text], input[type=password] {
-  height: 44px;
-  font-size: 16px;
-  width: 100%;
-  margin-bottom: 10px;
-  -webkit-appearance: none;
-  background: #fff;
-  border: 1px solid #d9d9d9;
-  border-top: 1px solid #c0c0c0;
-  /* border-radius: 2px; */
-  padding: 0 8px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-}
-
-.loginmodal-container input[type=text]:hover, input[type=password]:hover {
-  border: 1px solid #b9b9b9;
-  border-top: 1px solid #a0a0a0;
-  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-}
-
-.loginmodal {
-  text-align: center;
-  font-size: 14px;
-  font-family: 'Arial', sans-serif;
-  font-weight: 700;
-  height: 36px;
-  padding: 0 8px;
-  /* border-radius: 3px; */
-  /* -webkit-user-select: none;
-    user-select: none; */
-}
-
-.loginmodal-submit {
-  /* border: 1px solid #3079ed; */
-  border: 0px;
-  color: #fff;
-  text-shadow: 0 1px rgba(0,0,0,0.1);
-  background-color: #c12e2a;
-  padding: 17px 0px;
-  font-size: 14px;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
-}
-
-.loginmodal-submit:hover {
-  /* border: 1px solid #2f5bb7; */
-  border: 0px;
-  text-shadow: 0 1px rgba(0,0,0,0.3);
-  background-color: #8B0000;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
-}
-
-.loginmodal-container a {
-  text-decoration: none;
-  color: #666;
-  font-weight: 400;
-  text-align: center;
+/* line 251, ../sass/tictactoe.scss */
+#lightbox .modal-content {
   display: inline-block;
-  opacity: 0.6;
-  transition: opacity ease 0.5s;
-}
-
-.login-help{
-  font-size: 12px;
+  text-align: center;
 }

@@ -3,12 +3,12 @@
 <head>
     <title>Registrierung</title>
     <meta charset="utf-8">
-    <link href="css/tictactoe.css" rel="stylesheet">
+    <link href="../css/tictactoe.css" rel="stylesheet">
 </head>
 <body>
 <div class="loginmodal-container">
     <h1>Neu registrieren</h1><br>
-        <form method="get" action="php/insertNewUser.php" name="formreg">
+        <form method="get" action="db/insertNewUser.php" name="formreg">
             <input type="text" name="username" placeholder="Username">
             <input type="password" name="passwort" placeholder="Passwort">
             <input type="password" name="passwort2" placeholder="Passwort wiederholen">

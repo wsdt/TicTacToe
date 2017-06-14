@@ -1,6 +1,6 @@
 <?php
 
-include("dbNewConnection.php");
+include("db/dbNewConnection.php");
 session_start();
 
 $message="";

@@ -1,17 +1,19 @@
 <?php
+if (empty($_GET["debug"])) {
 
-include("dbNewConnection.php");
-session_start();
+    include("unused_SQL/db/dbNewConnection.php");
+    session_start();
 
-$message="";
-if(!empty($_GET["login"])) {
-    $result = mysqli_query($tunnel,"SELECT * FROM Users WHERE username='" . $_GET["username"] . "' and passwort = '". $_GET["passwort"]."'");
-    $row  = mysqli_fetch_array($result);
-    if(is_array($row)) {
-        $_SESSION["username"] = $row['username'];
-        echo "Anmeldung erfolgreich";
-    } else {
-        $message = "Invalid Username or Password!";
+    $message = "";
+    if (!empty($_GET["login"])) {
+        $result = mysqli_query($tunnel, "SELECT * FROM Users WHERE username='" . $_GET["username"] . "' and passwort = '" . $_GET["passwort"] . "'");
+        $row = mysqli_fetch_array($result);
+        if (is_array($row)) {
+            $_SESSION["username"] = $row['username'];
+            echo "Anmeldung erfolgreich";
+        } else {
+            $message = "Invalid Username or Password!";
+        }
     }
 }
 ?>
@@ -28,7 +30,7 @@ if(!empty($_GET["login"])) {
     <script type="text/javascript" src="js/tictactoe.js"></script>
     <script type="text/javascript" src="jquery/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/singleplayer.js"></script>
+    <script type="text/javascript" src="js/ttt_gamelogic.js"></script>
 
     <?php
         function createTTTField() {
@@ -38,7 +40,7 @@ if(!empty($_GET["login"])) {
                 for ($j=1;$j<=3;$j++) {
                     $z++;
                     echo "<div class='col-xs-4 col-md-4 ttt_square' id='ttt_square".($z)."' onclick=\"setZug('".($z)."');\">".
-                        "<img src='images/trans_squarefield.png' class='ttt_square_img'/></div>";
+                        "</div>"; //<img src='images/trans_squarefield.png' class='ttt_square_img'/>
                 }
                 echo "</div>\n";
             }
@@ -167,7 +169,7 @@ if(!empty($_GET["login"])) {
                 </form>
 
                 <div class="login-help">
-                    <a href="register.php" target="_blank">Neu registrieren</a>
+                    <a href="php/register.php" target="_blank">Neu registrieren</a>
                 </div>
             </div>
         </div>
