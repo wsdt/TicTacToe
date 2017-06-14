@@ -13,8 +13,10 @@ function close_notification() {
 }
 
 function show_notification(bgcolor, text) {
+    document.getElementById('notification_text').style.color = '#fff'; //Make textcolor white by default
   if (bgcolor === '#fff' || bgcolor === '#ffffff' || bgcolor === 'black') {
-    console.warn("WARNING: You won't see your text with that background-color!");
+    console.warn("INFO: We changed the font color for you to black, so you can read it.");
+    document.getElementById('notification_text').style.color = '#000';
   }
   var not_bar = document.getElementById('notification');
   //not_bar.className = "notification_active";

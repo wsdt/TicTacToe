@@ -78,9 +78,9 @@ function vari() {
 
 function mark_essential_Sets(color,field1,field2,field3) { //Färbe die spielentscheidenden Spielzüge ein
     //change bg and color
-    console.log("FIELD: "+field1+","+field2+","+field3);
+    //console.log("FIELD: "+field1+","+field2+","+field3);
     var tmparr = [field1,field2,field3];
-    console.log("TMPARR: "+tmparr[0]+", "+tmparr[1]+","+tmparr[2]);
+    //console.log("TMPARR: "+tmparr[0]+", "+tmparr[1]+","+tmparr[2]);
     for (var i = 0; i<3;i++) {
         //document.getElementById('ttt_square' + tmparr[i]).style.color = color; Just change the bgcolor, especially because its nicer and I would have to take a 2nd different color
         document.getElementById('ttt_square' + tmparr[i]).style.backgroundColor = color;
