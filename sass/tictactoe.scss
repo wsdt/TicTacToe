@@ -11,7 +11,7 @@
 $ttt_field_height: 400; //TODO:Make this resizeable?!
 $ttt_square_height: $ttt_field_height/3;
 $ttt_field_bgcolor: #000;
-$ttt_square_bgcolor: #444;
+$ttt_square_bgcolor: #444; //Nicht ändern, für Spiellogik entscheidend
 $ttt_square_bgcolor_hover: #aaa;
 
 //Highscore-Variables

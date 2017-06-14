@@ -45,12 +45,26 @@ function changeMode(modus) {
 
 function setZug(id) {
   close_notification();
-  var modus = 1;
-  if (document.getElementById('bt_singleplayer').className === "btn btn-primary") {
-    modus = 0;
-    playGameSingleplayer(id);
+
+  //wenn ein Feld in Farbe = Spiel zu Ende, dann tue nichts oder gib Meldung aus. Bei Draw unnötig, da ohnehin alle Felder besetzt
+  /*for (var tmp of document.getElementsByClassName('ttt_square')) {
+    console.log(tmp);
+    if (tmp.style.backgroundColor !== '#444' && tmp.style.backgroundColor !== '#aaa') {
+      spielzug_erlaubt = false;
+      show_notification('#000', 'Spiel bereits zu Ende!');
+      break;
+    }
+  }*/
+  if (spielende) {
+    show_notification('#000','Spiel bereits zu Ende!');
   } else {
-    playGameMultiplayer(id);
+      var modus = 1;
+      if (document.getElementById('bt_singleplayer').className === "btn btn-primary") {
+          modus = 0;
+          playGameSingleplayer(id);
+      } else {
+          playGameMultiplayer(id);
+      }
   }
 }
 
@@ -88,7 +102,7 @@ function playGameMultiplayer(id) {
           multiplayer_spieler_zug = 2;
           player1Check();
       } else {
-        show_notification('#000','MELDUNG: Dieses Feld wurde bereits ausgewählt!');
+        show_notification('#000','Dieses Feld wurde bereits ausgewählt!');
       }
   } else if (multiplayer_spieler_zug === 2) {
       if (curr_field.innerHTML === field_content) {
@@ -96,18 +110,25 @@ function playGameMultiplayer(id) {
           multiplayer_spieler_zug = 1;
           player2Check();
       } else {
-          show_notification('#000','MELDUNG: Dieses Feld wurde bereits ausgewählt!');
+          show_notification('#000','Dieses Feld wurde bereits ausgewählt!');
       }
   } else {
     console.error("ERROR: Spiel nur zwischen 2 Spielern möglich bzw. ungültiger Spieler zum Zug angefordert!");
   }
 }
 
+function uncolor_essential_fields() { //Wenn Spiel zu Ende werden entscheidende Spielzüge eingefärbt, hier werden sie entfärbt
+  for (tmp of document.getElementsByClassName('ttt_square')) {
+    tmp.style.backgroundColor = '#444';
+  }
+}
+
 function restartGame() {
   for (tmp of document.getElementsByClassName('ttt_square')) {
-    tmp.innerHTML = field_content;
+    tmp.innerHTML = field_content; //empty all fields
   }
-
-  document.getElementById('notification').style.top = '-23px';
+  document.getElementById('notification').style.top = '-23px'; //hide notification bar
+  uncolor_essential_fields();
+  spielende = false; //Sagen, dass Spiel neu angefangen
 }
 
