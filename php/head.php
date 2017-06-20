@@ -14,4 +14,7 @@ echo "<meta charset=\"utf-8\">
     <script type='text/javascript' src='js/login_register.js'></script>";
     require_once 'functions.php';
 
+	//TODO: Evtl. noch HTTP-Requests minimieren! Alles in 1 JS etc. 
+	
+	
 ?>
