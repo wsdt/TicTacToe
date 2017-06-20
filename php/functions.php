@@ -15,7 +15,7 @@ function createLoginForm() {
                 <form method=\"get\" action=\"\">
                     <input type=\"text\" name=\"username\" placeholder=\"Username\">
                     <input type=\"password\" name=\"passwort\" placeholder=\"Passwort\">
-                    <input type=\"submit\" name=\"login\" class=\"login loginmodal-submit\" value=\"Login\">
+                    <input type=\"submit\" name=\"login\" class=\"login loginmodal-submit\" value=\"Login\" onclick='validateLoginCredentials()'>
                 </form>
 
                 <div class=\"login-help\">

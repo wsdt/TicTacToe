@@ -29,4 +29,19 @@ function isLoggedIn() {
     }
 }
 
+//Login-Form-Validation
+function validateLoginCredentials() {
+    var loggedInSuccessfully = false;
+
+    //TODO: Hier über durch PHP-Datenbankprüfung (Login.php) prüfen ob erfolgreich, dann hier bool auf true
+
+    if (loggedInSuccessfully) {
+        hideLoginForm();
+    } else {
+        if (!$('#login-modal').is(":visible")) {
+            showLoginForm(); //Show Login form if login unsuccessful and form is hidden (should not be possible, but ok who knows)
+        }
+    }
+}
+
 
