@@ -10,6 +10,23 @@ function createNotificationBar() {
    echo "<div id=\"notification\"><span id=\"notification_text\">ERROR: This should not be shown. Please contact system-administrator. </span><div id=\"close_notfication\" onclick=\"close_notification();\">X</div></div>";
 }
 
+//TTT-Field
+function createTTTField() {
+    $z = 0;
+    for ($i=1;$i<=3;$i++) {
+        echo "<div class='row ttt_row' id='ttt_row".$i."'>\n"; echo "<!-- ".$i.". Row of TTT-Field -->\n";
+        for ($j=1;$j<=3;$j++) {
+            $z++;
+            echo "<div class='col-xs-4 col-md-4 ttt_square' id='ttt_square".($z)."' onclick=\"setZug('".($z)."');\">".
+                "</div>"; //<img src='images/trans_squarefield.png' class='ttt_square_img'/>
+        }
+        echo "</div>\n";
+    }
+    echo "";
+}
+
+
+//HIGHSCORE
 function calcReputation($wins,$draws,$losses) {
     return 0; //TODO: Formel für Reputation
 }
