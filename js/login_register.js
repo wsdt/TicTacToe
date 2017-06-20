@@ -19,11 +19,11 @@ function hideLoginForm() {
 function isLoggedIn() {
     var isVisible = $('#login-modal').is(":visible");
     if (isVisible) {
-        console.log("Login Modal visible: "+isVisible);
+        //console.log("Login Modal visible: "+isVisible);
         document.getElementById('login_logout_label_link').innerHTML = "Login"; //Zeige an, dass man sich einloggen kann
         document.getElementById('label_loggedinas').style.display = "none"; //Verstecke, dass als User X angemeldet
     } else {
-        console.log("Login Modal visible 2: "+isVisible);
+        //console.log("Login Modal visible 2: "+isVisible);
         document.getElementById('login_logout_label_link').innerHTML = "Logout";
         document.getElementById('label_loggedinas').style.display = "inline";
     }
