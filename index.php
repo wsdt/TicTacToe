@@ -41,14 +41,20 @@ if (empty($_GET["debug"])) {
     ?>
 
 </head>
-<body>
+<body onload="showLoginForm()">
 <!-- Following code should be the first code after body -->
 <div id="notification"><span id="notification_text">ERROR: This should not be shown. Please contact system-administrator. </span><div id="close_notfication" onclick="close_notification();">X</div></div>
 
 
+<!--SHOW LOGIN FORM-->
+<?php
+createLoginForm();
+?>
 <!-- END first code after body -->
+<!-- Login or Logout Button at the screen -->
+<div id="login_logout_label"><a href="#" data-toggle="modal" data-target="#login-modal" id="login_logout_label_link">Login</a></div>
+<!--<a href="#" data-toggle="modal" data-target="#login-modal">Login</a>-->
 
-<a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
 <header>
     <div class="row toprow">
         <div class="col-xs-11 col-md-11">
@@ -157,22 +163,7 @@ if (empty($_GET["debug"])) {
     </div>
     <div class="col-xs-4 col-md-4"><!-- let empty --></div>
 
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
-            <div class="loginmodal-container">
-                <h1>Login</h1><br>
-                <form method="get" action="">
-                    <input type="text" name="username" placeholder="Username">
-                    <input type="password" name="passwort" placeholder="Passwort">
-                    <input type="submit" name="login" class="login loginmodal-submit" value="Login">
-                </form>
 
-                <div class="login-help">
-                    <a href="php/register.php" target="_blank">Neu registrieren</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </footer>
 </body>
 </html>
