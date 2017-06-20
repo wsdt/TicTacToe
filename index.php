@@ -53,13 +53,13 @@ createLoginForm();
 <!-- END first code after body -->
 <!-- Login or Logout Button at the screen -->
 <div id="login_logout_label"><a href="#" data-toggle="modal" data-target="#login-modal" id="login_logout_label_link">Login</a></div>
-<!--<a href="#" data-toggle="modal" data-target="#login-modal">Login</a>-->
+
 
 <header>
     <div class="row toprow">
         <div class="col-xs-11 col-md-11">
             <!-- Say who you are (only when you are logged in) [when not: class="hidden" OR class="show"-->
-            <span class="show" id="label_loggedinas">Logged in as <strong>'CrazyHackerGuy'</strong></span>
+            <span class="show_label" id="label_loggedinas">Logged in as <strong>'CrazyHackerGuy'</strong></span>
         </div>
         <div class="col-xs-1 col-md-1">
             <form id="form_logout" name="form_logout" action="#">

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* @import "mixinFallback" */
 /* line 41, ../sass/tictactoe.scss */
-span.show {
+span.show_label {
   display: inline-block;
 }
 
