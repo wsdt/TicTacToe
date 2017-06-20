@@ -104,28 +104,7 @@ createLoginForm();
         <div class="col-xs-2 col-md-2"><!-- let empty --></div>
         <div class="col-xs-8 col-md-8" id="highscore_table">
             <!-- HERE is the highscore table placed (table layout as div) -->
-            <div class="highscore_table_row_caption">
-                <div class="highscore_table_cell highscore_table_caption">Ranking</div>
-                <div class="highscore_table_cell highscore_table_caption">Nickname</div>
-                <div class="highscore_table_cell highscore_table_caption">Punkte</div>
-                <div class="highscore_table_cell highscore_table_caption">Message</div>
-                <div class="highscore_table_cell highscore_table_caption">Reputation <!-- Reputation = Win/Loss Ratio --></div>
-            </div>
-            <!-- TODO: Ab hier mit PHP Zeilen dynamisch erzeugen -->
-            <div class="highscore_table_row">
-                <div class="highscore_table_cell">1</div>
-                <div class="highscore_table_cell">WSDT</div>
-                <div class="highscore_table_cell">4/ 5</div>
-                <div class="highscore_table_cell">Hallo I bims</div>
-                <div class="highscore_table_cell">88.5 %</div>
-            </div>
-            <div class="highscore_table_row">
-                <div class="highscore_table_cell">2</div>
-                <div class="highscore_table_cell">Ernesto</div>
-                <div class="highscore_table_cell">5/ 5</div>
-                <div class="highscore_table_cell">Wo ist meine Schokolade</div>
-                <div class="highscore_table_cell">100 %</div>
-            </div>
+            <?php generateHighscoreTable(); ?>
 
         </div>
         <div class="col-xs-2 col-md-2"><!-- let empty --></div>
