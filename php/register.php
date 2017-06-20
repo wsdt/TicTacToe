@@ -8,7 +8,7 @@
 <body>
 <div class="loginmodal-container">
     <h1>Neu registrieren</h1><br>
-        <form method="get" action="db/insertNewUser.php" name="formreg">
+        <form method="post" action="db/insertNewUser.php" name="formreg">
             <input type="text" name="username" placeholder="Username">
             <input type="password" name="passwort" placeholder="Passwort">
             <input type="password" name="passwort2" placeholder="Passwort wiederholen">
