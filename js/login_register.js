@@ -13,10 +13,12 @@ function reg_onSubmit() {
         show_notification('#ff0000', 'Es darf kein Eingabefeld leer sein!');
         return false;
     } else if (password.value != passwordrepeat.value) {
-        show_notification('#ff0000', 'Das Passwort stimmt mit der Kontrolleingabe nicht überein!');
+        show_notification('#000', 'Das Passwort stimmt mit der Kontrolleingabe nicht überein!');
+        return false;
+    } else if (username.value.length < 4) {
+        show_notification('#000', 'Der Username muss länger als 3 Zeichen sein!');
         return false;
     }
-
     return true; // return false to cancel form action
 }
 
