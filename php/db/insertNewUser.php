@@ -1,16 +1,15 @@
 <?php
 	include "dbNewConnection.php";
 
-
 	$ordiestring = "<p><strong>PHP Info: </strong>Abfrage war nicht möglich.</p>";
 
-	$nickname = strtolower($_POST["nickname"]);
+	$username = strtolower($_POST["username"]);
 	$passwort = $_POST["passwort"];
 	$passwort2 = $_POST["passwort2"];
 	$hash = hash('sha256', $passwort);
 
 	if ($passwort == $passwort2){
-	    if ($_POST["passwort"] == NULL){
+	    if ($_GET["passwort"] == NULL){
             echo "Passwort ist leer";
         } else {
             $control = 0;
@@ -23,7 +22,7 @@
                 echo "<p>Username <strong>$username</strong> existiert bereits! <a href='../register.php'>zurück</a> </p>";
             } else {
                 echo "Speicherung in DB";
-                $sql = "INSERT INTO user (username, passwort) VALUES ('" . $username . "', '" . $hash . "');";
+                $sql = "INSERT INTO Users (username, passwort) VALUES ('" . $username . "', '" . $hash . "');";
                 echo "<p><strong>PHP Info: </strong>" . $sql . "</p>";
                 $result = mysqli_query($tunnel, $sql);
                 echo "<p>Benutzer wurde erfolgreich angelegt <a href='../../index.php'>Anmelden</a> </p>";
