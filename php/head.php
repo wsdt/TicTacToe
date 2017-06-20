@@ -10,6 +10,8 @@ echo "<meta charset=\"utf-8\">
     <script type=\"text/javascript\" src=\"js/tictactoe.js\"></script>
     <script type=\"text/javascript\" src=\"jquery/jquery-3.2.1.min.js\"></script>
     <script type=\"text/javascript\" src=\"bootstrap/dist/js/bootstrap.min.js\"></script>
-    <script type=\"text/javascript\" src=\"js/ttt_gamelogic.js\"></script>";
+    <script type=\"text/javascript\" src=\"js/ttt_gamelogic.js\"></script>
+    <script type='text/javascript' src='js/login_register.js'></script>";
+    require_once 'functions.php';
 
 ?>
