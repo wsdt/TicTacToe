@@ -6,21 +6,6 @@
     <title>TicTacToe</title>
 <?php
         require_once('php/head.php');
-
-
-        function createTTTField() {
-            $z = 0;
-            for ($i=1;$i<=3;$i++) {
-                echo "<div class='row ttt_row' id='ttt_row".$i."'>\n"; echo "<!-- ".$i.". Row of TTT-Field -->\n";
-                for ($j=1;$j<=3;$j++) {
-                    $z++;
-                    echo "<div class='col-xs-4 col-md-4 ttt_square' id='ttt_square".($z)."' onclick=\"setZug('".($z)."');\">".
-                        "</div>"; //<img src='images/trans_squarefield.png' class='ttt_square_img'/>
-                }
-                echo "</div>\n";
-            }
-            echo "";
-        }
     ?>
 
 </head>
