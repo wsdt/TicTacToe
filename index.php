@@ -1,22 +1,5 @@
-<?php
-if (empty($_GET["debug"])) {
 
-    include("php/db/dbNewConnection.php");
-    session_start();
 
-    $message = "";
-    if (!empty($_GET["login"])) {
-        $result = mysqli_query($tunnel, "SELECT * FROM Users WHERE username='" . $_GET["username"] . "' and passwort = '" . $_GET["passwort"] . "'");
-        $row = mysqli_fetch_array($result);
-        if (is_array($row)) {
-            $_SESSION["username"] = $row['username'];
-            echo "Anmeldung erfolgreich";
-        } else {
-            $message = "Invalid Username or Password!";
-        }
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -52,14 +35,14 @@ createLoginForm();
 ?>
 <!-- END first code after body -->
 <!-- Login or Logout Button at the screen -->
-<div id="login_logout_label"><a href="#" data-toggle="modal" data-target="#login-modal" id="login_logout_label_link">Login</a></div>
+<div id="login_logout_label"><a href="php/logout.php" data-toggle="modal" data-target="#login-modal" id="login_logout_label_link">Login</a></div>
 
 
 <header>
     <div class="row toprow">
         <div class="col-xs-11 col-md-11">
             <!-- Say who you are (only when you are logged in) [when not: class="hidden" OR class="show"-->
-            <span class="show_label" id="label_loggedinas">Logged in as <strong>'CrazyHackerGuy'</strong></span>
+            <span class="show_label" id="label_loggedinas">Logged in as <strong></strong></span>
         </div>
         <div class="col-xs-1 col-md-1">
             <form id="form_logout" name="form_logout" action="#">
