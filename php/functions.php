@@ -13,14 +13,15 @@ function createNotificationBar() {
 
 //CREATE LOGIN-FORM
 function createLoginForm() {
-    echo "<div class=\"modal fade\" id=\"login-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\" style=\"display: none;\">
+    if (empty($_POST)) {
+        echo "<div class=\"modal fade\" id=\"login-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\" style=\"display: none;\">
         <div class=\"modal-dialog\">
             <div class=\"loginmodal-container\">
                 <h1>Login</h1><br>
-                <form method=\"post\" action=\"\">
-                    <input type=\"text\" name=\"username\" placeholder=\"Username\">
-                    <input type=\"password\" name=\"passwort\" placeholder=\"Passwort\">
-                    <input type=\"submit\" name=\"login\" class=\"login loginmodal-submit\" value=\"Login\" onclick='validateLoginCredentials()'>
+                <form method=\"post\" action='" . $_SERVER['PHP_SELF'] . "/*?debug=1*/' onsubmit='return validateLoginCredentials()'>
+                    <input type=\"text\" name=\"username\" placeholder=\"Username\" id='log_username' onfocus='close_notification()'>
+                    <input type=\"password\" name=\"password\" placeholder=\"Passwort\" id='log_password' onfocus='close_notification()'>
+                    <input type=\"submit\" name=\"login\" class=\"login loginmodal-submit\" value=\"Login\">
                 </form>
 
                 <div class=\"login-help\">
@@ -29,4 +30,13 @@ function createLoginForm() {
             </div>
         </div>
     </div>";
+    } else {
+        //Prüfe ob User und Passwort etc ok
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        echo $username.",".$password;
+
+
+    }
 }

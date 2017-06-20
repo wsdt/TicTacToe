@@ -9,7 +9,6 @@ function reg_onSubmit() {
 
 
     if (username.value === "" || password.value === "" || passwordrepeat.value === "") {
-        console.log("show warning");
         show_notification('#ff0000', 'Es darf kein Eingabefeld leer sein!');
         return false;
     } else if (password.value != passwordrepeat.value) {
@@ -54,7 +53,19 @@ function isLoggedIn() {
 function validateLoginCredentials() {
     var loggedInSuccessfully = false;
 
+    //JS Prüfung vor PHP-Prüfung
+    var username = document.getElementById('log_username');
+    var password = document.getElementById('log_password');
+
+    if (username.value === "" || password.value === "") {
+        show_notification('#000', 'Bitte geben Sie ein Passwort oder einen Benutzer ein!');
+        return false;
+    }
+    return true; // return false to cancel form action
+
+
     //TODO: Hier über durch PHP-Datenbankprüfung (Login.php) prüfen ob erfolgreich, dann hier bool auf true
+    //ALSO IRGENDWIE AUF RESULT VON ACTION DARAUF ZUGREIFEN
 
     if (loggedInSuccessfully) {
         hideLoginForm();
