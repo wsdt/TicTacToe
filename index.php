@@ -43,7 +43,7 @@ if (empty($_GET["debug"])) {
 </head>
 <body onload="showLoginForm()">
 <!-- Following code should be the first code after body -->
-<div id="notification"><span id="notification_text">ERROR: This should not be shown. Please contact system-administrator. </span><div id="close_notfication" onclick="close_notification();">X</div></div>
+<?php createNotificationBar(); ?>
 
 
 <!--SHOW LOGIN FORM-->

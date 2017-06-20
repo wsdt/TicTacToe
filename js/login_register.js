@@ -1,18 +1,37 @@
 /**
  * Created by 1610653212 on 20.06.2017.
  */
+//REGISTER-Form
+function reg_onSubmit() {
+    var username = document.getElementById('username');
+    var password = document.getElementById('password');
+    var passwordrepeat = document.getElementById('passwordrepeat');
+
+
+    if (username.value === "" || password.value === "" || passwordrepeat.value === "") {
+        console.log("show warning");
+        show_notification('#ff0000', 'Es darf kein Eingabefeld leer sein!');
+        return false;
+    } else if (password.value != passwordrepeat.value) {
+        show_notification('#ff0000', 'Das Passwort stimmt mit der Kontrolleingabe nicht überein!');
+        return false;
+    }
+
+    return true; // return false to cancel form action
+}
+
 
 //LOGIN-Form
 function showLoginForm() {
     //$(window).on('load',function(){
     $('#login-modal').modal({backdrop: 'static', keyboard: false});
-    window.setTimeout(isLoggedIn,200); //Execute to adapt the label
+    window.setTimeout(isLoggedIn, 200); //Execute to adapt the label
     //});
 }
 
 function hideLoginForm() {
     $('#login-modal').modal('hide');
-    window.setTimeout(isLoggedIn,200); //Execute to adapt the label
+    window.setTimeout(isLoggedIn, 200); //Execute to adapt the label
 }
 
 //Label Login/Logout prüfen
