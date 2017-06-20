@@ -120,16 +120,19 @@ function playGameMultiplayer(id) {
 }
 
 function uncolor_essential_fields() { //Wenn Spiel zu Ende werden entscheidende Spielzüge eingefärbt, hier werden sie entfärbt
+  //Gelöster Hover-Bug v. Max: 
+  
   for (tmp of document.getElementsByClassName('ttt_square')) {
-    tmp.style.backgroundColor = '#444';
-    //tmp.style.backgroundColor.hover = '#aaa';
+    $(tmp).css("background-color","");
+	//tmp.style.backgroundColor = '#444';
   }
-  //Stelle Hover-Effekt ebenfalls wieder her.
+  
+  /* //Stelle Hover-Effekt ebenfalls wieder her.
     $(".ttt_square").hover(function() {
         $(this).css("background-color",'#aaa')
     }, function() {
         $(this).css("background-color","")
-    });
+    });*/
 }
 
 function restartGame() {
