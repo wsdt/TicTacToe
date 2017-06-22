@@ -62,7 +62,7 @@ createLoginForm();
     <!-- TTT-Mode -->
     <div class="row"><div class="col-xs-12 col-md-12"><!-- let empty --></div></div>
     <div id="play_buttons">
-        <input type="button" onclick="changeDifficulty()" class="btn btn-default" id="bt_difficulty"/>
+        <div onclick="changeDifficulty()" class="btn btn-default" id="bt_difficulty"></div>
         <input type="button" onclick="changeMode(0)" value="Single Player" class="btn btn-primary" id="bt_singleplayer"/>
         <input type="button" onclick="changeMode(1)" value="Multiplayer" class="btn btn-default" id="bt_multiplayer"/>
         <input type="button" onclick="restartGame()" value="Restart Game" class="btn btn-danger" id="bt_restart"/>

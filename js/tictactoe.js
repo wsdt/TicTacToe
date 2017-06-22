@@ -32,7 +32,7 @@ function changeMode(modus) {
   if (modus === 0) {
     document.getElementById('bt_singleplayer').className = "btn btn-primary"; //Active and Deactivate Button (Style)
     document.getElementById('bt_multiplayer').className = "btn btn-default";
-    document.getElementById('bt_difficulty').style.display = "inline";
+    document.getElementById('bt_difficulty').style.display = "inline-block";
     //document.getElementById('bt_difficulty').style.background = "url('images/skull_difficulty.png') no-repeat !important";
     restartGame();
   } else if (modus === 1) {
@@ -151,7 +151,16 @@ function uncolor_essential_fields() { //Wenn Spiel zu Ende werden entscheidende 
 }
 
 function changeDifficulty() {
-    document.getElementById('bt_difficulty').className = "btn btn-danger";
+    restartGame();
+
+    var tmpelement = document.getElementById('bt_difficulty');
+    if (tmpelement.className === "btn btn-danger") {
+        tmpelement.className = "btn btn-default";
+        show_notification('#FF0080','IMPOSSIBLE-Mode deaktiviert!');
+    } else {
+        tmpelement.className = "btn btn-danger";
+        show_notification('#FF0080','IMPOSSIBLE-Mode aktiviert! (BETA-Funktion)');
+    }
 }
 
 

@@ -202,7 +202,10 @@ main {
 
   #bt_difficulty {
     background-size: 100%;
-    background: url('/images/skull_difficulty.png') no-repeat !important; //TODO: Icon does not appear
+    //margin-right:2px;
+    width:34px;
+    height:34px;
+    background: url('/tictactoe/images/skull_difficulty.png') no-repeat !important;
   }
   
   
