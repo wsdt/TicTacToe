@@ -43,13 +43,13 @@ function isLoggedIn() {
         document.getElementById('login_logout_label_link').value = "Login"; //Zeige an, dass man sich einloggen kann
         document.getElementById('label_loggedinas').style.display = "none"; //Verstecke, dass als User X angemeldet
         document.getElementById('login_logout_label_link').className = "btn btn-primary"; //Ändere Buttonstyle
-        //document.getElementById('login_logout_label_link').onclick = "showLoginForm()"; //Ändere Buttonstyle
+        //document.getElementById('login_logout_label_link').onclick = "showLoginForm()"; //Ändere Onclick Property
     } else {
         //console.log("Login Modal visible 2: "+isVisible);
         document.getElementById('login_logout_label_link').value = "Logout";
         document.getElementById('login_logout_label_link').className = "btn btn-danger";
         document.getElementById('label_loggedinas').style.display = "inline";
-        //document.getElementById('login_logout_label_link').onclick = "hideLoginForm()"; //Ändere Buttonstyle
+        //document.getElementById('login_logout_label_link').onclick = "hideLoginForm()";
     }
 }
 
