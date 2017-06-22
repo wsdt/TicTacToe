@@ -30,9 +30,12 @@ createLoginForm();
             <span class="show_label" id="label_loggedinas">Logged in as <strong></strong></span>
         </div>
         <div class="col-xs-1 col-md-1">
-            <form name="logout_form" action="php/logout.php" onsubmit="showLoginForm()">
-                <input type="submit" name="logout" class="btn-primary" id="login_logout_label_link" value="Log-Out"/>
-            </form>
+            <!--<form name="logout_form" action="php/logout.php" onsubmit="showLoginForm()">-->
+                <input type="button" name="logout" class="btn-primary" id="login_logout_label_link" value="Log-Out" onclick="showLoginForm()"/>
+                <a href="php/logout.php" data-toggle="modal" data-target="#login-modal" id="login_logout_label_link" onclick="showLoginForm()">
+                    <input type="button" name="logout" class="btn-primary" id="login_logout_label_link" value="Log-Out"/>
+                </a>
+            <!--</form>-->
             <!-- Generell showLoginForm(), da ohnehin nicht anklickbar wenn Loginform offen. -->
         </div>
     </div>
