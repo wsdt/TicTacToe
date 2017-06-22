@@ -30,7 +30,7 @@ createLoginForm();
             <span class="show_label" id="label_loggedinas">Logged in as <strong></strong></span>
         </div>
         <div class="col-xs-1 col-md-1">
-                <input type="submit" name="logout" class="btn-primary" id="login_logout_label_link" value="Log-Out" onclick="showLoginForm()"/>
+            <a onclick="showLoginForm()"><input type="submit" name="logout" class="btn-primary" id="login_logout_label_link" value="Log-Out"/></a>
             <!-- Generell showLoginForm(), da ohnehin nicht anklickbar wenn Loginform offen. -->
         </div>
     </div>
