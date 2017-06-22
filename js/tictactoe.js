@@ -32,10 +32,13 @@ function changeMode(modus) {
   if (modus === 0) {
     document.getElementById('bt_singleplayer').className = "btn btn-primary"; //Active and Deactivate Button (Style)
     document.getElementById('bt_multiplayer').className = "btn btn-default";
+    document.getElementById('bt_difficulty').style.display = "inline";
+    //document.getElementById('bt_difficulty').style.background = "url('images/skull_difficulty.png') no-repeat !important";
     restartGame();
   } else if (modus === 1) {
     document.getElementById('bt_singleplayer').className = "btn btn-default";
     document.getElementById('bt_multiplayer').className = "btn btn-primary";
+    document.getElementById('bt_difficulty').style.display = "none";
     restartGame();
   } else {
     document.getElementById('bt_singleplayer').className = "btn btn-default";
@@ -60,9 +63,9 @@ function setZug(id) {
   if (spielende) {
     show_notification('#000','Spiel bereits zu Ende!');
   } else {
-      var modus = 1;
+      //var modus = 1;
       if (document.getElementById('bt_singleplayer').className === "btn btn-primary") {
-          modus = 0;
+          //modus = 0;
           playGameSingleplayer(id);
       } else {
           playGameMultiplayer(id);
@@ -71,27 +74,38 @@ function setZug(id) {
 }
 
 function playGameSingleplayer(id) {
-  unsetVar();
-  if(document.getElementById('ttt_square'+id).innerHTML === field_content && turn === 0 && mode === 1) {
+  //unsetVar();
+  //Turn 0 = User dran ; Turn 1 = PC dran
+  if(document.getElementById('ttt_square'+id).innerHTML === field_content && turn === 0 /*&& mode === 1*/) {
     document.getElementById('ttt_square'+id).innerHTML = field_content+'X';
-    sqr1T = 1;
+    //sqr1T = 1;
     turn = 1;
-    vari();
-    check();
-  } else if(document.getElementById('ttt_square'+id).innerHTML === field_content && turn === 1 && mode === 2) {
+    //vari();
+    check(0,"X");
+    console.log("user spielt");
+    setZug(id); //Nun lasse direkt nach User den Computer setzen, wobei rekursiv wieder hierhergelangt wird als turn=1, so computer automatisch dran.
+    /*} else if(document.getElementById('ttt_square'+id).innerHTML === field_content && turn === 1/* && mode === 2) {
     document.getElementById('ttt_square'+id).innerHTML = field_content+'X';
     sqr1T = 1;
     turn = 0;
-    vari();
-    player1Check();
-  } else if(document.getElementById('ttt_square'+id).innerHTML === field_content && turn === 0 && mode === 2) {
-    document.getElementById('ttt_square'+id).innerHTML = field_content+'O';
-    sqr1T = 1;
-    turn = 1;
-    vari();
-    player1Check();
+    //vari();
+    //player1Check();
+    check(0,"X");*/
+  } else if(/*document.getElementById('ttt_square'+id).innerHTML === field_content && */turn === 1/* && mode === 2*/) {
+    //document.getElementById('ttt_square'+id).innerHTML = field_content+'O';
+    //sqr1T = 1;
+    turn = 0;
+    console.log("Computer spielt");
+    var difficulty = "easy";
+    if (document.getElementById('bt_difficulty').className === "btn btn-danger") {
+        difficulty = "impossible";
+    }
+    computerTurn(difficulty); //solange nicht difficulty==impossible wird wahllos gesetzt
+    //vari();
+    //player1Check();
+    //check(0,"O"); is checked in computerTurn()
   }
-  drawCheck();  
+  //drawCheck();
 }
 
 var multiplayer_spieler_zug = 1; //Zweiter Zustand f. Spieler 2 = '2'
@@ -102,7 +116,8 @@ function playGameMultiplayer(id) {
       if (curr_field.innerHTML === field_content) {
           curr_field.innerHTML = field_content + 'X';
           multiplayer_spieler_zug = 2;
-          player1Check();
+          //player1Check();
+          check(1,'X'); //Prüfe ob gewonnen oder draw
       } else {
         show_notification('#000','Dieses Feld wurde bereits ausgewählt!');
       }
@@ -110,7 +125,7 @@ function playGameMultiplayer(id) {
       if (curr_field.innerHTML === field_content) {
           curr_field.innerHTML = field_content + 'O';
           multiplayer_spieler_zug = 1;
-          player2Check();
+          check(1,'O'); //Prüfe ob gewonnen oder draw
       } else {
           show_notification('#000','Dieses Feld wurde bereits ausgewählt!');
       }
@@ -134,6 +149,11 @@ function uncolor_essential_fields() { //Wenn Spiel zu Ende werden entscheidende 
         $(this).css("background-color","")
     });*/
 }
+
+function changeDifficulty() {
+    document.getElementById('bt_difficulty').className = "btn btn-danger";
+}
+
 
 function restartGame() {
   for (tmp of document.getElementsByClassName('ttt_square')) {

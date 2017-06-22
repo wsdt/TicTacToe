@@ -114,7 +114,8 @@ function createLoginForm()
     if (!empty($_GET)) {
         //Prüfe ob User und Passwort etc ok
         session_start();
-        $pdo = new PDO('mysql:host=localhost;db=tictactoe', 'root', '');
+        //$pdo = new PDO('mysql:host=localhost;db=tictactoe', 'root', '');
+        //TODO: Derzeit deaktiviert weil Fehler ausgelöst bei mir
 
         if (isset($_GET['login'])) {
             $username = $_POST['username'];
