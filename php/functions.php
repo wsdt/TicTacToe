@@ -6,6 +6,7 @@
  * Time: 12:33
  */
 
+echo "<script type='text/javascript' src='../js/login_register.js'></script>";
 require_once('db/dbNewConnection.php');
 
 //NOTIFICATION BAR
