@@ -19,8 +19,8 @@
 createLoginForm();
 ?>
 <!-- END first code after body -->
-<!-- Login or Logout Button at the screen -->
-<div id="login_logout_label"><a href="php/logout.php" data-toggle="modal" data-target="#login-modal" id="login_logout_label_link">Login</a></div>
+<!-- Login or Logout Button at the screen (OLD) -->
+<!--<div id="login_logout_label"><a href="php/logout.php" data-toggle="modal" data-target="#login-modal" id="login_logout_label_link">Login</a></div>-->
 
 
 <header>
@@ -30,10 +30,8 @@ createLoginForm();
             <span class="show_label" id="label_loggedinas">Logged in as <strong></strong></span>
         </div>
         <div class="col-xs-1 col-md-1">
-            <form id="form_logout" name="form_logout" action="#">
-                <!-- TODO: Evtl. mit PHP je nachdem ob eingeloggt oder nicht. Auch Action adden!-->
-                <input type="submit" name="logout" class="btn-danger" value="Log-Out"/>
-            </form>
+                <input type="submit" name="logout" class="btn-primary" id="login_logout_label_link" value="Log-Out" onclick="showLoginForm()"/>
+            <!-- Generell showLoginForm(), da ohnehin nicht anklickbar wenn Loginform offen. -->
         </div>
     </div>
 </header>
