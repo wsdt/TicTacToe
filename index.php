@@ -5,20 +5,7 @@
 <head>
     <title>TicTacToe</title>
 <?php
-        //require_once('php/head.php');
-
- echo "<meta charset=\"utf-8\">
-    <link href=\"bootstrap/docs/dist/css/bootstrap.min.css\" rel=\"stylesheet\"/>
-    <link href=\"bootstrap/docs/dist/css/bootstrap-theme.min.css\" rel=\"stylesheet\"/>
-    <link href=\"bootstrap/bootstrap-social-gh-pages/bootstrap-social.css\" rel=\"stylesheet\"/>
-    <link href=\"css/tictactoe.css\" rel=\"stylesheet\">
-    <link rel='icon' href='images/ttt_icon_hp.ico'>
-    <script type=\"text/javascript\" src=\"js/tictactoe.js\"></script>
-    <script type=\"text/javascript\" src=\"jquery/jquery-3.2.1.min.js\"></script>
-    <script type=\"text/javascript\" src=\"bootstrap/dist/js/bootstrap.min.js\"></script>
-    <script type=\"text/javascript\" src=\"js/ttt_gamelogic.js\"></script>
-    <script type='text/javascript' src='js/login_register.js'></script>";
-    require_once 'php/functions.php';
+        require_once('php/head.php');
     ?>
 
 </head>
@@ -45,9 +32,6 @@ createLoginForm();
         <div class="col-xs-1 col-md-1">
             <!--<form name="logout_form" action="php/logout.php" onsubmit="showLoginForm()">-->
                 <input type="button" name="logout" class="btn-primary" id="login_logout_label_link" value="Log-Out" onclick="showLoginForm()"/>
-                <a href="php/logout.php" data-toggle="modal" data-target="#login-modal" id="login_logout_label_link" onclick="showLoginForm()">
-                    <input type="button" name="logout" class="btn-primary" id="login_logout_label_link" value="Log-Out"/>
-                </a>
             <!--</form>-->
             <!-- Generell showLoginForm(), da ohnehin nicht anklickbar wenn Loginform offen. -->
         </div>

@@ -93,7 +93,6 @@ function generateHighscoreTable() {
 //CREATE LOGIN-FORM
 function createLoginForm()
 {
-    if (empty($_POST)) {
         echo "<div class=\"modal fade\" id=\"login-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\" style=\"display: none;\">
         <div class=\"modal-dialog\">
             <div class=\"loginmodal-container\">
@@ -111,7 +110,7 @@ function createLoginForm()
             </div>
         </div>
     </div>"; //Add ?debug=1 to action unter '' damit Datenbank ausgeschlossen wird
-    } else {
+    if (!empty($_POST)) {
         //Prüfe ob User und Passwort etc ok
         session_start();
         $pdo = new PDO('mysql:host=localhost;db=tictactoe', 'root', '');
@@ -133,6 +132,7 @@ function createLoginForm()
             }
 
         }
+    echo "<script type='text/javascript'>hideLoginForm();</script>";
     }
 }
 		?>
