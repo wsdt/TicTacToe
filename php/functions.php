@@ -98,7 +98,7 @@ function createLoginForm()
         <div class=\"modal-dialog\">
             <div class=\"loginmodal-container\">
                 <h1>Login</h1><br>
-                <form method=\"post\" action='" . $_SERVER['PHP_SELF'] . "' onsubmit='return validateLoginCredentials()'>
+                <form method=\"post\" action='" . $_SERVER['PHP_SELF'] . "?success=true' onsubmit='return validateLoginCredentials()'>
 
                     <input type=\"text\" name=\"username\" placeholder=\"Username\" id='log_username' onfocus='close_notification()'>
                     <input type=\"password\" name=\"password\" placeholder=\"Passwort\" id='log_password' onfocus='close_notification()'>
@@ -111,7 +111,7 @@ function createLoginForm()
             </div>
         </div>
     </div>"; //Add ?debug=1 to action unter '' damit Datenbank ausgeschlossen wird
-    if (!empty($_POST)) {
+    if (!empty($_GET)) {
         //Prüfe ob User und Passwort etc ok
         session_start();
         $pdo = new PDO('mysql:host=localhost;db=tictactoe', 'root', '');
