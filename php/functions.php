@@ -7,7 +7,7 @@
  */
 
 echo "<script type='text/javascript' src='js/login_register.js'></script>";
-require_once('db/dbNewConnection.php');
+//require_once('db/dbNewConnection.php');
 
 //NOTIFICATION BAR
 function createNotificationBar() {
@@ -48,12 +48,12 @@ function generateHighscoreTable() {
             </div>";
 
 
-    include "db/dbNewConnection.php";
+    require_once "db/dbNewConnection.php";
 
     $ordiestring = "<p><strong>PHP Info: </strong>Abfrage war nicht möglich.</p>";
 
-    $sql = "SELECT * FROM Highscore";
-    /*$result = mysqli_query($con, $sql) or die($ordiestring);
+    $sql = "SELECT * FROM Highscore ORDER BY Platzierung ASC";
+    $result = mysqli_query($tunnel, $sql) or die($ordiestring);
 
     while ($row = mysqli_fetch_object($result)) {
         //Declare variables
@@ -74,20 +74,10 @@ function generateHighscoreTable() {
                 <div class=\"highscore_table_cell\">".$message."</div>
                 <div class=\"highscore_table_cell\">".$reputation."%</div>
             </div>";
-
+        //Datenbanktabelle Highscore muss in Datenbank nicht sortiert sein!! (ORDER BY Platzierung bei Ausgabe möglich)
     }
-    mysqli_close($con); */
+    mysqli_close($tunnel);
 
-
-    /*for () { //For each user in database
-        echo "<div class=\"highscore_table_row\">
-                <div class=\"highscore_table_cell\">".$i."</div>
-                <div class=\"highscore_table_cell\">".$username."</div>
-                <div class=\"highscore_table_cell\">4/ 5</div>
-                <div class=\"highscore_table_cell\">".$message."</div>
-                <div class=\"highscore_table_cell\">".$reputation."%</div>
-            </div>";
-    }*/
 }
 
 
