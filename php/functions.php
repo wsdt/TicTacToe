@@ -161,14 +161,15 @@ function createLoginForm()
 
                 //$tmpstring="";
                 while ($row = mysqli_fetch_array($hash)) {
-                    if (!empty($row)) {
-                        $hash = $row['Passwort']; //speichere alle zeilen als S
-                    }
+                    //if (!empty($row)) {
+                        $tmpstring = $row; //speichere alle zeilen als S
+                    //}
                 }
+                $hash = $tmpstring;
                 //$hash = $tmpstring;
                 //$tmpstring = "";
 
-                if (password_verify($password, $hash)) {
+                if (password_verify($password, $hash['Passwort'])) {
                     session_start(); //Habs mal drin gelassen, wird schon was mit deinen Session Variablen zu tun haben
                     echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $username . "\'!');"; //Login erfolgreich
                     echo "hideLoginForm();</script>"; //Verstecke Login-Formular NUR wenn Passwort und Username korrekt, sonst bleibt es geladen.
