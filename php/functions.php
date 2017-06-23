@@ -102,6 +102,7 @@ function createLoginForm()
         </div>
     </div>"; //TODO: Add ?success=true to action unter '' damit unten geprüft werden kann ob Login Box erzeugt (wenn nicht reingegangen wird)
 
+    //Hier NICHT schon Funktionsklammer schließen (wie vorhin), sonst wird Folgendes immer ausgeführt in jeder Datei
 
     if (isset($_POST['login'])) { //TODO: Wenn er in diese IF gar nicht rein geht, dann versuch if($_GET['success']==true), dafür musst du aber das Kommentar direkt hier vorher ausführen (ca. Zeile 103)
         require("db/dbNewConnection.php"); //Wenn Datenbankverbindung gescheitert wird folgender Code durch die bzw. fatal error nicht mehr ausgeführt
@@ -149,7 +150,9 @@ function createLoginForm()
     }
     //echo "<script type='text/javascript'>hideLoginForm();</script>";
 
-    mysqli_close($tunnel);
+    if (isset($tunnel)) {
+        mysqli_close($tunnel);
+    }
 }
 ?>
 
