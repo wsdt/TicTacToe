@@ -35,6 +35,14 @@ function calcReputation($wins,$draws,$losses) {
     return 0; //TODO: Formel für Reputation
 }
 
+function repCompare ($a, $b) { //Prüfe ob $a eine höhere Reputation (gib >0 zurück) oder eine kleinere hat als $b (gib <0 zurück)
+    if ($a >= $b) { return 1; }
+    else if ($a < $b) { return -1; }
+    else {
+        return "ERROR"; //Durch String wird Fehler erzeugt. Deshalb muss oben auch >= stehen, damit alle Fälle abgedeckt
+    }
+}
+
 function generateHighscoreTable() {
     //require_once 'db/SQL2PHP.php'; //declare variables
 
@@ -52,32 +60,41 @@ function generateHighscoreTable() {
 
     $ordiestring = "<p><strong>PHP Info: </strong>Abfrage war nicht möglich.</p>";
 
-    $sql = "SELECT * FROM Highscore ORDER BY Platzierung ASC";
-    $result = mysqli_query($tunnel, $sql) or die($ordiestring);
+    $sql = "SELECT * FROM Highscore"; //ORDER BY Platzierung ASC, (Platzierung rausgenommen), da sonst bei neuem Eintrag evtl. alle Einträge neu reinzuspeichern
+    $result = mysqli_query($tunnel, $sql) or die($ordiestring); //Tunnel unterstrichen, da bei debug nicht definiert.
 
-    while ($row = mysqli_fetch_object($result)) {
+    //TODO: Result nach reputation sortieren! MÜSSTE ERLEDIGT SEIN, nur noch Test notwendig
+    //Ganze rows einfach chronolgisch in neues Array rein.
+    $result = mysqli_fetch_array($result);
+    usort($result,repCompare(calcReputation($result['Wins'],$result['Draws'],$result['Losses']),calcReputation($result['Wins'],$result['Draws'],$result['Losses']))); //nicht mit $row[''] weil ja für jedes Element zu vergleichen
+    //Usort gibt Boolean zurück, also müsste Array selbst neu definiert werden
+
+    $n = 0; //Ranking
+    while ($row = mysqli_fetch_array($result)) {
         //Declare variables
         //$row = json_decode($row,true);
-        $platzierung = $row->Platzierung;
-        $username = $row->Username;
-        $message = $row->Message;
-        $wins = $row->Wins;
-        $draws = $row->Draws;
-        $losses = $row->Losses;
+        //$platzierung = $row->Platzierung;
+        $username = $row['Username']; //$row->Username; Wenn mysqli_fetch_object dann so
+        $message = $row['Message'];
+        $wins = $row['Wins'];
+        $draws = $row['Draws'];
+        $losses = $row['Losses'];
         $reputation = calcReputation($wins, $draws, $losses);
 
         //IMPORTANT: Sort user list after Reputation BEFORE ECHO in FOR!! (NICHT NOTWENDIG, da PLATZIERUNG IN DATENBANK GESPEICHERT!)
         echo "<div class=\"highscore_table_row\">
-                <div class=\"highscore_table_cell\">".$platzierung."</div>
+                <div class=\"highscore_table_cell\">".(++$n)."</div>
                 <div class=\"highscore_table_cell\">".$username."</div>
                 <div class=\"highscore_table_cell\">".$wins."/".$draws."/".$losses."</div>
                 <div class=\"highscore_table_cell\">".$message."</div>
                 <div class=\"highscore_table_cell\">".$reputation."%</div>
-            </div>";
+            </div>"; //$platzierung (alt statt $n)
         //Datenbanktabelle Highscore muss in Datenbank nicht sortiert sein!! (ORDER BY Platzierung bei Ausgabe möglich)
     }
-    mysqli_close($tunnel);
 
+    if (isset($tunnel)) {
+        mysqli_close($tunnel);
+    }
 }
 
 
