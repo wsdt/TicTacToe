@@ -207,8 +207,7 @@ main {
     height:34px;
     background: url('/tictactoe/images/skull_difficulty.png') no-repeat !important;
   }
-  
-  
+
 
   //HIGHSCORE --> Create Table-layout without tables
   #highscore_table {
@@ -286,27 +285,7 @@ main {
     height: 34px;*/
   }
 }
-/*
-#overlayLogin {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 30;
-  display: block;
-  overflow-x: hidden;
-  overflow-y: auto;
 
-  #overlay {
-    width: 50%;
-    min-height: 50%;
-    background-color: #fff;
-    margin: 10% auto 10% auto;
-    box-shadow: 3px 3px 5px #999;
-    position: relative;
-  }
-}*/
 
 body {
   padding: 30px 0px;

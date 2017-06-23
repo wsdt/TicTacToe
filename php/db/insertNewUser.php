@@ -3,8 +3,6 @@
 
 	$ordiestring = "<p><strong>PHP Info: </strong>Abfrage war nicht möglich.</p>";
 
-
-
 	if(!empty($_POST))
     {
         $username = strtolower($_POST["username"]);
@@ -25,7 +23,7 @@
                     $control++;
                 }
                 if ($control != 0) {
-                    echo "<p>Username <strong>$username</strong> existiert bereits! <a href='../register.php'>zurück</a> </p>";
+                    echo "<p>Username <strong>$username</strong> existiert bereits! <a href='../../register.php'>zurück</a> </p>";
                 } else {
                     echo "Speicherung in DB";
                     $sql = "INSERT INTO Users (username, passwort) VALUES ('" . $username . "', '" . $hash . "');";

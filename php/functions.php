@@ -53,7 +53,7 @@ function generateHighscoreTable() {
     $ordiestring = "<p><strong>PHP Info: </strong>Abfrage war nicht möglich.</p>";
 
     $sql = "SELECT * FROM Highscore";
-    $result = mysqli_query($tunnel, $sql) or die($ordiestring);
+    /*$result = mysqli_query($con, $sql) or die($ordiestring);
 
     while ($row = mysqli_fetch_object($result)) {
         //Declare variables
@@ -76,7 +76,7 @@ function generateHighscoreTable() {
             </div>";
 
     }
-    mysqli_close($tunnel);
+    mysqli_close($con); */
 
 
     /*for () { //For each user in database
@@ -94,47 +94,54 @@ function generateHighscoreTable() {
 //CREATE LOGIN-FORM
 function createLoginForm()
 {
-        echo "<div class=\"modal fade\" id=\"login-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\" style=\"display: none;\">
+    echo "<div class=\"modal fade\" id=\"login-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\" style=\"display: none;\">
         <div class=\"modal-dialog\">
             <div class=\"loginmodal-container\">
                 <h1>Login</h1><br>
                 <form method=\"post\" action='" . $_SERVER['PHP_SELF'] . "?success=true' onsubmit='return validateLoginCredentials()'>
-
+       
                     <input type=\"text\" name=\"username\" placeholder=\"Username\" id='log_username' onfocus='close_notification()'>
                     <input type=\"password\" name=\"password\" placeholder=\"Passwort\" id='log_password' onfocus='close_notification()'>
                     <input type=\"submit\" name=\"login\" class=\"login loginmodal-submit\" value=\"Login\">
                 </form>
 
                 <div class=\"login-help\">
-                    <a href=\"php/register.php\" target=\"_blank\">Neu registrieren</a>
+                    <a href=\"register.php\" target='_blank'\">Neu registrieren</a>
                 </div>
             </div>
         </div>
     </div>"; //Add ?debug=1 to action unter '' damit Datenbank ausgeschlossen wird
-    if (!empty($_GET)) {
-        //Prüfe ob User und Passwort etc ok
-        session_start();
-        //$pdo = new PDO('mysql:host=localhost;db=tictactoe', 'root', '');
-        //TODO: Derzeit deaktiviert weil Fehler ausgelöst bei mir
+  }
 
-        if (isset($_GET['login'])) {
-            $username = $_POST['username'];
-            $passwort = $_POST['passwort'];
 
-            $statement = $pdo->prepare("SELECT * FROM Users WHERE username = :username");
-            $result = $statement->execute(array('username' => $username));
-            $user = $statement->fetch();
+include("db/dbNewConnection.php");
+session_start();
 
-            //Überprüfung des Passworts
-            if ($user !== false && password_verify($passwort, $user['passwort'])) {
-                $_SESSION['username'] = $user['username'];
-                die('Login erfolgreich. Weiter zu <a href="../index.php">internen Bereich</a>');
-            } else {
-                $errorMessage = "E-Mail oder Passwort war ungültig<br>";
-            }
+if(isset($_POST['login'])) {
 
+    if(!empty($_POST['username']) && !empty($_POST['password'])) {
+        $username = mysqli_real_escape_string($tunnel,$_POST['username']);
+        $password = mysqli_real_escape_string($tunnel,$_POST['password']);
+
+        $existUserQuery = mysqli_query($tunnel,"SELECT username FROM Users WHERE username='$username' AND password='$password'");
+
+        if(mysqli_num_rows($existUserQuery) > 0) {
+            $_SESSION['username'] = $username;
         }
-    echo "<script type='text/javascript'>hideLoginForm();</script>";
+        else {
+            echo'<p id="close_notfication">Benutzername oder Passwort falsch</p>';
+        }
+
     }
+    else {
+        echo'<p id="close_notfication">Alle Felder ausfüllen.</p>';
+    }
+
+
 }
-		?>
+echo "<script type='text/javascript'>hideLoginForm();</script>";
+
+
+?>
+
+
