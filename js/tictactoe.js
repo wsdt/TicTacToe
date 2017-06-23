@@ -82,8 +82,8 @@ function playGameSingleplayer(id) {
     turn = 1;
     //vari();
     check(0,"X");
-    console.log("user spielt");
-    setZug(id); //Nun lasse direkt nach User den Computer setzen, wobei rekursiv wieder hierhergelangt wird als turn=1, so computer automatisch dran.
+    //console.log("user spielt");
+    //setZug(id); //Nun lasse direkt nach User den Computer setzen, wobei rekursiv wieder hierhergelangt wird als turn=1, so computer automatisch dran.
     /*} else if(document.getElementById('ttt_square'+id).innerHTML === field_content && turn === 1/* && mode === 2) {
     document.getElementById('ttt_square'+id).innerHTML = field_content+'X';
     sqr1T = 1;
@@ -91,11 +91,12 @@ function playGameSingleplayer(id) {
     //vari();
     //player1Check();
     check(0,"X");*/
-  } else if(/*document.getElementById('ttt_square'+id).innerHTML === field_content && */turn === 1/* && mode === 2*/) {
+  } //IMPORTANT: You need here a normal if, not an else if (sonst erfolgt PC-Zug nicht automatisch)
+  if(/*document.getElementById('ttt_square'+id).innerHTML === field_content && */turn === 1/* && mode === 2*/) {
     //document.getElementById('ttt_square'+id).innerHTML = field_content+'O';
     //sqr1T = 1;
     turn = 0;
-    console.log("Computer spielt");
+    //console.log("Computer spielt");
     var difficulty = "easy";
     if (document.getElementById('bt_difficulty').className === "btn btn-danger") {
         difficulty = "impossible";
