@@ -31,14 +31,15 @@ function createTTTField() {
 
 
 //HIGHSCORE
-function calcReputation($wins,$draws,$losses) {
-    // WINS = 3 Punkte wert ; LOSSES = -4 Punkte wert ; DRAWS = 1 Punkt wert
-    if (!isset($wins) || !isset($losses) || !isset($draws) || $w) {
+function calcReputation($wins,$losses) {
+    // WINS = 1 Punkte wert ; LOSSES = -1 Punkte wert ; DRAWS = 0 Punkt wert
+    if (!isset($wins) || !isset($losses) || ($wins == 0 && $losses == 0)) { //wenn beide 0 sind auch, da sonst DIV/0
         return 0; //Initial 0 zur Fehlervermeidung
     } else {
-        $all_games = $wins+$draws+$losses;
-        $rep = ($wins/$all_games)*3 + ($draws/$all_games) - (($losses/$all_games)*4);
-        return ($rep > 100) ? 100 : $rep;
+        $all_games = $wins+$losses;
+        $rep = ($wins-$losses)/$all_games;
+        if ($rep > 1) { $rep = 1; } else if ($rep < -1) { $rep = -1; } //Wenn komische Rep-Werte, hier evtl. Fehlerquelle
+        return $rep;
     }
 }
 
@@ -73,7 +74,7 @@ function generateHighscoreTable() {
     //TODO: Result nach reputation sortieren! MÜSSTE ERLEDIGT SEIN, nur noch Test notwendig
     //Ganze rows einfach chronolgisch in neues Array rein.
     $result = mysqli_fetch_array($result);
-    usort($result,repCompare(calcReputation($result['Wins'],$result['Draws'],$result['Losses']),calcReputation($result['Wins'],$result['Draws'],$result['Losses']))); //nicht mit $row[''] weil ja für jedes Element zu vergleichen
+    usort($result,repCompare(calcReputation($result['Wins'],$result['Losses']),calcReputation($result['Wins'],$result['Losses']))); //nicht mit $row[''] weil ja für jedes Element zu vergleichen
     //Usort gibt Boolean zurück, also müsste Array selbst neu definiert werden
 
     $n = 0; //Ranking
@@ -86,7 +87,7 @@ function generateHighscoreTable() {
         $wins = $row['Wins'];
         $draws = $row['Draws'];
         $losses = $row['Losses'];
-        $reputation = calcReputation($wins, $draws, $losses);
+        $reputation = calcReputation($wins, $losses);
 
         //IMPORTANT: Sort user list after Reputation BEFORE ECHO in FOR!! (NICHT NOTWENDIG, da PLATZIERUNG IN DATENBANK GESPEICHERT!)
         echo "<div class=\"highscore_table_row\">
