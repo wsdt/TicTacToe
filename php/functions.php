@@ -30,7 +30,13 @@ function createTTTField() {
 }
 
 
-//HIGHSCORE
+//HIGHSCORE ---------------------------------------------------------------------------------
+function saveHighscoreEntry() {
+    //TODO: Hidden Form Field with all rounds results
+
+
+}
+
 function calcReputation($wins,$losses) {
     // WINS = 1 Punkte wert ; LOSSES = -1 Punkte wert ; DRAWS = 0 Punkt wert
     if (!isset($wins) || !isset($losses) || ($wins == 0 && $losses == 0)) { //wenn beide 0 sind auch, da sonst DIV/0
@@ -140,7 +146,7 @@ function createLoginForm()
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
             $username = mysqli_real_escape_string($tunnel, $_POST['username']);
             $password = mysqli_real_escape_string($tunnel, $_POST['password']);
-            $hash = mysqli_query($tunnel, "SELECT username FROM Users WHERE username='.$username.'"); //nur nach Username suchen und hash zurückgeben lassen, wenn user existiert
+            $hash = mysqli_query($tunnel, "SELECT Passwort FROM Users WHERE username='.$username.'"); //nur nach Username suchen und hash zurückgeben lassen, wenn user existiert
             //TODO: Wichtig ist, dass beim Registrieren keine doppelten Usernamen erlaubt werden! Sonst kommen hier Fehlermeldungen auf
 
             //Da normal Login nur auf Startseite, wird angenommen, dass Notification Bar bereits erzeugt wurde
@@ -148,6 +154,11 @@ function createLoginForm()
             if (empty($hash)) {
                 echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . "')</script>"; //Nutzer nicht verraten, dass User nicht gefunden
             } else {
+                //Hash to String
+                foreach ($hash as $tmppassw) {
+                    $hash = (string) $tmppassw; //Es wird nur der erste Hash als String reingespeichert. Deshalb darf jeder Username nur einmal vorkommen
+                }
+
                 if (password_verify($password, $hash)) {
                     session_start(); //Habs mal drin gelassen, wird schon was mit deinen Session Variablen zu tun haben
                     echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $username . "\'!');"; //Login erfolgreich
