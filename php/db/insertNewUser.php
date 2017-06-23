@@ -25,6 +25,7 @@
                     $control++;
                 }
                 if ($control != 0) {
+                    //Sehr wichtig, dass das funktioniert, sonst ist Login nicht mehr möglich, da Passwortrückgabe nicht als Array behandelt wird. 
                     echo "<p>Username <strong>$username</strong> existiert bereits! <a href='../../register.php'>zurück</a> </p>";
                 } else {
                     echo "Speicherung in DB";
