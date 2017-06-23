@@ -8,7 +8,9 @@
         $username = strtolower($_POST["username"]);
         $passwort = $_POST["passwort"];
         $passwort2 = $_POST["passwort2"];
-        $hash = hash('sha256', $passwort);
+        //$hash = hash('sha256', $passwort);
+        $hash = password_hash($passwort,PASSWORD_BCRYPT);
+
 
 
 

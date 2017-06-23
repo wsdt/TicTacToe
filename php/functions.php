@@ -88,7 +88,7 @@ function createLoginForm()
         <div class=\"modal-dialog\">
             <div class=\"loginmodal-container\">
                 <h1>Login</h1><br>
-                <form method=\"post\" action='" . $_SERVER['PHP_SELF'] . "?success=true' onsubmit='return validateLoginCredentials()'>
+                <form method=\"post\" action='" . $_SERVER['PHP_SELF'] . "' onsubmit='return validateLoginCredentials()'> 
        
                     <input type=\"text\" name=\"username\" placeholder=\"Username\" id='log_username' onfocus='close_notification()'>
                     <input type=\"password\" name=\"password\" placeholder=\"Passwort\" id='log_password' onfocus='close_notification()'>
@@ -100,23 +100,38 @@ function createLoginForm()
                 </div>
             </div>
         </div>
-    </div>"; //Add ?debug=1 to action unter '' damit Datenbank ausgeschlossen wird
-  }
+    </div>"; //TODO: Add ?success=true to action unter '' damit unten geprüft werden kann ob Login Box erzeugt (wenn nicht reingegangen wird)
 
 
-include("db/dbNewConnection.php");
-session_start();
+    if (isset($_POST['login'])) { //TODO: Wenn er in diese IF gar nicht rein geht, dann versuch if($_GET['success']==true), dafür musst du aber das Kommentar direkt hier vorher ausführen (ca. Zeile 103)
+        require("db/dbNewConnection.php"); //Wenn Datenbankverbindung gescheitert wird folgender Code durch die bzw. fatal error nicht mehr ausgeführt
 
-if(isset($_POST['login'])) {
+        if (!empty($_POST['username']) && !empty($_POST['password'])) {
+            $username = mysqli_real_escape_string($tunnel, $_POST['username']);
+            $password = mysqli_real_escape_string($tunnel, $_POST['password']);
+            $hash = mysqli_query($tunnel, "SELECT username FROM Users WHERE username='.$username.'"); //nur nach Username suchen und hash zurückgeben lassen, wenn user existiert
+            //TODO: Wichtig ist, dass beim Registrieren keine doppelten Usernamen erlaubt werden! Sonst kommen hier Fehlermeldungen auf
 
-    if(!empty($_POST['username']) && !empty($_POST['password'])) {
-        $username = mysqli_real_escape_string($tunnel,$_POST['username']);
-        $password = mysqli_real_escape_string($tunnel,$_POST['password']);
+            //Da normal Login nur auf Startseite, wird angenommen, dass Notification Bar bereits erzeugt wurde
+            $loginFAILURE_msg = 'Ihr Username oder/und Passwort ist falsch!';
+            if (empty($hash)) {
+                echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . "')</script>"; //Nutzer nicht verraten, dass User nicht gefunden
+            } else {
+                if (password_verify($password, $hash)) {
+                    session_start(); //Habs mal drin gelassen, wird schon was mit deinen Session Variablen zu tun haben
+                    echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $username . "\'!');"; //Login erfolgreich
+                    echo "hideLoginForm();</script>"; //Verstecke Login-Formular NUR wenn Passwort und Username korrekt, sonst bleibt es geladen.
+                } else {
+                    echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . "')</script>"; //Passwort stimmt nicht mit Username überein
+                }
+            }
+        }
+
 
         /*TODO: Meine Vermutung, dass bei WHERE password='.$password.' (Punkte nicht vergessen), Folgendes geprüft wird:
-            'eingegebenesPasswortInKlartext' == 'verschlüsseltesPasswortInDatenbank' --> also --> '1234' == 'ds16d65rsfd565r55r'
+          TODO  'eingegebenesPasswortInKlartext' == 'verschlüsseltesPasswortInDatenbank' --> also --> '1234' == 'ds16d65rsfd565r55r'
         */
-        $existUserQuery = mysqli_query($tunnel,"SELECT username FROM Users WHERE username='.$username.' AND password='.$password.'");
+        /*$existUserQuery = mysqli_query($tunnel,"SELECT username FROM Users WHERE username='.$username.' AND password='.$password.'");
 
         if(mysqli_num_rows($existUserQuery) > 0) {
             $_SESSION['username'] = $username;
@@ -128,13 +143,14 @@ if(isset($_POST['login'])) {
     }
     else {
         echo'<p id="close_notfication">Alle Felder ausfüllen.</p>';
+    }*/
+
+
     }
+    //echo "<script type='text/javascript'>hideLoginForm();</script>";
 
-
+    mysqli_close($tunnel);
 }
-echo "<script type='text/javascript'>hideLoginForm();</script>";
-
-
 ?>
 
 
