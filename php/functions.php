@@ -176,7 +176,7 @@ function createLoginForm()
                 //$hash = $tmpstring;
                 //$tmpstring = "";*/
 
-                if (password_verify($password, $hash['Passwort'])) {
+                if (password_verify($password, $hash->Passwort)) {
                     session_start(); //Habs mal drin gelassen, wird schon was mit deinen Session Variablen zu tun haben
                     echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $username . "\'!');"; //Login erfolgreich
                     echo "hideLoginForm();</script>"; //Verstecke Login-Formular NUR wenn Passwort und Username korrekt, sonst bleibt es geladen.
