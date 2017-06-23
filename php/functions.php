@@ -159,7 +159,7 @@ function createLoginForm()
                     $hash = (string) $tmppassw; //Es wird nur der erste Hash als String reingespeichert. Deshalb darf jeder Username nur einmal vorkommen
                 }*/
 
-                foreach (mysqli_fetch_array($hash) as $row1) {
+                /*foreach (mysqli_fetch_array($hash) as $row1) {
                     echo "HASH: ".$row1['Passwort'];
                 }
 
@@ -174,7 +174,7 @@ function createLoginForm()
                 $hash = $tmpstring;
                 if ($hash == "") { echo "ATTENTION: No user found!"; }
                 //$hash = $tmpstring;
-                //$tmpstring = "";
+                //$tmpstring = "";*/
 
                 if (password_verify($password, $hash['Passwort'])) {
                     session_start(); //Habs mal drin gelassen, wird schon was mit deinen Session Variablen zu tun haben
