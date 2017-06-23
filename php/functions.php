@@ -152,7 +152,7 @@ function createLoginForm()
             //Da normal Login nur auf Startseite, wird angenommen, dass Notification Bar bereits erzeugt wurde
             $loginFAILURE_msg = 'Ihr Username oder/und Passwort ist falsch!';
             if (empty($hash)) {
-                echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . " (1)')</script>"; //Nutzer nicht verraten, dass User nicht gefunden
+                echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . "')</script>"; //Nutzer nicht verraten, dass User nicht gefunden
             } else {
                 //Hash to String
                 /*foreach ($hash as $tmppassw) { //Fungiert als 'toString', da hash bis hier noch ein Array mit einem Eintrag ist
@@ -162,6 +162,8 @@ function createLoginForm()
                 $tmpstring="";
                 while ($row = mysqli_fetch_array($hash)) {
                     //if (!empty($row)) {
+                    echo "Row: ".$row;
+                    echo "row[passw]: ".$row['Passwort'];
                         $tmpstring = $row; //speichere alle zeilen als S
                     //}
                 }
