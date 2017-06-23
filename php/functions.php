@@ -51,7 +51,8 @@ function repCompare ($a, $b) { //Prüfe ob $a eine höhere Reputation (gib >0 zu
     }
 }
 
-function generateHighscoreTable() {
+function generateHighscoreTable()
+{
     //require_once 'db/SQL2PHP.php'; //declare variables
 
     //Generate headings
@@ -66,42 +67,46 @@ function generateHighscoreTable() {
 
     require_once "db/dbNewConnection.php";
 
-    $ordiestring = "<p><strong>PHP Info: </strong>Abfrage war nicht möglich.</p>";
-
-    $sql = "SELECT * FROM Highscore"; //ORDER BY Platzierung ASC, (Platzierung rausgenommen), da sonst bei neuem Eintrag evtl. alle Einträge neu reinzuspeichern
-    $result = mysqli_query($tunnel, $sql) or die($ordiestring); //Tunnel unterstrichen, da bei debug nicht definiert.
-
-    //TODO: Result nach reputation sortieren! MÜSSTE ERLEDIGT SEIN, nur noch Test notwendig
-    //Ganze rows einfach chronolgisch in neues Array rein.
-    $result = mysqli_fetch_array($result);
-    usort($result,repCompare(calcReputation($result['Wins'],$result['Losses']),calcReputation($result['Wins'],$result['Losses']))); //nicht mit $row[''] weil ja für jedes Element zu vergleichen
-    //Usort gibt Boolean zurück, also müsste Array selbst neu definiert werden
-
-    $n = 0; //Ranking
-    foreach ($result as $row) {
-        //Declare variables
-        //$row = json_decode($row,true);
-        //$platzierung = $row->Platzierung;
-        $username = $row['Username']; //$row->Username; Wenn mysqli_fetch_object dann so
-        $message = $row['Message'];
-        $wins = $row['Wins'];
-        $draws = $row['Draws'];
-        $losses = $row['Losses'];
-        $reputation = calcReputation($wins, $losses);
-
-        //IMPORTANT: Sort user list after Reputation BEFORE ECHO in FOR!! (NICHT NOTWENDIG, da PLATZIERUNG IN DATENBANK GESPEICHERT!)
-        echo "<div class=\"highscore_table_row\">
-                <div class=\"highscore_table_cell\">".(++$n)."</div>
-                <div class=\"highscore_table_cell\">".$username."</div>
-                <div class=\"highscore_table_cell\">".$wins."/".$draws."/".$losses."</div>
-                <div class=\"highscore_table_cell\">".$message."</div>
-                <div class=\"highscore_table_cell\">".$reputation."%</div>
-            </div>"; //$platzierung (alt statt $n)
-        //Datenbanktabelle Highscore muss in Datenbank nicht sortiert sein!! (ORDER BY Platzierung bei Ausgabe möglich)
-    }
-
     if (isset($tunnel)) {
+        $ordiestring = "<p><strong>PHP Info: </strong>Abfrage war nicht möglich.</p>";
+
+        $sql = "SELECT * FROM Highscore"; //ORDER BY Platzierung ASC, (Platzierung rausgenommen), da sonst bei neuem Eintrag evtl. alle Einträge neu reinzuspeichern
+        $result = mysqli_query($tunnel, $sql) or die($ordiestring); //Tunnel unterstrichen, da bei debug nicht definiert.
+
+        //TODO: Result nach reputation sortieren! MÜSSTE ERLEDIGT SEIN, nur noch Test notwendig
+        //Ganze rows einfach chronolgisch in neues Array rein.
+        $result = mysqli_fetch_array($result);
+        usort($result, repCompare(calcReputation($result['Wins'], $result['Losses']), calcReputation($result['Wins'], $result['Losses']))); //nicht mit $row[''] weil ja für jedes Element zu vergleichen
+        //Usort gibt Boolean zurück, also müsste Array selbst neu definiert werden
+
+        $n = 0; //Ranking
+        foreach ($result as $row) {
+            //Declare variables
+            //$row = json_decode($row,true);
+            //$platzierung = $row->Platzierung;
+            $username = $row['Username']; //$row->Username; Wenn mysqli_fetch_object dann so
+            $message = $row['Message'];
+            $wins = $row['Wins'];
+            $draws = $row['Draws'];
+            $losses = $row['Losses'];
+            $reputation = calcReputation($wins, $losses);
+
+            //IMPORTANT: Sort user list after Reputation BEFORE ECHO in FOR!! (NICHT NOTWENDIG, da PLATZIERUNG IN DATENBANK GESPEICHERT!)
+            echo "<div class=\"highscore_table_row\">
+                <div class=\"highscore_table_cell\">" . (++$n) . "</div>
+                <div class=\"highscore_table_cell\">" . $username . "</div>
+                <div class=\"highscore_table_cell\">" . $wins . "/" . $draws . "/" . $losses . "</div>
+                <div class=\"highscore_table_cell\">" . $message . "</div>
+                <div class=\"highscore_table_cell\">" . $reputation . "%</div>
+            </div>"; //$platzierung (alt statt $n)
+            //Datenbanktabelle Highscore muss in Datenbank nicht sortiert sein!! (ORDER BY Platzierung bei Ausgabe möglich)
+        }
         mysqli_close($tunnel);
+    } else {
+        echo "<div class='highscore_table_row'>";
+        for ($i=0;$i<5;$i++) {
+            echo "<div class='highscore_table_db_err'><marquee>No DB Connection</marquee></div>";
+        } echo "</div>";
     }
 }
 

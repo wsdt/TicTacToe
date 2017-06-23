@@ -235,6 +235,13 @@ main {
         @include transition-timing-function(linear);
       }
 
+      .highscore_table_db_err {
+        text-align:center;
+        display:table-cell;
+        color:#ee0000;
+        font-style:italic;
+      }
+
       .highscore_table_cell {
         text-align: center;
         display: table-cell;
