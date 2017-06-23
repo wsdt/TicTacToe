@@ -111,7 +111,6 @@ function playGameSingleplayer(id) {
 
 var multiplayer_spieler_zug = 1; //Zweiter Zustand f. Spieler 2 = '2'
 function playGameMultiplayer(id) {
-  unsetVar();
   var curr_field = document.getElementById('ttt_square'+id);
   if (multiplayer_spieler_zug === 1) {
       if (curr_field.innerHTML === field_content) {
@@ -142,13 +141,6 @@ function uncolor_essential_fields() { //Wenn Spiel zu Ende werden entscheidende 
     $(tmp).css("background-color","");
 	//tmp.style.backgroundColor = '#444';
   }
-  
-  /* //Stelle Hover-Effekt ebenfalls wieder her.
-    $(".ttt_square").hover(function() {
-        $(this).css("background-color",'#aaa')
-    }, function() {
-        $(this).css("background-color","")
-    });*/
 }
 
 function changeDifficulty() {
@@ -160,7 +152,7 @@ function changeDifficulty() {
         show_notification('#FF0080','IMPOSSIBLE-Mode deaktiviert!');
     } else {
         tmpelement.className = "btn btn-danger";
-        show_notification('#FF0080','IMPOSSIBLE-Mode aktiviert! (BETA-Funktion)');
+        show_notification('#FF0080','IMPOSSIBLE-Mode aktiviert!');
     }
 }
 
