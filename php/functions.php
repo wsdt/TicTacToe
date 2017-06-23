@@ -32,7 +32,14 @@ function createTTTField() {
 
 //HIGHSCORE
 function calcReputation($wins,$draws,$losses) {
-    return 0; //TODO: Formel für Reputation
+    // WINS = 3 Punkte wert ; LOSSES = -4 Punkte wert ; DRAWS = 1 Punkt wert
+    if (!isset($wins) || !isset($losses) || !isset($draws) || $w) {
+        return 0; //Initial 0 zur Fehlervermeidung
+    } else {
+        $all_games = $wins+$draws+$losses;
+        $rep = ($wins/$all_games)*3 + ($draws/$all_games) - (($losses/$all_games)*4);
+        return ($rep > 100) ? 100 : $rep;
+    }
 }
 
 function repCompare ($a, $b) { //Prüfe ob $a eine höhere Reputation (gib >0 zurück) oder eine kleinere hat als $b (gib <0 zurück)
@@ -70,7 +77,7 @@ function generateHighscoreTable() {
     //Usort gibt Boolean zurück, also müsste Array selbst neu definiert werden
 
     $n = 0; //Ranking
-    while ($row = mysqli_fetch_array($result)) {
+    foreach ($result as $row) {
         //Declare variables
         //$row = json_decode($row,true);
         //$platzierung = $row->Platzierung;
