@@ -160,7 +160,7 @@ function createLoginForm()
                 }*/
 
                 $tmpstring="";
-                echo "HASH: ".$hash;
+                echo "HASH: ".$hash['Passwort'];
                 while ($row = mysqli_fetch_array($hash)) {
                     //if (!empty($row)) {
                     echo "Row: ".$row;
