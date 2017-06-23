@@ -113,7 +113,10 @@ if(isset($_POST['login'])) {
         $username = mysqli_real_escape_string($tunnel,$_POST['username']);
         $password = mysqli_real_escape_string($tunnel,$_POST['password']);
 
-        $existUserQuery = mysqli_query($tunnel,"SELECT username FROM Users WHERE username='$username' AND password='$password'");
+        /*TODO: Meine Vermutung, dass bei WHERE password='.$password.' (Punkte nicht vergessen), Folgendes geprüft wird:
+            'eingegebenesPasswortInKlartext' == 'verschlüsseltesPasswortInDatenbank' --> also --> '1234' == 'ds16d65rsfd565r55r'
+        */
+        $existUserQuery = mysqli_query($tunnel,"SELECT username FROM Users WHERE username='.$username.' AND password='.$password.'");
 
         if(mysqli_num_rows($existUserQuery) > 0) {
             $_SESSION['username'] = $username;
