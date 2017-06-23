@@ -159,13 +159,14 @@ function createLoginForm()
                     $hash = (string) $tmppassw; //Es wird nur der erste Hash als String reingespeichert. Deshalb darf jeder Username nur einmal vorkommen
                 }*/
 
-                //$tmpstring="";
+                $tmpstring="";
                 while ($row = mysqli_fetch_array($hash)) {
                     //if (!empty($row)) {
                         $tmpstring = $row; //speichere alle zeilen als S
                     //}
                 }
                 $hash = $tmpstring;
+                if ($hash == "") { echo "ATTENTION: No user found!"; }
                 //$hash = $tmpstring;
                 //$tmpstring = "";
 
