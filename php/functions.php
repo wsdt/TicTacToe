@@ -155,7 +155,7 @@ function createLoginForm()
                 echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . "')</script>"; //Nutzer nicht verraten, dass User nicht gefunden
             } else {
                 //Hash to String
-                foreach ($hash as $tmppassw) {
+                foreach ($hash as $tmppassw) { //Fungiert als 'toString', da hash bis hier noch ein Array mit einem Eintrag ist
                     $hash = (string) $tmppassw; //Es wird nur der erste Hash als String reingespeichert. Deshalb darf jeder Username nur einmal vorkommen
                 }
 
