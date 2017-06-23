@@ -33,7 +33,7 @@ function createTTTField() {
 //HIGHSCORE ---------------------------------------------------------------------------------
 function saveHighscoreEntry() {
     //TODO: Hidden Form Field with all rounds results
-
+    //erst aufrufen über formular
 
 }
 
@@ -155,11 +155,18 @@ function createLoginForm()
                 echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . "')</script>"; //Nutzer nicht verraten, dass User nicht gefunden
             } else {
                 //Hash to String
-                foreach ($hash as $tmppassw) { //Fungiert als 'toString', da hash bis hier noch ein Array mit einem Eintrag ist
+                /*foreach ($hash as $tmppassw) { //Fungiert als 'toString', da hash bis hier noch ein Array mit einem Eintrag ist
                     $hash = (string) $tmppassw; //Es wird nur der erste Hash als String reingespeichert. Deshalb darf jeder Username nur einmal vorkommen
-                }
+                }*/
 
-                if (password_verify($password, $hash)) {
+                $tmpstring="";
+                while ($row = mysqli_fetch_array($hash)) {
+                    $tmpstring += $row; //speichere alle zeilen als S
+                }
+                $hash = $tmpstring;
+                $tmpstring = "";
+
+                if (password_verify($password, $hash['Passwort'])) {
                     session_start(); //Habs mal drin gelassen, wird schon was mit deinen Session Variablen zu tun haben
                     echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $username . "\'!');"; //Login erfolgreich
                     echo "hideLoginForm();</script>"; //Verstecke Login-Formular NUR wenn Passwort und Username korrekt, sonst bleibt es geladen.
