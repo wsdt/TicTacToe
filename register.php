@@ -13,8 +13,6 @@
 <body>
 <?php createNotificationBar(); ?>
 
-
-
 <div class="loginmodal-container">
     <h1>Neu registrieren</h1><br>
         <form method="post" action="php/db/insertNewUser.php" name="formreg" id="formreg" onsubmit="return reg_onSubmit()">

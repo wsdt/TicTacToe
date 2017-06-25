@@ -3,6 +3,8 @@
 
 	$ordiestring = "<p><strong>PHP Info: </strong>Abfrage war nicht möglich.</p>";
 
+
+	//Eingabewerte werden an die Variablen übergeben, Passwort wird mit hash-Funktion verschlüsselt
 	if(!empty($_POST))
     {
         $username = $_POST["username"];
@@ -21,8 +23,9 @@
                 while ($row = mysqli_fetch_object($result)) {
                     $control++;
                 }
-                if ($control != 0) {
 
+                //Username wird überprüft, ob bereits vorhanden, dann wird ein neuer User angelegt
+                if ($control != 0) {
                     echo "<p>Username <strong>$username</strong> existiert bereits! <a href='../../register.php'>zurück</a> </p>";
                 } else {
                     echo "Speicherung in DB";

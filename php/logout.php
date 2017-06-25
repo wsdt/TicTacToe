@@ -1,6 +1,5 @@
 <?php
-//Philipp's test file: presumably unused
-
+//Session wird beendet
 
 session_start();
 if (isset($_SESSION['username']))

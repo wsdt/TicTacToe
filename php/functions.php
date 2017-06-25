@@ -30,7 +30,6 @@ function createTTTField() {
     echo "";
 }
 
-
 //HIGHSCORE ---------------------------------------------------------------------------------
 function saveHighscoreEntry() {
     //TODO: Hidden Form Field with all rounds results OR AJAX
@@ -68,14 +67,32 @@ function generateHighscoreTable()
     //Generate headings
     echo "<div class=\"highscore_table_row_caption\">
                 <div class=\"highscore_table_cell highscore_table_caption\">Ranking</div>
-                <div class=\"highscore_table_cell highscore_table_caption\">Nickname</div>
-                <div class=\"highscore_table_cell highscore_table_caption\">Wins/Draws/Losses</div>
-                <div class=\"highscore_table_cell highscore_table_caption\">Message</div>
+                <div class=\"highscore_table_cell highscore_table_caption\">Username</div>
+                <div class=\"highscore_table_cell highscore_table_caption\">Wins</div>
+                <div class=\"highscore_table_cell highscore_table_caption\">Draws</div>
+                <div class=\"highscore_table_cell highscore_table_caption\">Losses</div>
                 <div class=\"highscore_table_cell highscore_table_caption\">Reputation <!-- Reputation = Win/Loss Ratio --></div>
             </div>";
 
-
     require_once "db/dbNewConnection.php";
+
+    //Spiel in die Highscore-Liste einfügen
+if(isset($_GET['username']) && isset($_GET['score']) && isset($_GET['score'])) {
+
+    $username = strip_tags(mysqli_real_escape_string($tunnel, $_GET['username']));
+    $wins = strip_tags(mysqli_real_escape_string($tunnel, $_GET['wins']));
+    $draws = strip_tags(mysqli_real_escape_string($tunnel, $_GET['draws']));
+    $losses = strip_tags(mysqli_real_escape_string($tunnel, $_GET['losses']));
+    $sql = mysqli_query($tunnel, "INSERT INTO highscore (`platzierung`,`username`,`wins`, `draws`, `losses`, `ratio`) VALUES ('','$username','$wins', '$draws', '$losses');");
+
+    if($sql){
+        echo 'Your score was saved. Congrats!';
+    }else{
+        echo 'There was a problem saving your score. Please try again later.'.mysqli_error($tunnel);;
+    }
+}else{
+    echo 'Your name or score wasnt passed in the request.';
+}
 
     if (isset($tunnel)) {
         $ordiestring = "<p><strong>PHP Info: </strong>Abfrage war nicht möglich.</p>";
@@ -83,11 +100,8 @@ function generateHighscoreTable()
         $sql = "SELECT * FROM Highscore"; //ORDER BY Platzierung ASC, (Platzierung rausgenommen), da sonst bei neuem Eintrag evtl. alle Einträge neu reinzuspeichern
         $result = mysqli_query($tunnel, $sql) or die($ordiestring); //Tunnel unterstrichen, da bei debug nicht definiert.
 
-        //TODO: Result nach reputation sortieren! MÜSSTE ERLEDIGT SEIN, nur noch Test notwendig
-        //Ganze rows einfach chronolgisch in neues Array rein.
         $result = mysqli_fetch_array($result);
         usort($result, repCompare(calcReputation($result['Wins'], $result['Losses']), calcReputation($result['Wins'], $result['Losses']))); //nicht mit $row[''] weil ja für jedes Element zu vergleichen
-        //Usort gibt Boolean zurück, also müsste Array selbst neu definiert werden
 
         $n = 0; //Ranking
         foreach ($result as $row) {
@@ -95,7 +109,6 @@ function generateHighscoreTable()
             //$row = json_decode($row,true);
             //$platzierung = $row->Platzierung;
             $username = $row['Username']; //$row->Username; Wenn mysqli_fetch_object dann so
-            $message = $row['Message'];
             $wins = $row['Wins'];
             $draws = $row['Draws'];
             $losses = $row['Losses'];
@@ -105,8 +118,9 @@ function generateHighscoreTable()
             echo "<div class=\"highscore_table_row\">
                 <div class=\"highscore_table_cell\">" . (++$n) . "</div>
                 <div class=\"highscore_table_cell\">" . $username . "</div>
-                <div class=\"highscore_table_cell\">" . $wins . "/" . $draws . "/" . $losses . "</div>
-                <div class=\"highscore_table_cell\">" . $message . "</div>
+                <div class=\"highscore_table_cell\">" . $wins . "</div>
+                <div class=\"highscore_table_cell\">" . $draws . "</div>
+                <div class=\"highscore_table_cell\">" . $losses . "</div>
                 <div class=\"highscore_table_cell\">" . $reputation . "%</div>
             </div>"; //$platzierung (alt statt $n)
             //Datenbanktabelle Highscore muss in Datenbank nicht sortiert sein!! (ORDER BY Platzierung bei Ausgabe möglich)
@@ -119,7 +133,6 @@ function generateHighscoreTable()
         } echo "</div>";
     }
 }
-
 
 //CREATE LOGIN-FORM
 function createLoginForm()
@@ -151,6 +164,7 @@ function createLoginForm()
 	*/
         require("db/dbNewConnection.php"); //Wenn Datenbankverbindung gescheitert wird folgender Code durch die bzw. fatal error nicht mehr ausgeführt
 
+        //Wenn etwas eingegeben wurde, wird Username und Passwort überprüft
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
             $username = mysqli_real_escape_string($tunnel, $_POST['username']);
             $password = mysqli_real_escape_string($tunnel, $_POST['password']);
@@ -161,6 +175,7 @@ function createLoginForm()
                 echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . "')</script>"; //Nutzer nicht verraten, dass User nicht gefunden wird
             } else {
 
+                //gibt bei password_verify einen Fehler aus, mit hideLoginForm() auf der Konsole Login ausblenden
                 if (password_verify($password, $sql)) {
                     session_start();
                     echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $username . "\'!');"; //Login erfolgreich
@@ -170,7 +185,6 @@ function createLoginForm()
                 }
             }
         }
-
         if (isset($tunnel)) {
             mysqli_close($tunnel);
         }
