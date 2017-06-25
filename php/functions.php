@@ -136,48 +136,23 @@ function createLoginForm()
                 </div>
             </div>
         </div>
-    </div>"; //TODO: Add ?success=true to action unter '' damit unten geprüft werden kann ob Login Box erzeugt (wenn nicht reingegangen wird)
+    </div>";
 
-    //Hier NICHT schon Funktionsklammer schließen (wie vorhin), sonst wird Folgendes immer ausgeführt in jeder Datei
-
-    if (isset($_POST['login'])) { //TODO: Wenn er in diese IF gar nicht rein geht, dann versuch if($_GET['success']==true), dafür musst du aber das Kommentar direkt hier vorher ausführen (ca. Zeile 103)
+    if (isset($_POST['login'])) {
         require("db/dbNewConnection.php"); //Wenn Datenbankverbindung gescheitert wird folgender Code durch die bzw. fatal error nicht mehr ausgeführt
 
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
             $username = mysqli_real_escape_string($tunnel, $_POST['username']);
             $password = mysqli_real_escape_string($tunnel, $_POST['password']);
-            $hash = mysqli_query($tunnel, "SELECT Passwort FROM Users WHERE username='.$username.'"); //nur nach Username suchen und hash zurückgeben lassen, wenn user existiert
-            //TODO: Wichtig ist, dass beim Registrieren keine doppelten Usernamen erlaubt werden! Sonst kommen hier Fehlermeldungen auf
+            $sql = mysqli_query($tunnel, "SELECT Passwort FROM Users WHERE username='.$username.'"); //nur nach Username suchen und hash zurückgeben lassen, wenn User existiert
 
-            //Da normal Login nur auf Startseite, wird angenommen, dass Notification Bar bereits erzeugt wurde
             $loginFAILURE_msg = 'Ihr Username oder/und Passwort ist falsch!';
-            if (empty($hash)) {
-                echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . "')</script>"; //Nutzer nicht verraten, dass User nicht gefunden
+            if (empty($sql)) {
+                echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . "')</script>"; //Nutzer nicht verraten, dass User nicht gefunden wird
             } else {
-                //Hash to String
-                /*foreach ($hash as $tmppassw) { //Fungiert als 'toString', da hash bis hier noch ein Array mit einem Eintrag ist
-                    $hash = (string) $tmppassw; //Es wird nur der erste Hash als String reingespeichert. Deshalb darf jeder Username nur einmal vorkommen
-                }*/
 
-                /*foreach (mysqli_fetch_array($hash) as $row1) {
-                    echo "HASH: ".$row1['Passwort'];
-                }
-
-                $tmpstring="";
-                while ($row = mysqli_fetch_array($hash)) {
-                    //if (!empty($row)) {
-                    echo "Row: ".$row;
-                    echo "row[passw]: ".$row['Passwort'];
-                        $tmpstring = $row; //speichere alle zeilen als S
-                    //}
-                }
-                $hash = $tmpstring;
-                if ($hash == "") { echo "ATTENTION: No user found!"; }
-                //$hash = $tmpstring;
-                //$tmpstring = "";*/
-
-                if (password_verify($password, $hash->Passwort)) {
-                    session_start(); //Habs mal drin gelassen, wird schon was mit deinen Session Variablen zu tun haben
+                if (password_verify($password, $sql)) {
+                    session_start();
                     echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $username . "\'!');"; //Login erfolgreich
                     echo "hideLoginForm();</script>"; //Verstecke Login-Formular NUR wenn Passwort und Username korrekt, sonst bleibt es geladen.
                 } else {
@@ -186,30 +161,9 @@ function createLoginForm()
             }
         }
 
-
-        /*TODO: Meine Vermutung, dass bei WHERE password='.$password.' (Punkte nicht vergessen), Folgendes geprüft wird:
-          TODO  'eingegebenesPasswortInKlartext' == 'verschlüsseltesPasswortInDatenbank' --> also --> '1234' == 'ds16d65rsfd565r55r'
-        */
-        /*$existUserQuery = mysqli_query($tunnel,"SELECT username FROM Users WHERE username='.$username.' AND password='.$password.'");
-
-        if(mysqli_num_rows($existUserQuery) > 0) {
-            $_SESSION['username'] = $username;
+        if (isset($tunnel)) {
+            mysqli_close($tunnel);
         }
-        else {
-            echo'<p id="close_notfication">Benutzername oder Passwort falsch</p>';
-        }
-
-    }
-    else {
-        echo'<p id="close_notfication">Alle Felder ausfüllen.</p>';
-    }*/
-
-
-    }
-    //echo "<script type='text/javascript'>hideLoginForm();</script>";
-
-    if (isset($tunnel)) {
-        mysqli_close($tunnel);
     }
 }
 ?>
