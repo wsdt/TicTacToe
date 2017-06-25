@@ -1,15 +1,8 @@
-// Lightbox
-/*function closebox() {
-  document.getElementById('overlayLogin').style.display = "none";
-  document.getElementById('overlay').style.display = "none";
-}*/
-
 // NOTIFICATIONS -----------------------------------------------------------------------------------
 //Close Notification
 function close_notification() {
     var not_bar = document.getElementById('notification');
-  //document.getElementById('notification').className = ""; //Because notification is an Id
-    not_bar.style.top = '-23px';
+    not_bar.style.top = '-23px'; //Verschiebe Bar nach oben womit diese nicht mehr sichtbar ist. 
 }
 
 function show_notification(bgcolor, text) {
@@ -19,7 +12,6 @@ function show_notification(bgcolor, text) {
     document.getElementById('notification_text').style.color = '#000';
   }
   var not_bar = document.getElementById('notification');
-  //not_bar.className = "notification_active";
   not_bar.style.top = 0;
   document.getElementById('notification_text').innerHTML = text;
   not_bar.style.backgroundColor = bgcolor;
@@ -27,13 +19,12 @@ function show_notification(bgcolor, text) {
 
 // -------------------------------------------------------------------------------------------------
 //Start-Game
-function changeMode(modus) {
+function changeMode(modus) { //Change Button-Styles according to active mode etc. 
   console.log("Try to change Gamemode; Mode: "+modus); //0 = Single Player ; 1 = Multiplayer
   if (modus === 0) {
     document.getElementById('bt_singleplayer').className = "btn btn-primary"; //Active and Deactivate Button (Style)
     document.getElementById('bt_multiplayer').className = "btn btn-default";
     document.getElementById('bt_difficulty').style.display = "inline-block";
-    //document.getElementById('bt_difficulty').style.background = "url('images/skull_difficulty.png') no-repeat !important";
     restartGame();
   } else if (modus === 1) {
     document.getElementById('bt_singleplayer').className = "btn btn-default";
@@ -48,24 +39,13 @@ function changeMode(modus) {
   }
 }
 
-function setZug(id) {
+function setZug(id) { //Wird aufgerufen, sobald auf ein TTT-Feld geklickt wird. 
   close_notification();
 
-  //wenn ein Feld in Farbe = Spiel zu Ende, dann tue nichts oder gib Meldung aus. Bei Draw unnötig, da ohnehin alle Felder besetzt
-  /*for (var tmp of document.getElementsByClassName('ttt_square')) {
-    console.log(tmp);
-    if (tmp.style.backgroundColor !== '#444' && tmp.style.backgroundColor !== '#aaa') {
-      spielzug_erlaubt = false;
-      show_notification('#000', 'Spiel bereits zu Ende!');
-      break;
-    }
-  }*/
-  if (spielende) {
+  if (spielende) { //Spiel vorbei? 
     show_notification('#000','Spiel bereits zu Ende!');
   } else {
-      //var modus = 1;
-      if (document.getElementById('bt_singleplayer').className === "btn btn-primary") {
-          //modus = 0;
+      if (document.getElementById('bt_singleplayer').className === "btn btn-primary") { //Wenn Singleplayer
           playGameSingleplayer(id);
       } else {
           playGameMultiplayer(id);
@@ -74,41 +54,24 @@ function setZug(id) {
 }
 
 function playGameSingleplayer(id) {
-  //unsetVar();
   //Turn 0 = User dran ; Turn 1 = PC dran
-  if(document.getElementById('ttt_square'+id).innerHTML === field_content && turn === 0 /*&& mode === 1*/) {
+  if(document.getElementById('ttt_square'+id).innerHTML === field_content && turn === 0) {
     document.getElementById('ttt_square'+id).innerHTML = field_content+'X';
-    //sqr1T = 1;
     turn = 1;
-    //vari();
     check(0,"X");
-    //console.log("user spielt");
-    //setZug(id); //Nun lasse direkt nach User den Computer setzen, wobei rekursiv wieder hierhergelangt wird als turn=1, so computer automatisch dran.
-    /*} else if(document.getElementById('ttt_square'+id).innerHTML === field_content && turn === 1/* && mode === 2) {
-    document.getElementById('ttt_square'+id).innerHTML = field_content+'X';
-    sqr1T = 1;
-    turn = 0;
-    //vari();
-    //player1Check();
-    check(0,"X");*/
   } //IMPORTANT: You need here a normal if, not an else if (sonst erfolgt PC-Zug nicht automatisch)
-  if(/*document.getElementById('ttt_square'+id).innerHTML === field_content && */turn === 1/* && mode === 2*/) {
-    //document.getElementById('ttt_square'+id).innerHTML = field_content+'O';
-    //sqr1T = 1;
+  if(turn === 1) {
     turn = 0;
-    //console.log("Computer spielt");
     var difficulty = "easy";
     if (document.getElementById('bt_difficulty').className === "btn btn-danger") {
         difficulty = "impossible";
     }
     computerTurn(difficulty); //solange nicht difficulty==impossible wird wahllos gesetzt
-    //vari();
-    //player1Check();
     //check(0,"O"); is checked in computerTurn()
   }
-  //drawCheck();
 }
 
+//Außerhalb der Funktion definiert, damit nicht immer bei Funktionsaufruf gesetzt
 var multiplayer_spieler_zug = 1; //Zweiter Zustand f. Spieler 2 = '2'
 function playGameMultiplayer(id) {
   var curr_field = document.getElementById('ttt_square'+id);
@@ -136,7 +99,6 @@ function playGameMultiplayer(id) {
 
 function uncolor_essential_fields() { //Wenn Spiel zu Ende werden entscheidende Spielzüge eingefärbt, hier werden sie entfärbt
   //Gelöster Hover-Bug v. Max: 
-  
   for (tmp of document.getElementsByClassName('ttt_square')) {
     $(tmp).css("background-color","");
 	//tmp.style.backgroundColor = '#444';
@@ -146,6 +108,7 @@ function uncolor_essential_fields() { //Wenn Spiel zu Ende werden entscheidende 
 function changeDifficulty() {
     restartGame();
 
+	//(De)Aktiviere Impossible-Mode
     var tmpelement = document.getElementById('bt_difficulty');
     if (tmpelement.className === "btn btn-danger") {
         tmpelement.className = "btn btn-default";

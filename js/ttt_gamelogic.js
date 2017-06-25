@@ -1,46 +1,14 @@
-//if IE4/NS6, apply style
-/*if (document.all||document.getElementById){
- document.write('<style>.tictac{');
- document.write('width:50px;height:50px;');
- document.write('}</style>');
- }
- */
+
 var sqr;
 var spielende = false;
-/*var sqr2;
- var sqr3;
- var sqr4;
- var sqr5;
- var sqr6;
- var sqr7;
- var sqr8;
- var sqr9;*/
-var sqr1T = 0;
-var sqr2T = 0;
-var sqr3T = 0;
-var sqr4T = 0;
-var sqr5T = 0;
-var sqr6T = 0;
-var sqr7T = 0;
-var sqr8T = 0;
-var sqr9T = 0;
 var moveCount = 0;
 var turn = 0;
-var mode = 1;
-var field_content = "";//'<img src="images/trans_squarefield.png" class="ttt_square_img">';
+//Field-Content, wenn etwas innerhalb der TTT-Felder sein sollte (z.B. ein Bild für responsive Höhenanpassung etc.)
+var field_content = ""; //'<img src="images/trans_squarefield.png" class="ttt_square_img">';
 
-
-/*var wait = function(){
- if(true){
- // run when condition is met
- }
- else {
- setTimeout(check, 1000); // check again in a second
- }
- }*/
-
+//Aktualisiere bzw. definiere Inhalt der TTT-Felder neu
 function vari() {
-    sqr = {
+    sqr = { //Erstelle Objekt
         1: document.getElementById('ttt_square1').innerHTML,
         /*sqr[2] = {*/
         2: document.getElementById('ttt_square2').innerHTML,
@@ -54,11 +22,9 @@ function vari() {
     };
 }
 
+//Färbe nach Ende des Spieles die entscheidenden Felder ein (blau = Mehrspieler, grün = Einspieler gewonnen, rot = Einspieler verloren)
 function mark_essential_Sets(color, field1, field2, field3) { //Färbe die spielentscheidenden Spielzüge ein
-    //change bg and color
-    //console.log("FIELD: "+field1+","+field2+","+field3);
     var tmparr = [field1, field2, field3];
-    //console.log("TMPARR: "+tmparr[0]+", "+tmparr[1]+","+tmparr[2]);
     for (var i = 0; i < 3; i++) {
         //document.getElementById('ttt_square' + tmparr[i]).style.color = color; Just change the bgcolor, especially because its nicer and I would have to take a 2nd different color
         document.getElementById('ttt_square' + tmparr[i]).style.backgroundColor = color;
@@ -66,7 +32,7 @@ function mark_essential_Sets(color, field1, field2, field3) { //Färbe die spiel
 }
 
 function check(gameType, setType) { // setType = 'X' || 'O' ***** gameType = '0' || '1' (0 = Singleplayer, 1 = Multiplayer)
-    vari();
+    vari(); //Aktualisiere Inhalt der Felder (wo ist was gesetzt worden)
     var color = "#000";
     var message = "ERROR: Could not define correct message";
     if (gameType === 0) { //If Singleplayer (=0)
@@ -108,17 +74,15 @@ function check(gameType, setType) { // setType = 'X' || 'O' ***** gameType = '0'
         GameOver(color, 3, 5, 7, message);
     }
     else {
-        /*winCheck();
-         check2();*/
-        drawCheck();
+        drawCheck(); //Prüfe ob Draw
     }
 
 }
 
 function GameOver(color, field1, field2, field3, message) {
-    mark_essential_Sets(color, field1, field2, field3);
+    mark_essential_Sets(color, field1, field2, field3); //Färbe Felder ein
     show_notification(color, message); //Message = Message to show in notification bar
-    reset();
+    reset(); //Resette Spiel
 }
 
 function drawCheck() {
@@ -127,17 +91,17 @@ function drawCheck() {
     moveCount = 0;
     for (var i = 1; i <= 9; i++) {
         if (sqr[i] !== field_content) {
-            moveCount++;
+            moveCount++; 
         }
     }
 
-    if (moveCount === 9) {
+    if (moveCount === 9) { //Prüfe ob alle Felder besetzt. Wird ohnehin nur ausgeführt wenn niemand gewonnen/verloren hat
         reset();
         show_notification('#FFA500', 'Spiel unentschieden! (DRAW)');
     }
 }
 
-function pruefeFeldFrei(id) {
+function pruefeFeldFrei(id) { //Darf auf übergebenen Feld gesetzt werden?
     if (document.getElementById(id).innerHTML === field_content) {
         return true;
     }
@@ -153,127 +117,103 @@ function computerTurn(difficulty) {
     bzw. wenn keiner möglich ist, mit welchem Zug er den Sieg des Gegners vereiteln kann. Sonst setze zufällig.
      */
 
-    if (difficulty === "impossible") {
-        var players = ["O", "X"];
-        for (var player of players) {
+    if (difficulty === "impossible") { //Geht hier nur rein, wenn Totenkopf-Button angeklickt wurde
+        var players = ["O", "X"]; //Da 'O' zuerst, wird zuerst geprüft wie er setzen muss, um zu gewinnen. Danach bei Misserfolg prüft er wo er einen Sieg des Users verhindern kann
+        for (var player of players) { //für X und O
             if (sqr[1] === field_content + player && sqr[2] === field_content + player && pruefeFeldFrei('ttt_square3')) {
                 document.getElementById('ttt_square3').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[2] === field_content + player && sqr[3] === field_content + player && pruefeFeldFrei('ttt_square1')) {
                 document.getElementById('ttt_square1').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[1] === field_content + player && sqr[3] === field_content + player && pruefeFeldFrei('ttt_square2')) {
                 document.getElementById('ttt_square2').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[4] === field_content + player && sqr[5] === field_content + player && pruefeFeldFrei('ttt_square6')) {
                 document.getElementById('ttt_square6').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[5] === field_content + player && sqr[6] === field_content + player && pruefeFeldFrei('ttt_square4')) {
                 document.getElementById('ttt_square4').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[4] === field_content + player && sqr[6] === field_content + player && pruefeFeldFrei('ttt_square5')) {
                 document.getElementById('ttt_square5').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[7] === field_content + player && sqr[8] === field_content + player && pruefeFeldFrei('ttt_square9')) {
                 document.getElementById('ttt_square9').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[8] === field_content + player && sqr[9] === field_content + player && pruefeFeldFrei('ttt_square7')) {
                 document.getElementById('ttt_square7').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[7] === field_content + player && sqr[9] === field_content + player && pruefeFeldFrei('ttt_square8')) {
                 document.getElementById('ttt_square8').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[1] === field_content + player && sqr[5] === field_content + player && pruefeFeldFrei('ttt_square9')) {
                 document.getElementById('ttt_square9').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[5] === field_content + player && sqr[9] === field_content + player && pruefeFeldFrei('ttt_square1')) {
                 document.getElementById('ttt_square1').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[1] === field_content + player && sqr[9] === field_content + player && pruefeFeldFrei('ttt_square5')) {
                 document.getElementById('ttt_square5').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[3] === field_content + player && sqr[5] === field_content + player && pruefeFeldFrei('ttt_square7')) {
                 document.getElementById('ttt_square7').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[7] === field_content + player && sqr[5] === field_content + player && pruefeFeldFrei('ttt_square3')) {
                 document.getElementById('ttt_square3').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[7] === field_content + player && sqr[3] === field_content + player && pruefeFeldFrei('ttt_square5')) {
                 document.getElementById('ttt_square5').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[1] === field_content + player && sqr[4] === field_content + player && pruefeFeldFrei('ttt_square7')) {
                 document.getElementById('ttt_square7').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[1] === field_content + player && sqr[7] === field_content + player && pruefeFeldFrei('ttt_square4')) {
                 document.getElementById('ttt_square4').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[4] === field_content + player && sqr[7] === field_content + player && pruefeFeldFrei('ttt_square1')) {
                 document.getElementById('ttt_square1').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[2] === field_content + player && sqr[5] === field_content + player && pruefeFeldFrei('ttt_square8')) {
                 document.getElementById('ttt_square8').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[2] === field_content + player && sqr[8] === field_content + player && pruefeFeldFrei('ttt_square5')) {
                 document.getElementById('ttt_square5').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[5] === field_content + player && sqr[8] === field_content + player && pruefeFeldFrei('ttt_square2')) {
                 document.getElementById('ttt_square2').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[3] === field_content + player && sqr[6] === field_content + player && pruefeFeldFrei('ttt_square9')) {
                 document.getElementById('ttt_square9').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[3] === field_content + player && sqr[9] === field_content + player && pruefeFeldFrei('ttt_square6')) {
                 document.getElementById('ttt_square6').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
             else if (sqr[6] === field_content + player && sqr[9] === field_content + player && pruefeFeldFrei('ttt_square3')) {
                 document.getElementById('ttt_square3').innerHTML = field_content + "O";
-                didIsetSth = true;
                 break;
             }
         }
@@ -294,7 +234,6 @@ function computerTurn(difficulty) {
             document.getElementById('ttt_square9')
         ];
         var j = 0; //index array = 0
-        //var i = 1; //Set start field to 1
         for (var field of alleFelder) {
             if (field.innerHTML === field_content) {
                 freieFelder[j++] = field.id; //set array from 0 with all index values of sqr which are not set yet
@@ -310,34 +249,14 @@ function computerTurn(difficulty) {
 
 function reset() {
     spielende = true; //Für Spielzüge nach Spiel zum Blockieren
-    multiplayer_spieler_zug = 1; //Standard, dass Spieler 1 anfängt (= X)
-    /*
-     AUSKOMMENTIERT, da entscheidender Spielzug noch zu sehen sein soll
-     document.getElementById('ttt_square1').innerHTML = field_content;
-     document.getElementById('ttt_square2').innerHTML  = field_content;
-     document.getElementById('ttt_square3').innerHTML  = field_content;
-     document.getElementById('ttt_square4').innerHTML  = field_content;
-     document.getElementById('ttt_square5').innerHTML  = field_content;
-     document.getElementById('ttt_square6').innerHTML  = field_content;
-     document.getElementById('ttt_square7').innerHTML  = field_content;
-     document.getElementById('ttt_square8').innerHTML  = field_content;
-     document.getElementById('ttt_square9').innerHTML  = field_content;*/
-    sqr1T = 0;
-    sqr2T = 0;
-    sqr3T = 0;
-    sqr5T = 0;
-    sqr6T = 0;
-    sqr7T = 0;
-    sqr8T = 0;
-    sqr9T = 0;
+    multiplayer_spieler_zug = 1; //Standard, dass Spieler 1 anfängt (= X) Könnte hier sonst umgestellt werden
+
     vari();
     turn = 0;
     moveCount = 0;
 }
 
-function resetter() {
-    reset();
-}
+
 
 
 

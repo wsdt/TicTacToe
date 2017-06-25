@@ -6,15 +6,16 @@
  * Time: 12:33
  */
 
+//Require JS-Login-Register-Functions 
 echo "<script type='text/javascript' src='js/login_register.js'></script>";
-//require_once('db/dbNewConnection.php');
+
 
 //NOTIFICATION BAR
 function createNotificationBar() {
    echo "<div id=\"notification\"><span id=\"notification_text\">ERROR: This should not be shown. Please contact system-administrator. </span><div id=\"close_notfication\" onclick=\"close_notification();\">X</div></div>";
 }
 
-//TTT-Field
+//Generate TTT-Field
 function createTTTField() {
     $z = 0;
     for ($i=1;$i<=3;$i++) {
@@ -32,11 +33,13 @@ function createTTTField() {
 
 //HIGHSCORE ---------------------------------------------------------------------------------
 function saveHighscoreEntry() {
-    //TODO: Hidden Form Field with all rounds results
+    //TODO: Hidden Form Field with all rounds results OR AJAX
     //erst aufrufen über formular
+	//Mit SQL Statement INSERT INTO (gleich wie eine Abfrage)
 
 }
 
+//Berechne Reputation/Ansehen (daraus wird die Rangfolge (=Ranking) bestimmt)
 function calcReputation($wins,$losses) {
     // WINS = 1 Punkte wert ; LOSSES = -1 Punkte wert ; DRAWS = 0 Punkt wert
     if (!isset($wins) || !isset($losses) || ($wins == 0 && $losses == 0)) { //wenn beide 0 sind auch, da sonst DIV/0
@@ -49,6 +52,7 @@ function calcReputation($wins,$losses) {
     }
 }
 
+//Vergleiche welche Reputation größer/kleiner ist als die Andere (Wichtig für Sortierung bei der Highscore Ausgabe)
 function repCompare ($a, $b) { //Prüfe ob $a eine höhere Reputation (gib >0 zurück) oder eine kleinere hat als $b (gib <0 zurück)
     if ($a >= $b) { return 1; }
     else if ($a < $b) { return -1; }
@@ -138,7 +142,13 @@ function createLoginForm()
         </div>
     </div>";
 
-    if (isset($_POST['login'])) {
+    if (isset($_POST['login'])) { //Wenn Login-Form abgesendet, dann prüfe Login-Daten
+	/*
+	Alternative Implementierung über CREATE USER in Datenbank, dann über SQL-Details direkt bei der Datenbank anmelden. 
+	So keine eigene User-Tabelle mehr notwendig (nur noch Highscore-Tabelle) und die Verschlüsselung wird ebenfalls nicht
+	mehr notwendig. Habe (Kevin R.) dies in unserem Data-Engineering Projekt mit zusätzlicher Cookie-Unterstützung implementiert. 
+	
+	*/
         require("db/dbNewConnection.php"); //Wenn Datenbankverbindung gescheitert wird folgender Code durch die bzw. fatal error nicht mehr ausgeführt
 
         if (!empty($_POST['username']) && !empty($_POST['password'])) {

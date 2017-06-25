@@ -2,7 +2,7 @@
  * Created by 1610653212 on 20.06.2017.
  */
 //REGISTER-Form
-function reg_onSubmit() {
+function reg_onSubmit() { //Vor Absenden des Formulars prüfe...
     var username = document.getElementById('username');
     var password = document.getElementById('password');
     var passwordrepeat = document.getElementById('passwordrepeat');
@@ -24,10 +24,8 @@ function reg_onSubmit() {
 
 //LOGIN-Form
 function showLoginForm() {
-    //$(window).on('load',function(){
-    $('#login-modal').modal({backdrop: 'static', keyboard: false});
-    window.setTimeout(isLoggedIn, 200); //Execute to adapt the label
-    //});
+    $('#login-modal').modal({backdrop: 'static', keyboard: false}); //Login-Form nicht schließen wenn auf die Seite geklickt wird. 
+    window.setTimeout(isLoggedIn, 200); //Execute to adapt the label, but wait a short time
 }
 
 function hideLoginForm() {
@@ -37,7 +35,7 @@ function hideLoginForm() {
 
 //Label Login/Logout prüfen
 function isLoggedIn() {
-    var isVisible = $('#login-modal').is(":visible");
+    var isVisible = $('#login-modal').is(":visible"); //Prüfe ob Loginbox sichtbar
     if (isVisible) {
         //console.log("Login Modal visible: "+isVisible);
         document.getElementById('login_logout_label_link').value = "Login"; //Zeige an, dass man sich einloggen kann
