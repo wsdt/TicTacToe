@@ -14,6 +14,9 @@ function reg_onSubmit() { //Vor Absenden des Formulars prüfe...
     } else if (password.value !== passwordrepeat.value) {
         show_notification('#000', 'Das Passwort stimmt mit der Kontrolleingabe nicht überein!');
         return false;
+    } else if (password.value.length < 4) {
+        show_notification('#000', 'Das Passwort muss länger als 3 Zeichen sein!');
+        return false;
     } else if (username.value.length < 4) {
         show_notification('#000', 'Der Username muss länger als 3 Zeichen sein!');
         return false;

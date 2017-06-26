@@ -82,17 +82,21 @@ class User
 
     function DB_addUser()
     {
-        require 'db/dbNewConnection.php';
-        $sql = "INSERT INTO Users (username, passwort) VALUES ('" . $this->getUsername() . "', '" . $this->getPasswordHash() . "');";
-        $result = mysqli_query($tunnel, $sql);
+        if ($this->isUsernameAvailable()) {
+            require 'db/dbNewConnection.php';
+            $sql = "INSERT INTO Users (username, passwort) VALUES ('" . $this->getUsername() . "', '" . $this->getPasswordHash() . "');";
+            $result = mysqli_query($tunnel, $sql);
 
-        $this->closeDBConnection($tunnel);
+            $this->closeDBConnection($tunnel);
 
-        if (!$result) {
-            echo "DB ERROR: User konnte nicht in die Datenbank übertragen werden! Username bereits vorhanden oder unbekannter Fehler! [in DB_addUser()]";
-            return false;
+            if (!$result) {
+                echo "DB ERROR: User konnte nicht in die Datenbank übertragen werden! [in DB_addUser()]";
+                return false;
+            } else {
+                return true;
+            }
         } else {
-            return true;
+            echo "DB ERROR: Username bereits vorhanden! Bitte wählen Sie einen anderen!";
         }
     }
 
@@ -147,10 +151,13 @@ class User
 //Getter/Setter definieren
     function setUsername($username)
     {
+        require 'db/dbNewConnection.php';
         if (empty($username) || $username == null || strlen($username) < 4) {
+            $this->closeDBConnection($tunnel);
             return false;
         } else {
-            $this->username = $username;
+            $this->username = mysqli_real_escape_string($tunnel, $username);
+            $this->closeDBConnection($tunnel);
             return true;
         }
     }
@@ -202,18 +209,17 @@ class User
     function setPassword($password, $password_verify)
     { //Passwort-Setzung nur mit Kontrolleingabe möglich
         //Verschlüssle Passwort
-        if (empty($password) || empty($password_verify) || $password == null || $password_verify == null || $password != $password_verify
+        echo "Pwd: ".$password.";verf:".$password_verify;
+        if (empty($password) || empty($password_verify) || $password === null || $password_verify === null || strcmp($password, $password_verify) == 0 //0 kommt raus, wenn beide Strings gleich
             || $password < 4) {
-            /*echo $password.";Verify: ".$password_verify;
-            echo "Empty: ".empty($password);
-            echo "null: ".($password == null);
-            echo "überein: ". ($password != $password_verify);*/
             //nur $password auf Länge zu prüfen, da er bei Ungleichheit ohnehin hier reinspringt
             //Wenn ein Passwort leer, den Sicherheitsbestimmungen nicht entspricht oder beide Passwörter ungleich sind gib false zurück.
             //Hier keinen Dummy-Wert setzen, da sonst im Fehlerfall das Passwort überschrieben wird.
             return false;
         } else {
-            $this->password = password_hash($password, PASSWORD_BCRYPT);
+            require 'db/dbNewConnection.php';
+            $this->password = password_hash(mysqli_real_escape_string($tunnel, $password), PASSWORD_BCRYPT);
+            $this->closeDBConnection($tunnel);
             return true;
         }
     }
@@ -227,7 +233,7 @@ class User
     function isPasswordValid($password_for_check)
     {
         //Prüfe ob Passwort ok
-        return password_verify($password_for_check, $this->password);
+        return password_verify($password_for_check, $this->getPasswordHash());
     }
 
 //Berechne Reputation/Ansehen (daraus wird die Rangfolge (=Ranking) bestimmt)

@@ -18,8 +18,8 @@
             $isEverythingOk = false;
         }
 
-        if(!($tmp_user->setPassword($_POST["passwort"],$_POST["passwort2"]))) {
-            echo "ERROR: Passwort entspricht nicht den Richtlinien (länger 4, nicht leer und muss mit Verify_Passwort übereinstimmen! [in insertNewUser()]";
+        if(!($tmp_user->setPassword($_POST["passwort"],$_POST["passwort2"]))) { //TODO: Funktioniert nicht immer
+            echo "ERROR: Passwort entspricht nicht den Richtlinien (länger 3, nicht leer und muss mit Verify_Passwort übereinstimmen! [in insertNewUser()]";
             $isEverythingOk = false;
         }
 
@@ -31,6 +31,6 @@
         unset($tmp_user); //Lösche Referenz, so wird auch unser Destruktor aufgerufen.
     }
 
-header( "refresh:5;url=../../index.php" ); //Zur Startseite weiterleiten
+//header( "refresh:5;url=../../index.php" ); //Zur Startseite weiterleiten
 
 ?>

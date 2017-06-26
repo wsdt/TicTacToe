@@ -163,13 +163,13 @@ function createLoginForm()
             if ($result_usersuche != false) {
                 $tmp_user = $result_usersuche; //Weise DB_User unserem lokal erstellten User zu
                 if ($tmp_user->isPasswordValid($password)) {
-                    echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $username . "\'!');"; //Login erfolgreich
+                    echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $tmp_user->getUsername() . "\'!');"; //Login erfolgreich
                     echo "hideLoginForm();</script>"; //Verstecke Login-Formular NUR wenn Passwort und Username korrekt, sonst bleibt es geladen.
                 } else {
-                    echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . "')</script>"; //Passwort stimmt nicht mit Username überein
+                    echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . " (2)')</script>"; //Passwort stimmt nicht mit Username überein
                 }
             } else {
-                echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . "')</script>"; //Nutzer nicht verraten, dass User nicht gefunden
+                echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . " (1)')</script>"; //Nutzer nicht verraten, dass User nicht gefunden
             }
         $tmp_user->closeDBConnection($tunnel);
         }
