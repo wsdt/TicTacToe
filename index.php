@@ -25,7 +25,7 @@ createLoginForm();
     <div class="row toprow">
         <div class="col-xs-11 col-md-11">
             <!-- Say who you are (only when you are logged in) [when not: class="hidden" OR class="show"-->
-            <span class="show_label" id="label_loggedinas">Logged in as <strong></strong></span>
+            <span class="show_label" id="label_loggedinas">Logged in as <strong><?php echo $_COOKIE['ttt_username']; ?></strong></span>
         </div>
         <div class="col-xs-1 col-md-1">
             <!--<form name="logout_form" action="php/logout.php" onsubmit="showLoginForm()">-->
