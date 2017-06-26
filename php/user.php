@@ -56,7 +56,7 @@ class User
         $this->draws = null;
         $this->wins = null;
         $this->reputation = null;
-        $this->DB_deleteUser(); //Lösche User aus Datenbank
+        //$this->DB_deleteUser(); //Lösche User aus Datenbank
     }
 
 //DB-Operationen
@@ -86,11 +86,14 @@ class User
         $sql = "INSERT INTO Users (username, passwort) VALUES ('" . $this->getUsername() . "', '" . $this->getPasswordHash() . "');";
         $result = mysqli_query($tunnel, $sql);
 
-        if (!$result) {
-            echo "DB ERROR: User konnte nicht in die Datenbank übertragen werden! [in DB_addUser()]";
-        }
-
         $this->closeDBConnection($tunnel);
+
+        if (!$result) {
+            echo "DB ERROR: User konnte nicht in die Datenbank übertragen werden! Username bereits vorhanden oder unbekannter Fehler! [in DB_addUser()]";
+            return false;
+        } else {
+            return true;
+        }
     }
 
     function DB_deleteUser()
@@ -144,7 +147,7 @@ class User
 //Getter/Setter definieren
     function setUsername($username)
     {
-        if (empty($username) || $username == null || strlen($username)) {
+        if (empty($username) || $username == null || strlen($username) < 4) {
             return false;
         } else {
             $this->username = $username;
@@ -200,8 +203,12 @@ class User
     { //Passwort-Setzung nur mit Kontrolleingabe möglich
         //Verschlüssle Passwort
         if (empty($password) || empty($password_verify) || $password == null || $password_verify == null || $password != $password_verify
-            || $password < 4
-        ) { //nur $password auf Länge zu prüfen, da er bei Ungleichheit ohnehin hier reinspringt
+            || $password < 4) {
+            /*echo $password.";Verify: ".$password_verify;
+            echo "Empty: ".empty($password);
+            echo "null: ".($password == null);
+            echo "überein: ". ($password != $password_verify);*/
+            //nur $password auf Länge zu prüfen, da er bei Ungleichheit ohnehin hier reinspringt
             //Wenn ein Passwort leer, den Sicherheitsbestimmungen nicht entspricht oder beide Passwörter ungleich sind gib false zurück.
             //Hier keinen Dummy-Wert setzen, da sonst im Fehlerfall das Passwort überschrieben wird.
             return false;

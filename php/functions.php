@@ -8,6 +8,7 @@
 
 //Require JS-Login-Register-Functions 
 echo "<script type='text/javascript' src='js/login_register.js'></script>";
+require_once 'user.php';
 
 
 //NOTIFICATION BAR

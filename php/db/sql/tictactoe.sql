@@ -19,4 +19,5 @@ CREATE TABLE Highscore(
     PRIMARY KEY(Username), /* Da Username ohnehin nur einmal vorkommen darf */
     FOREIGN KEY (Username) REFERENCES Users(Username)
     );
-	
+
+/*INSERT INTO Users (username, passwort) VALUES ('wsdt','123456')*/
