@@ -4,10 +4,10 @@ USE tictactoe;
 
 CREATE TABLE Users(
 	Username VARCHAR(50),
-    Passwort VARCHAR(50),
+    Passwort VARCHAR(255), /* 60 at the minimum, 255 recommended */
     PRIMARY KEY(Username)
     );
-    
+
 
 CREATE TABLE Highscore(
 	  /*Ranking INT, auskommentiert, da sonst zus. Aufwand beim Reinspeichern*/
@@ -20,4 +20,8 @@ CREATE TABLE Highscore(
     FOREIGN KEY (Username) REFERENCES Users(Username)
     );
 
-/*INSERT INTO Users (username, passwort) VALUES ('wsdt','123456')*/
+
+/*
+SELECT * FROM Users
+
+DELETE FROM Users*/

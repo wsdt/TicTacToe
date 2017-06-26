@@ -152,11 +152,13 @@ function createLoginForm()
 
         //Wenn etwas eingegeben wurde, wird Username und Passwort überprüft
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
+
             require("db/dbNewConnection.php"); //Wenn Datenbankverbindung gescheitert wird folgender Code durch die bzw. fatal error nicht mehr ausgeführt
 
             $loginFAILURE_msg = 'Ihr Username oder/und Passwort ist falsch!';
             $username = mysqli_real_escape_string($tunnel, $_POST['username']);
             $password = mysqli_real_escape_string($tunnel, $_POST['password']);
+
 
             $tmp_user = new User(); //Lade Nutzerprofil aus Datenbank
             $result_usersuche = $tmp_user->loadUser_from_DB($username); //Prüfe ob User vorhanden und wenn vorhanden, dann gib ihn zurück (sonst false)
@@ -165,6 +167,7 @@ function createLoginForm()
                 if ($tmp_user->isPasswordValid($password)) {
                     echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $tmp_user->getUsername() . "\'!');"; //Login erfolgreich
                     echo "hideLoginForm();</script>"; //Verstecke Login-Formular NUR wenn Passwort und Username korrekt, sonst bleibt es geladen.
+                //TODO: Ohne Cookies gelöst, da bei Login einfach Lightbox versteckt wird, ist das ok ohne Cookies bzw. ohne Session?
                 } else {
                     echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . " (2)')</script>"; //Passwort stimmt nicht mit Username überein
                 }

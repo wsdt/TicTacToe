@@ -226,7 +226,7 @@ class User
     function getPasswordHash()
     {
         //Übergib verschlüsseltes Passwort
-        return $this->password;
+        return substr($this->password,0,60);
     }
 
     function isPasswordValid($password_for_check)
