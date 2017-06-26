@@ -35,6 +35,28 @@ function saveHighscoreEntry() {
     //TODO: Hidden Form Field with all rounds results OR AJAX
     //erst aufrufen über formular
 	//Mit SQL Statement INSERT INTO (gleich wie eine Abfrage)
+
+    require "db/dbNewConnection.php";
+    //Spiel in die Highscore-Liste einfügen
+    if(isset($_GET['username']) && isset($_GET['score']) && isset($_GET['score'])) {
+
+        $username = strip_tags(mysqli_real_escape_string($tunnel, $_GET['username']));
+        $wins = strip_tags(mysqli_real_escape_string($tunnel, $_GET['wins']));
+        $draws = strip_tags(mysqli_real_escape_string($tunnel, $_GET['draws']));
+        $losses = strip_tags(mysqli_real_escape_string($tunnel, $_GET['losses']));
+        $sql = mysqli_query($tunnel, "INSERT INTO highscore (`platzierung`,`username`,`wins`, `draws`, `losses`, `ratio`) VALUES ('','$username','$wins', '$draws', '$losses');");
+
+        if($sql){
+            echo 'Your score was saved. Congrats!';
+        }else{
+            echo 'There was a problem saving your score. Please try again later.'.mysqli_error($tunnel);;
+        }
+    }else{
+        echo 'Your name or score wasnt passed in the request.';
+    }
+
+
+
 }
 
 function deleteHighscoreEntry() {
@@ -56,25 +78,7 @@ function generateHighscoreTable()
                 <div class=\"highscore_table_cell highscore_table_caption\">Reputation <!-- Reputation = Win/Loss Ratio --></div>
             </div>";
 
-    require_once "db/dbNewConnection.php";
-
-    //Spiel in die Highscore-Liste einfügen
-if(isset($_GET['username']) && isset($_GET['score']) && isset($_GET['score'])) {
-
-    $username = strip_tags(mysqli_real_escape_string($tunnel, $_GET['username']));
-    $wins = strip_tags(mysqli_real_escape_string($tunnel, $_GET['wins']));
-    $draws = strip_tags(mysqli_real_escape_string($tunnel, $_GET['draws']));
-    $losses = strip_tags(mysqli_real_escape_string($tunnel, $_GET['losses']));
-    $sql = mysqli_query($tunnel, "INSERT INTO highscore (`platzierung`,`username`,`wins`, `draws`, `losses`, `ratio`) VALUES ('','$username','$wins', '$draws', '$losses');");
-
-    if($sql){
-        echo 'Your score was saved. Congrats!';
-    }else{
-        echo 'There was a problem saving your score. Please try again later.'.mysqli_error($tunnel);;
-    }
-}else{
-    echo 'Your name or score wasnt passed in the request.';
-}
+    require "db/dbNewConnection.php";
 
     if (isset($tunnel)) {
         $ordiestring = "<p><strong>PHP Info: </strong>Abfrage war nicht möglich.</p>";
