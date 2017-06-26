@@ -11,7 +11,7 @@ function reg_onSubmit() { //Vor Absenden des Formulars prüfe...
     if (username.value === "" || password.value === "" || passwordrepeat.value === "") {
         show_notification('#ff0000', 'Es darf kein Eingabefeld leer sein!');
         return false;
-    } else if (password.value != passwordrepeat.value) {
+    } else if (password.value !== passwordrepeat.value) {
         show_notification('#000', 'Das Passwort stimmt mit der Kontrolleingabe nicht überein!');
         return false;
     } else if (username.value.length < 4) {

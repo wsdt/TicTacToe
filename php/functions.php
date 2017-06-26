@@ -35,30 +35,12 @@ function saveHighscoreEntry() {
     //TODO: Hidden Form Field with all rounds results OR AJAX
     //erst aufrufen über formular
 	//Mit SQL Statement INSERT INTO (gleich wie eine Abfrage)
-
 }
 
-//Berechne Reputation/Ansehen (daraus wird die Rangfolge (=Ranking) bestimmt)
-function calcReputation($wins,$losses) {
-    // WINS = 1 Punkte wert ; LOSSES = -1 Punkte wert ; DRAWS = 0 Punkt wert
-    if (!isset($wins) || !isset($losses) || ($wins == 0 && $losses == 0)) { //wenn beide 0 sind auch, da sonst DIV/0
-        return 0; //Initial 0 zur Fehlervermeidung
-    } else {
-        $all_games = $wins+$losses;
-        $rep = ($wins-$losses)/$all_games;
-        if ($rep > 1) { $rep = 1; } else if ($rep < -1) { $rep = -1; } //Wenn komische Rep-Werte, hier evtl. Fehlerquelle
-        return $rep;
-    }
+function deleteHighscoreEntry() {
+    //TODO
 }
 
-//Vergleiche welche Reputation größer/kleiner ist als die Andere (Wichtig für Sortierung bei der Highscore Ausgabe)
-function repCompare ($a, $b) { //Prüfe ob $a eine höhere Reputation (gib >0 zurück) oder eine kleinere hat als $b (gib <0 zurück)
-    if ($a >= $b) { return 1; }
-    else if ($a < $b) { return -1; }
-    else {
-        return "ERROR"; //Durch String wird Fehler erzeugt. Deshalb muss oben auch >= stehen, damit alle Fälle abgedeckt
-    }
-}
 
 function generateHighscoreTable()
 {
@@ -156,37 +138,35 @@ function createLoginForm()
     </div>";
 
     if (isset($_POST['login'])) { //Wenn Login-Form abgesendet, dann prüfe Login-Daten
-	/*
-	Alternative Implementierung über CREATE USER in Datenbank, dann über SQL-Details direkt bei der Datenbank anmelden. 
-	So keine eigene User-Tabelle mehr notwendig (nur noch Highscore-Tabelle) und die Verschlüsselung wird ebenfalls nicht
-	mehr notwendig. Habe (Kevin R.) dies in unserem Data-Engineering Projekt mit zusätzlicher Cookie-Unterstützung implementiert. 
-	
-	*/
-        require("db/dbNewConnection.php"); //Wenn Datenbankverbindung gescheitert wird folgender Code durch die bzw. fatal error nicht mehr ausgeführt
+        /*
+        Alternative Implementierung über CREATE USER in Datenbank, dann über SQL-Details direkt bei der Datenbank anmelden.
+        So keine eigene User-Tabelle mehr notwendig (nur noch Highscore-Tabelle) und die Verschlüsselung wird ebenfalls nicht
+        mehr notwendig. Habe (Kevin R.) dies in unserem Data-Engineering Projekt mit zusätzlicher Cookie-Unterstützung implementiert.
+
+        */
 
         //Wenn etwas eingegeben wurde, wird Username und Passwort überprüft
         if (!empty($_POST['username']) && !empty($_POST['password'])) {
-            $username = mysqli_real_escape_string($tunnel, $_POST['username']);
-            $password = mysqli_real_escape_string($tunnel, $_POST['password']);
-            $sql = mysqli_query($tunnel, "SELECT Passwort FROM Users WHERE username='.$username.'"); //nur nach Username suchen und hash zurückgeben lassen, wenn User existiert
+            require("db/dbNewConnection.php"); //Wenn Datenbankverbindung gescheitert wird folgender Code durch die bzw. fatal error nicht mehr ausgeführt
 
             $loginFAILURE_msg = 'Ihr Username oder/und Passwort ist falsch!';
-            if (empty($sql)) {
-                echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . "')</script>"; //Nutzer nicht verraten, dass User nicht gefunden wird
-            } else {
+            $username = mysqli_real_escape_string($tunnel, $_POST['username']);
+            $password = mysqli_real_escape_string($tunnel, $_POST['password']);
 
-                //gibt bei password_verify einen Fehler aus, mit hideLoginForm() auf der Konsole Login ausblenden
-                if (password_verify($password, $sql)) {
-                    session_start();
+            $tmp_user = new User(); //Lade Nutzerprofil aus Datenbank
+            $result_usersuche = $tmp_user->loadUser_from_DB($username); //Prüfe ob User vorhanden und wenn vorhanden, dann gib ihn zurück (sonst false)
+            if ($result_usersuche != false) {
+                $tmp_user = $result_usersuche; //Weise DB_User unserem lokal erstellten User zu
+                if ($tmp_user->isPasswordValid($password)) {
                     echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $username . "\'!');"; //Login erfolgreich
                     echo "hideLoginForm();</script>"; //Verstecke Login-Formular NUR wenn Passwort und Username korrekt, sonst bleibt es geladen.
                 } else {
                     echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . "')</script>"; //Passwort stimmt nicht mit Username überein
                 }
+            } else {
+                echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . "')</script>"; //Nutzer nicht verraten, dass User nicht gefunden
             }
-        }
-        if (isset($tunnel)) {
-            mysqli_close($tunnel);
+        $tmp_user->closeDBConnection($tunnel);
         }
     }
 }

@@ -7,40 +7,20 @@
 	//Eingabewerte werden an die Variablen übergeben, Passwort wird mit hash-Funktion verschlüsselt
 	if(!empty($_POST))
     {
-        $username = $_POST["username"];
-        $passwort = $_POST["passwort"];
-        $passwort2 = $_POST["passwort2"];
-        $hash = password_hash($passwort,PASSWORD_BCRYPT);
+        $tmp_user = new User();
+        /*$max->name = "Max Mustermann";
+        $max->setEmail("max@muster.de");*/
 
-
-        if ($passwort == $passwort2){
-            if ($_POST["passwort"] == NULL){
-                echo "Passwort ist leer";
-            } else {
-                $control = 0;
-                $sql = "SELECT username FROM Users WHERE username = '$username'";
-                $result = mysqli_query($tunnel, $sql) or die($ordiestring);
-                while ($row = mysqli_fetch_object($result)) {
-                    $control++;
-                }
-
-                //Username wird überprüft, ob bereits vorhanden, dann wird ein neuer User angelegt
-                if ($control != 0) {
-                    echo "<p>Username <strong>$username</strong> existiert bereits! <a href='../../register.php'>zurück</a> </p>";
-                } else {
-                    echo "Speicherung in DB";
-                    $sql = "INSERT INTO Users (username, passwort) VALUES ('" . $username . "', '" . $hash . "');";
-                    echo "<p><strong>PHP Info: </strong>" . $sql . "</p>";
-                    $result = mysqli_query($tunnel, $sql);
-                    echo "<p>Benutzer wurde erfolgreich angelegt <a href='../../index.php'>Anmelden</a> </p>";
-                }
-            }
-        } else {
-            echo "Passwörter stimmen nicht überein";
-            echo "Passwort 1: " . $passwort . " Passwort 2: " . $passwort2;
+        if(!($tmp_user->setUsername($_POST["username"]))) {
+            echo "ERROR: Username konnte nicht gespeichert werden! (PHP-Class-Error)";
         }
-        mysqli_close($tunnel);
 
+        if(!($tmp_user->setPassword($_POST["passwort"],$_POST["passwort2"]))) {
+            echo "ERROR: Password konnte nicht gespeichert werden! (PHP-Class-Error)";
+        }
+
+        $tmp_user->DB_addUser(); //Füge User in die Datenbank ein. Highscore hat er noch keinen, da er noch nicht gespielt hat.
+        unset($tmp_user); //Lösche Referenz, so wird auch unser Destruktor aufgerufen.
     }
 
 ?>
