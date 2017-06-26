@@ -209,8 +209,7 @@ class User
     function setPassword($password, $password_verify)
     { //Passwort-Setzung nur mit Kontrolleingabe möglich
         //Verschlüssle Passwort
-        echo "Pwd: ".$password.";verf:".$password_verify;
-        if (empty($password) || empty($password_verify) || $password === null || $password_verify === null || strcmp($password, $password_verify) == 0 //0 kommt raus, wenn beide Strings gleich
+        if (empty($password) || empty($password_verify) || $password === null || $password_verify === null || strcmp($password, $password_verify) != 0 //0 kommt raus, wenn beide Strings gleich
             || $password < 4) {
             //nur $password auf Länge zu prüfen, da er bei Ungleichheit ohnehin hier reinspringt
             //Wenn ein Passwort leer, den Sicherheitsbestimmungen nicht entspricht oder beide Passwörter ungleich sind gib false zurück.
