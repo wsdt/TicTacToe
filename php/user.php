@@ -97,13 +97,14 @@ class User
             }
         } else {
             echo "DB ERROR: Username bereits vorhanden! Bitte wählen Sie einen anderen!";
+            return false;
         }
     }
 
     function DB_deleteUser()
     {
         require 'db/dbNewConnection.php';
-        $sql_hc = "DELETE FROM Highscore WHERE username='".$this->getUsername()."';'";
+        $sql_hc = "DELETE FROM Highscore WHERE username='".$this->getUsername()."';'"; //Lösche auch Highscore-Eintrag
         $sql_us = "DELETE FROM Users WHERE username='".$this->getUsername()."';";
         $result = mysqli_query($tunnel, $sql_hc);
         $result2 = mysqli_query($tunnel, $sql_us);
@@ -114,10 +115,6 @@ class User
         $this->closeDBConnection($tunnel);
     }
 
-    function DB_refreshOrAddToHighscore()
-    {
-        //TODO
-    }
 
     function isUsernameAvailable()
     {
@@ -259,20 +256,7 @@ class User
     {
         return $this->reputation;
     }
-
-
-//Vergleiche welche Reputation größer/kleiner ist als die Andere (Wichtig für Sortierung bei der Highscore Ausgabe)
-    function repCompare($a, $b)
-    { //Prüfe ob $a eine höhere Reputation (gib >0 zurück) oder eine kleinere hat als $b (gib <0 zurück)
-        if ($a >= $b) {
-            return 1;
-        } else if ($a < $b) {
-            return -1;
-        } else {
-            return "ERROR"; //Durch String wird Fehler erzeugt. Deshalb muss oben auch >= stehen, damit alle Fälle abgedeckt
-        }
-    }
-
-
 }
+
+
 ?>
