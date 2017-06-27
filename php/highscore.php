@@ -107,7 +107,7 @@ function getHighscoreRow() {
 
             require "db/dbNewConnection.php";
             //Spiel in die Highscore-Liste einfügen
-            if (isset($_GET['username']) && isset($_GET['score']) && isset($_GET['score'])) {
+            if (isset($_POST['username']) && isset($_POST['score']) && isset($_POST['score'])) {
 
                 $username = strip_tags(mysqli_real_escape_string($tunnel, $_POST['username']));
                 $wins = strip_tags(mysqli_real_escape_string($tunnel, $_POST['wins']));
@@ -169,7 +169,7 @@ function getHighscoreRow() {
             $result = mysqli_query($tunnel, $sql) or die($ordiestring); //Tunnel unterstrichen, da bei debug nicht definiert.
 
             if (mysqli_num_rows($result) == 0) {
-                echo "WARNING: Highscore konnte nicht sortiert werden!";
+                echo "Keine Einträge vorhanden!";
             } else {
                 //usort($result, repCompare(calcReputation($result['Wins'], $result['Losses']), calcReputation($result['Wins'], $result['Losses']))); //nicht mit $row[''] weil ja für jedes Element zu vergleichen
                 $n = 0; //Ranking
