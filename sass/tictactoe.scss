@@ -281,6 +281,10 @@ main {
   margin-top:10px;
   margin-right:auto;
   margin-left:auto;
+  @media only screen and (max-width: 500px) {
+    display:none;
+  }
+
   div {
     width: 150px;
     display: inline;
@@ -291,6 +295,7 @@ main {
     margin-right: auto;
     display:flex;
     height: 34px;*/
+
   }
 }
 
