@@ -83,10 +83,10 @@ $user_object = createLoginForm();
     <div class="col-md-4"><!-- let empty --></div>
     <div id="socialbuttons" class="col-xs-12 col-md-8">
         <!-- TODO: Social-Icons werden nicht angezeigt -->
-        <div id="fb_button" class="btn btn-block btn-social btn-facebook"><span class="fa fa-facebook"></span> Facebook</div>&nbsp;
-        <div id="tw_button" class="btn btn-block btn-social btn-twitter"><span class="fa fa-twitter"></span> Twitter</div>&nbsp;
-        <div id="yt_button" class="btn btn-block btn-social btn-github"><span class="fa fa-github"></span> Github</div>&nbsp;
-        <div id="ig_button" class="btn btn-block btn-social btn-instagram"><span class="fa fa-instagram"></span> Instagram</div>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//localhost/tictactoe/index.php" target="_blank"><div id="fb_button" class="btn btn-block btn-social btn-facebook"><span class="fa fa-facebook"></span> Facebook</div></a>&nbsp;
+        <a href="https://twitter.com/home?status=You%20have%20to%20try%20this%20awesome%20tic%20tac%20toe%20game!" target="_blank"><div id="tw_button" class="btn btn-block btn-social btn-twitter"><span class="fa fa-twitter"></span> Twitter</div></a>&nbsp;
+        <a href="http://github.com/wsdt/tictactoe" target="_blank"><div id="gh_button" class="btn btn-block btn-social btn-github"><span class="fa fa-github"></span> Github</div></a>&nbsp;
+        <a href="https://www.instagram.com/kevkevin_greenhat/" target="_blank"><div id="ig_button" class="btn btn-block btn-social btn-instagram"><span class="fa fa-instagram"></span> Instagram</div></a>
         <!-- If you want more Social-Media-Buttons: (Classes here)
         https://lipis.github.io/bootstrap-social/
         -->
