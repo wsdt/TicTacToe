@@ -54,6 +54,15 @@ function isLoggedIn() {
     }
 }
 
+function logout_procedure() { //Login Procedure is in functions.php als PHP-Function (below generating the login-form)
+    //Unset Cookies bzw. lasse sie ablaufen
+    document.cookie = 'ttt_username' + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'ttt_password' + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+
+    showLoginForm(); //Zeige Login Formular und passe Buttons, Anzeige etc. an (also Username etc. wird nicht mehr angezeigt)
+    show_notification('#000', 'Sie haben sich erfolgreich ausgeloggt.');
+}
+
 //Login-Form-Validation
 function validateLoginCredentials() {
     var loggedInSuccessfully = false;

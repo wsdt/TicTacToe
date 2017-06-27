@@ -11,8 +11,8 @@ echo "<meta charset=\"utf-8\">
     <script type=\"text/javascript\" src=\"jquery/jquery-3.2.1.min.js\"></script>
     <script type=\"text/javascript\" src=\"bootstrap/dist/js/bootstrap.min.js\"></script>
     <script type=\"text/javascript\" src=\"js/ttt_gamelogic.js\"></script>
-    <script type='text/javascript' src='js/login_register.js'></script>";
-    require_once 'functions.php';
+    <script type='text/javascript' src=\"js/login_register.js\"></script>";
+    require_once 'functions.php'; //User Class will be called in functions.php
 
 	//TODO: Evtl. noch HTTP-Requests minimieren! Alles in 1 JS etc. 
 	

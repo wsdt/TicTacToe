@@ -7,7 +7,7 @@
  */
 
 //Require JS-Login-Register-Functions 
-echo "<script type='text/javascript' src='js/login_register.js'></script>";
+//echo "<script type='text/javascript' src='js/login_register.js'></script>";
 require_once 'user.php';
 
 
@@ -169,8 +169,8 @@ function createLoginForm()
             if ($result_usersuche != false) {
                 $tmp_user = $result_usersuche; //Weise DB_User unserem lokal erstellten User zu
                 if ($tmp_user->isPasswordValid($password)) {
-                    echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $tmp_user->getUsername() . "\'!');"; //Login erfolgreich
-                    echo "hideLoginForm();</script>"; //Verstecke Login-Formular NUR wenn Passwort und Username korrekt, sonst bleibt es geladen.
+                    echo "<script type='text/javascript'>hideLoginForm();show_notification('#00aa00','Willkommen zurück \'" . $tmp_user->getUsername() . "\'!');</script>"; //Login erfolgreich
+                    //Verstecke Login-Formular NUR wenn Passwort und Username korrekt, sonst bleibt es geladen.
 
                     //Speichere Authentifizierungsdaten als Cookie
                     setcookie("ttt_username", $tmp_user->getUsername(), time()+86400); //Verfällt in 24h

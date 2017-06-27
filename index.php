@@ -29,7 +29,7 @@ createLoginForm();
         </div>
         <div class="col-xs-1 col-md-1">
             <!--<form name="logout_form" action="php/logout.php" onsubmit="showLoginForm()">-->
-                <input type="button" name="logout" class="btn-primary" id="login_logout_label_link" value="Log-Out" onclick="showLoginForm()"/>
+                <input type="button" name="logout" class="btn-primary" id="login_logout_label_link" value="Log-Out" onclick="logout_procedure()"/>
             <!--</form>-->
             <!-- Generell showLoginForm(), da ohnehin nicht anklickbar wenn Loginform offen. -->
         </div>
