@@ -95,15 +95,17 @@ function getHighscoreRow() {
 }*/
 
 if (!empty($_POST['username']) && !empty($_POST['wins']) && !empty($_POST['draws']) && !empty($_POST['losses'])) {
-    //TODO: IMPORTANT: USERNAME = eingeloggter User (trotzdem prüfen ob User existiert, da sonst DB-Error)
-    //TODO: BESSER: Prüfe ob Username = $_COOKIE['ttt_username']
+    //IMPORTANT: USERNAME = eingeloggter User (trotzdem prüfen ob User existiert, da sonst DB-Error)
+    //BESSER: Prüfe ob Username = $_COOKIE['ttt_username']
     if (!empty($_COOKIE['ttt_username']) && !empty($_COOKIE['ttt_password'])) {
-
+        if ($_COOKIE['ttt_username'] == $_POST['username']) {
+            DB_saveHighscoreEntry($_POST['username'], $_POST['wins'], $_POST['draws'], $_POST['losses']); //Speichere Highscore-Eintrag
+        } else {
+            echo "WARNING: Cookie does not correspond to username.";
+        }
     } else {
-
-    }
-
-    DB_saveHighscoreEntry($_POST['username'],$_POST['wins'],$_POST['draws'],$_POST['losses']); //Speichere Eintrag
+        echo "WARNING: Could not save highscore entry (1).";
+    }//Do nothing when User isn't valid bzw. does not exist
 }
 
 
