@@ -139,8 +139,6 @@ function check(gameType, setType) { // setType = 'X' || 'O' ***** gameType = '0'
 }
 
 function GameOver(color, field1, field2, field3, message, new_wins, new_draws, new_losses) {
-    console.log("In Game over: ");
-    console.log("w: "+new_wins+";d:"+new_draws+";l:"+new_losses);
     mark_essential_Sets(color, field1, field2, field3); //Färbe Felder ein
     show_notification(color, message); //Message = Message to show in notification bar
 
@@ -163,7 +161,7 @@ function save_Game(win_count, draws_count, losses_count) {
         success: function (receivedData) {
             if (receivedData.indexOf("SUCCESS") <= (-1) || receivedData.indexOf("FAIL") >= (0)) { //Wenn Schlüsselwort SUCCESS vorhanden, aber kein FAIL (= echo Statements in aufgerufenen Funktionen)
                 show_notification('#ff0000', 'AJAX_Error: Ihr Highscore konnte nicht in unsere Datenbank übertragen werden!');
-                console.error("Received Data: "+receivedData);
+                console.error("Received Data: {"+receivedData+"}");
             } else {
                 console.log(receivedData);
             }

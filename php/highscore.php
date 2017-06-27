@@ -4,25 +4,6 @@
 {*/
 require_once 'user.php';
 
-function calcReputation($wins, $losses)
-{ //Setter and Calculator of Reputation
-    // WINS = 1 Punkte wert ; LOSSES = -1 Punkte wert ; DRAWS = 0 Punkt wert
-    if (!isset($wins) || !isset($losses) || ($wins == 0 && $losses == 0)) { //wenn beide 0 sind auch, da sonst DIV/0
-        //$this->reputation = "ERROR";
-        return 0;
-    } else {
-        $all_games = $wins + $losses;
-        $rep = ($wins - $losses) / $all_games;
-        if ($rep > 1) {
-            $rep = 1;
-        } else if ($rep < -1) {
-            $rep = -1;
-        } //Wenn komische Rep-Werte, hier evtl. Fehlerquelle
-        return $rep;
-    }
-}
-
-
 //DB-Operationen
 function DB_hasUserEverPlayed($username)
 {
@@ -81,7 +62,7 @@ function DB_saveHighscoreEntry($username,$wins, $draws, $losses)
 
     require "db/dbNewConnection.php";
     //Spiel in die Highscore-Liste einfügen
-    if (!empty($_POST['username']) && !empty($_POST['wins']) && !empty($_POST['draws']) && !empty($_POST['losses'])) {
+    if (!empty($username) && isset($wins) && isset($draws) && isset($losses)) { //Use isset for wins/draws/losses instead of empty, because value can be 0!
         $username = strip_tags(mysqli_real_escape_string($tunnel, $username));
         $wins = intval(strip_tags(mysqli_real_escape_string($tunnel, $wins)));
         $draws = intval(strip_tags(mysqli_real_escape_string($tunnel, $draws)));
@@ -107,7 +88,7 @@ function DB_saveHighscoreEntry($username,$wins, $draws, $losses)
             echo 'FAIL: There was a problem saving your score. Please try again later. Maybe User has already an entry. This message should not be shown. ' . mysqli_error($tunnel);;
         }
     } else {
-        echo 'FAIL: Your name or score wasnt passed in the request.';
+        echo 'FAIL: Your name wasnt passed in the request.';
     }
 }
 
@@ -126,7 +107,7 @@ function DB_deleteHighscoreEntry($username)
             echo 'There was a problem deleting your score. Please try again later.' . mysqli_error($tunnel);;
         }
     } else {
-        echo 'Your name or score wasnt passed in the request.';
+        echo 'Your name was not passed in the request.';
     }
 }
 
