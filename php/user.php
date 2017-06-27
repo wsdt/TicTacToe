@@ -161,7 +161,7 @@ class User
 
     function getUsername()
     {
-        return $this->username;
+        return strtoupper($this->username);
     }
 
     function setWinsDrawsLosses($wins, $draws, $losses)

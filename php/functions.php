@@ -35,12 +35,6 @@ function createTTTField()
     echo "";
 }
 
-//HIGHSCORE ---------------------------------------------------------------------------------
-//TODO in class highscore
-
-
-
-
 
 //CREATE LOGIN-FORM
 function createLoginForm()

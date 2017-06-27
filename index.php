@@ -43,7 +43,7 @@ $user_object = createLoginForm();
     </div>
     <div class="row">
         <div class="col-xs-4 col-md-4"><!-- let emtpy --></div>
-        <div class="col-xs-1 col-md-1"><!-- WHICH ROUND FROM ROUNDS? (PHP/JS) -->
+        <div class="col-xs-1 col-md-1"><!-- ABORTED: WHICH ROUND FROM ROUNDS? (PHP/JS) -->
         </div>
         <div class="col-xs-6 col-md-6"><!-- let empty --></div>
     </div>
@@ -71,7 +71,7 @@ $user_object = createLoginForm();
         <div class="col-xs-2 col-md-2"><!-- let empty --></div>
         <div class="col-xs-8 col-md-8" id="highscore_table">
             <!-- HERE is the highscore table placed (table layout as div) -->
-            <?php generateHighscoreTable(); ?>
+            <?php DB_generateHighscoreTable(); ?>
 
         </div>
         <div class="col-xs-2 col-md-2"><!-- let empty --></div>
