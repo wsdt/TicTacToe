@@ -122,98 +122,122 @@ function computerTurn(difficulty) {
         for (var player of players) { //für X und O
             if (sqr[1] === field_content + player && sqr[2] === field_content + player && pruefeFeldFrei('ttt_square3')) {
                 document.getElementById('ttt_square3').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[2] === field_content + player && sqr[3] === field_content + player && pruefeFeldFrei('ttt_square1')) {
                 document.getElementById('ttt_square1').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[1] === field_content + player && sqr[3] === field_content + player && pruefeFeldFrei('ttt_square2')) {
                 document.getElementById('ttt_square2').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[4] === field_content + player && sqr[5] === field_content + player && pruefeFeldFrei('ttt_square6')) {
                 document.getElementById('ttt_square6').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[5] === field_content + player && sqr[6] === field_content + player && pruefeFeldFrei('ttt_square4')) {
                 document.getElementById('ttt_square4').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[4] === field_content + player && sqr[6] === field_content + player && pruefeFeldFrei('ttt_square5')) {
                 document.getElementById('ttt_square5').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[7] === field_content + player && sqr[8] === field_content + player && pruefeFeldFrei('ttt_square9')) {
                 document.getElementById('ttt_square9').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[8] === field_content + player && sqr[9] === field_content + player && pruefeFeldFrei('ttt_square7')) {
                 document.getElementById('ttt_square7').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[7] === field_content + player && sqr[9] === field_content + player && pruefeFeldFrei('ttt_square8')) {
                 document.getElementById('ttt_square8').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[1] === field_content + player && sqr[5] === field_content + player && pruefeFeldFrei('ttt_square9')) {
                 document.getElementById('ttt_square9').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[5] === field_content + player && sqr[9] === field_content + player && pruefeFeldFrei('ttt_square1')) {
                 document.getElementById('ttt_square1').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[1] === field_content + player && sqr[9] === field_content + player && pruefeFeldFrei('ttt_square5')) {
                 document.getElementById('ttt_square5').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[3] === field_content + player && sqr[5] === field_content + player && pruefeFeldFrei('ttt_square7')) {
                 document.getElementById('ttt_square7').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[7] === field_content + player && sqr[5] === field_content + player && pruefeFeldFrei('ttt_square3')) {
                 document.getElementById('ttt_square3').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[7] === field_content + player && sqr[3] === field_content + player && pruefeFeldFrei('ttt_square5')) {
                 document.getElementById('ttt_square5').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[1] === field_content + player && sqr[4] === field_content + player && pruefeFeldFrei('ttt_square7')) {
                 document.getElementById('ttt_square7').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[1] === field_content + player && sqr[7] === field_content + player && pruefeFeldFrei('ttt_square4')) {
                 document.getElementById('ttt_square4').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[4] === field_content + player && sqr[7] === field_content + player && pruefeFeldFrei('ttt_square1')) {
                 document.getElementById('ttt_square1').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[2] === field_content + player && sqr[5] === field_content + player && pruefeFeldFrei('ttt_square8')) {
                 document.getElementById('ttt_square8').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[2] === field_content + player && sqr[8] === field_content + player && pruefeFeldFrei('ttt_square5')) {
                 document.getElementById('ttt_square5').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[5] === field_content + player && sqr[8] === field_content + player && pruefeFeldFrei('ttt_square2')) {
                 document.getElementById('ttt_square2').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[3] === field_content + player && sqr[6] === field_content + player && pruefeFeldFrei('ttt_square9')) {
                 document.getElementById('ttt_square9').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[3] === field_content + player && sqr[9] === field_content + player && pruefeFeldFrei('ttt_square6')) {
                 document.getElementById('ttt_square6').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
             else if (sqr[6] === field_content + player && sqr[9] === field_content + player && pruefeFeldFrei('ttt_square3')) {
                 document.getElementById('ttt_square3').innerHTML = field_content + "O";
+                didIsetSth = true; //Important for random allocation !
                 break;
             }
         }

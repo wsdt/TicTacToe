@@ -59,7 +59,7 @@ function playGameSingleplayer(id) {
     document.getElementById('ttt_square'+id).innerHTML = field_content+'X';
     turn = 1;
     check(0,"X");
-  } //IMPORTANT: You need here a normal if, not an else if (sonst erfolgt PC-Zug nicht automatisch)
+  }//IMPORTANT: You need here a normal if, not an else if (sonst erfolgt PC-Zug nicht automatisch)
   if(turn === 1) {
     turn = 0;
     var difficulty = "easy";

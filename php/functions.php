@@ -135,7 +135,7 @@ function createLoginForm()
                 <h1>Login</h1><br>
                 <form method=\"post\" action='" . $_SERVER['PHP_SELF'] . "' onsubmit='return validateLoginCredentials()'> 
        
-                    <input type=\"text\" name=\"username\" placeholder=\"Username\" id='log_username' onfocus='close_notification()'>
+                    <input type=\"text\" name=\"username\" placeholder=\"Username (not case-sensitive)\" id='log_username' onfocus='close_notification()'>
                     <input type=\"password\" name=\"password\" placeholder=\"Passwort\" id='log_password' onfocus='close_notification()'>
                     <input type=\"submit\" name=\"login\" class=\"login loginmodal-submit\" value=\"Login\">
                 </form>
