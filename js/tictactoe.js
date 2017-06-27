@@ -60,7 +60,7 @@ function playGameSingleplayer(id) {
     turn = 1;
     check(0,"X");
   }//IMPORTANT: You need here a normal if, not an else if (sonst erfolgt PC-Zug nicht automatisch)
-  if(turn === 1) {
+  if(turn === 1 && spielende === false) {
     turn = 0;
     var difficulty = "easy";
     if (document.getElementById('bt_difficulty').className === "btn btn-danger") {
