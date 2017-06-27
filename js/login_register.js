@@ -78,7 +78,7 @@ function validateLoginCredentials() {
     return true; // return false to cancel form action
 
 
-    //TODO: Hier über durch PHP-Datenbankprüfung (Login.php) prüfen ob erfolgreich, dann hier bool auf true
+    /*//Hier über durch PHP-Datenbankprüfung (Login.php) prüfen ob erfolgreich, dann hier bool auf true
     //ALSO IRGENDWIE AUF RESULT VON ACTION DARAUF ZUGREIFEN
 
     if (loggedInSuccessfully) {
@@ -87,7 +87,7 @@ function validateLoginCredentials() {
         if (!$('#login-modal').is(":visible")) {
             showLoginForm(); //Show Login form if login unsuccessful and form is hidden (should not be possible, but ok who knows)
         }
-    }
+    }*/
 }
 
 

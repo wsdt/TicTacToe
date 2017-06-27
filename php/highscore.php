@@ -76,8 +76,8 @@ function DB_saveHighscoreEntry($username,$wins, $draws, $losses)
             //Wins etc. mit alten Werten addieren, auftoppen
             $active_user->setWinsDrawsLosses($active_user->getWins()+$wins, $active_user->getDraws()+$draws, $active_user->getLosses()+$losses);
 
-            //Wins, draws, losses does not need '' in sql, because it is INT
-            $sql = mysqli_query($tunnel, "UPDATE Highscore SET Wins = ".$active_user->getWins().", Draws = ".$active_user->getDraws().", Losses = ".$active_user->getLosses()." WHERE Username = '".$username."';");
+            //Wins, draws, losses does not need '' in sql, because it is INT, trotzdem mit '' falls wie komischerweise vorgekommen null Werte drin und MySQL ohnehin automatisch einen String zu Int castet wenn der Datentyp ein Integer ist
+            $sql = mysqli_query($tunnel, "UPDATE Highscore SET Wins = '".$active_user->getWins()."', Draws = '".$active_user->getDraws()."', Losses = '".$active_user->getLosses()."' WHERE Username = '".$username."';");
         } else { //Insert new Row, when User never played before.
             $sql = mysqli_query($tunnel, "INSERT INTO highscore (Username,Wins, Draws, Losses) VALUES ('" . $username . "','" . $wins . "', '" . $draws . "', '" . $losses . "');");
         }
