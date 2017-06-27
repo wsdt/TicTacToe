@@ -96,6 +96,13 @@ function getHighscoreRow() {
 
 if (!empty($_POST['username']) && !empty($_POST['wins']) && !empty($_POST['draws']) && !empty($_POST['losses'])) {
     //TODO: IMPORTANT: USERNAME = eingeloggter User (trotzdem prüfen ob User existiert, da sonst DB-Error)
+    //TODO: BESSER: Prüfe ob Username = $_COOKIE['ttt_username']
+    if (!empty($_COOKIE['ttt_username']) && !empty($_COOKIE['ttt_password'])) {
+
+    } else {
+
+    }
+
     DB_saveHighscoreEntry($_POST['username'],$_POST['wins'],$_POST['draws'],$_POST['losses']); //Speichere Eintrag
 }
 

@@ -194,7 +194,7 @@ class User
     function setPasswordHash($hash)
     {
         //Setze Passwort unverschlüsselt, da schon verschlüsselt in DB gespeichert wurde
-        if (empty($hash) || $hash == null) {
+        if (empty($hash)) {
             //Achtung, diese Funktion darf nur genutzt werden, wenn der übergebene Wert ein Hash ist!
             return false;
         } else {
