@@ -101,7 +101,7 @@ function createLoginForm()
             if ($isCookie) {
                 ($tmp_user->getPasswordHash() == $password) ? $pw_valid = true : $pw_valid = false; //Prüfe ob Pwd dem Hash im User entspricht
             } else {
-                ($tmp_user->isPasswordValid($password)) ? $pw_valid = true : $pw_valid = false;
+                ($tmp_user->isPasswordValid($password)) ? $pw_valid = true : $pw_valid = false; //Prüfe ob verschlüsseltes Pwd dem übergebenen Pwd (Klartext) entspricht
             }
 
             if ($pw_valid) {

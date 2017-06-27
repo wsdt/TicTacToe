@@ -99,37 +99,50 @@ function getHighscoreRow() {
         }
     }
 
-    function saveHighscoreEntry()
-    {
-        //TODO: Hidden Form Field with all rounds results OR AJAX
-        //erst aufrufen über formular
-        //Mit SQL Statement INSERT INTO (gleich wie eine Abfrage)
+    function saveHighscoreEntry() {
+        {
+            //TODO: Hidden Form Field with all rounds results OR AJAX
+            //erst aufrufen über formular
+            //Mit SQL Statement INSERT INTO (gleich wie eine Abfrage)
 
+            require "db/dbNewConnection.php";
+            //Spiel in die Highscore-Liste einfügen
+            if (isset($_GET['username']) && isset($_GET['score']) && isset($_GET['score'])) {
+
+                $username = strip_tags(mysqli_real_escape_string($tunnel, $_POST['username']));
+                $wins = strip_tags(mysqli_real_escape_string($tunnel, $_POST['wins']));
+                $draws = strip_tags(mysqli_real_escape_string($tunnel, $_POST['draws']));
+                $losses = strip_tags(mysqli_real_escape_string($tunnel, $_POST['losses']));
+                $sql = mysqli_query($tunnel, "INSERT INTO highscore (`Username`,`Wins`, `Draws`, `Losses`) VALUES (" . $username . "','" . $wins . "', '" . $draws . "', '" . $losses . "');");
+
+                if ($sql) {
+                    echo '<script type="text/javascript">show_notification("#0000ff","Ihr Highscore wurde in unsere Datenbank übertragen!");</script>';
+                } else {
+                    echo 'There was a problem saving your score. Please try again later.' . mysqli_error($tunnel);;
+                }
+            } else {
+                echo 'Your name or score wasnt passed in the request.';
+            }
+        }
+    }
+
+    function deleteHighscoreEntry($username)
+    { //TODO: Testing
         require "db/dbNewConnection.php";
         //Spiel in die Highscore-Liste einfügen
-        if (isset($_GET['username']) && isset($_GET['score']) && isset($_GET['score'])) {
+        if (empty($username)) {
 
-            $username = strip_tags(mysqli_real_escape_string($tunnel, $_GET['username']));
-            $wins = strip_tags(mysqli_real_escape_string($tunnel, $_GET['wins']));
-            $draws = strip_tags(mysqli_real_escape_string($tunnel, $_GET['draws']));
-            $losses = strip_tags(mysqli_real_escape_string($tunnel, $_GET['losses']));
-            $sql = mysqli_query($tunnel, "INSERT INTO highscore (`platzierung`,`username`,`wins`, `draws`, `losses`, `ratio`) VALUES ('','$username','$wins', '$draws', '$losses');");
+            $username = strip_tags(mysqli_real_escape_string($tunnel, $username));
+            $sql = mysqli_query($tunnel, "DELETE FROM highscore WHERE Username = '".$username."'");
 
             if ($sql) {
-                echo 'Your score was saved. Congrats!';
+                echo 'Your score was deleted. Congrats!';
             } else {
-                echo 'There was a problem saving your score. Please try again later.' . mysqli_error($tunnel);;
+                echo 'There was a problem deleting your score. Please try again later.' . mysqli_error($tunnel);;
             }
         } else {
             echo 'Your name or score wasnt passed in the request.';
         }
-
-
-    }
-
-    function deleteHighscoreEntry()
-    {
-        //TODO
     }
 
 
@@ -152,17 +165,15 @@ function getHighscoreRow() {
         if (isset($tunnel)) {
             $ordiestring = "<p><strong>PHP Info: </strong>Abfrage war nicht möglich.</p>";
 
-            $sql = "SELECT * FROM Highscore"; //ORDER BY Platzierung ASC, (Platzierung rausgenommen), da sonst bei neuem Eintrag evtl. alle Einträge neu reinzuspeichern
+            $sql = "SELECT *,Wins/(Wins+Losses+Draws)*100 AS Ranking FROM Highscore ORDER BY Ranking"; //ORDER BY Platzierung ASC, (Platzierung rausgenommen), da sonst bei neuem Eintrag evtl. alle Einträge neu reinzuspeichern
             $result = mysqli_query($tunnel, $sql) or die($ordiestring); //Tunnel unterstrichen, da bei debug nicht definiert.
 
-            $result = mysqli_fetch_array($result);
-            if (empty($result)) {
+            if (mysqli_num_rows($result) == 0) {
                 echo "WARNING: Highscore konnte nicht sortiert werden!";
             } else {
                 //usort($result, repCompare(calcReputation($result['Wins'], $result['Losses']), calcReputation($result['Wins'], $result['Losses']))); //nicht mit $row[''] weil ja für jedes Element zu vergleichen
-
                 $n = 0; //Ranking
-                foreach ($result as $row) {
+                while($row = mysqli_fetch_array($result)) {
                     //Declare variables
                     //$row = json_decode($row,true);
                     //$platzierung = $row->Platzierung;
@@ -170,19 +181,20 @@ function getHighscoreRow() {
                     $wins = $row['Wins'];
                     $draws = $row['Draws'];
                     $losses = $row['Losses'];
-                    $reputation = calcReputation($wins, $losses);
+                    $reputation = $row['Ranking'];
 
-                    //IMPORTANT: Sort user list after Reputation BEFORE ECHO in FOR!! (NICHT NOTWENDIG, da PLATZIERUNG IN DATENBANK GESPEICHERT!)
-                    echo "<div class=\"highscore_table_row\">
-                <div class=\"highscore_table_cell\">" . (++$n) . "</div>
-                <div class=\"highscore_table_cell\">" . $username . "</div>
-                <div class=\"highscore_table_cell\">" . $wins . "</div>
-                <div class=\"highscore_table_cell\">" . $draws . "</div>
-                <div class=\"highscore_table_cell\">" . $losses . "</div>
-                <div class=\"highscore_table_cell\">" . $reputation . "%</div>
-            </div>"; //$platzierung (alt statt $n)
+                        //IMPORTANT: Sort user list after Reputation BEFORE ECHO in FOR!! (NICHT NOTWENDIG, da PLATZIERUNG IN DATENBANK GESPEICHERT!)
+                            echo "<div class=\"highscore_table_row\">
+                        <div class=\"highscore_table_cell\">" . (++$n) . "</div>
+                        <div class=\"highscore_table_cell\">" . $username . "</div>
+                        <div class=\"highscore_table_cell\">" . $wins . "</div>
+                        <div class=\"highscore_table_cell\">" . $draws . "</div>
+                        <div class=\"highscore_table_cell\">" . $losses . "</div>
+                        <div class=\"highscore_table_cell\">" . $reputation . "%</div>
+                    </div>"; //$platzierung (alt statt $n)
                     //Datenbanktabelle Highscore muss in Datenbank nicht sortiert sein!! (ORDER BY Platzierung bei Ausgabe möglich)
                 }
+
             }
             mysqli_close($tunnel);
         } else {

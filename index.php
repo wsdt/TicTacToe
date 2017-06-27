@@ -71,7 +71,7 @@ $user_object = createLoginForm();
         <div class="col-xs-2 col-md-2"><!-- let empty --></div>
         <div class="col-xs-8 col-md-8" id="highscore_table">
             <!-- HERE is the highscore table placed (table layout as div) -->
-            <?php //generateHighscoreTable(); ?>
+            <?php generateHighscoreTable(); ?>
 
         </div>
         <div class="col-xs-2 col-md-2"><!-- let empty --></div>
