@@ -3,13 +3,31 @@
 class Highscore
 {
 //Definition der Eigenschaften name, email und password
-    private $username;
-    private $wins, $draws, $losses;
-    private $password;
-    private $reputation;
+    private $highscore_row; //User_Object is an instance of user
+
+    static function calcReputation($wins,$losses)
+    { //Setter and Calculator of Reputation
+        // WINS = 1 Punkte wert ; LOSSES = -1 Punkte wert ; DRAWS = 0 Punkt wert
+        if (!isset($wins) || !isset($losses) || ($wins == 0 && $losses == 0)) { //wenn beide 0 sind auch, da sonst DIV/0
+            //$this->reputation = "ERROR";
+            return false;
+        } else {
+            $all_games = $wins + $losses;
+            $rep = ($wins - $losses) / $all_games;
+            if ($rep > 1) {
+                $rep = 1;
+            } else if ($rep < -1) {
+                $rep = -1;
+            } //Wenn komische Rep-Werte, hier evtl. Fehlerquelle
+            $this->reputation = $rep;
+            return true;
+        }
+    }
+
+
 
     //Konstruktor
-    function __construct1($username, $wins, $draws, $losses, $password, $password_verify, $saveToDatabase) //Wenn saveToDatabase = true, dann wird DB_addUser() ausgeführt
+    function __construct1($user_object) //Wenn saveToDatabase = true, dann wird DB_addUser() ausgeführt
     {
         if (!(
             $this->setUsername($username) ||
@@ -28,34 +46,9 @@ class Highscore
         }
     }
 
-    //Konstruktor
-    function __construct2($username, $wins, $draws, $losses, $hash, $saveToDatabase)
-    {
-        if (!(
-            $this->setUsername($username) ||
-            $this->setWinsDrawsLosses($wins, $draws, $losses) ||
-            $this->setPasswordHash($hash) || //Wurde Passwort angenommen?
-            $this->calcReputation())
-        ) {
-            $this->__destruct();
-            echo "ERROR: User konnte nicht erstellt werden! (User.php, Class Error)";
-            return false;
-        } else {
-            if ($saveToDatabase) {
-                $this->DB_addUser();
-            }
-            return true;
-        }
-    }
-
     function __destruct()
-    { //Delete User in PHP-Code
-        $this->username = null;
-        $this->password = null;
-        $this->losses = null;
-        $this->draws = null;
-        $this->wins = null;
-        $this->reputation = null;
+    { //Delete Highscore in PHP-Code
+        $this->highscore_row = null;
         //$this->DB_deleteUser(); //Lösche User aus Datenbank
     }
 
@@ -70,7 +63,7 @@ class Highscore
         require "db/dbNewConnection.php"; //Nicht require_once da sonst evtl. nur einmal für diese Datei aufgerufen
 
         $control = 0;
-        $sql = "SELECT username FROM Highscore WHERE username = '" . $this->username . "'";
+        $sql = "SELECT username FROM Highscore WHERE username = '" . $this->user_object->username . "'";
         $result = mysqli_query($tunnel, $sql) or die("DB ERROR: Verbindung konnte nicht hergestellt werden! [in isUsernameAvailable()]");
         while ($row = mysqli_fetch_object($result)) {
             $control++;
@@ -95,7 +88,13 @@ class Highscore
     }
 
 //Getter/Setter definieren
+function setHighscoreRow($user_object) {
+        $this->highscore_row = $user_object;
+}
 
+function getHighscoreRow() {
+        return $this->highscore_row;
+}
 
 //Vergleiche welche Reputation größer/kleiner ist als die Andere (Wichtig für Sortierung bei der Highscore Ausgabe)
     function repCompare($a, $b)
@@ -166,7 +165,7 @@ class Highscore
             $result = mysqli_query($tunnel, $sql) or die($ordiestring); //Tunnel unterstrichen, da bei debug nicht definiert.
 
             $result = mysqli_fetch_array($result);
-            usort($result, $this->repCompare(calcReputation($result['Wins'], $result['Losses']), calcReputation($result['Wins'], $result['Losses']))); //nicht mit $row[''] weil ja für jedes Element zu vergleichen
+            //usort($result, $this->repCompare(calcReputation($result['Wins'], $result['Losses']), calcReputation($result['Wins'], $result['Losses']))); //nicht mit $row[''] weil ja für jedes Element zu vergleichen
 
             $n = 0; //Ranking
             foreach ($result as $row) {

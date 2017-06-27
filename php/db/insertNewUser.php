@@ -31,6 +31,6 @@
         unset($tmp_user); //Lösche Referenz, so wird auch unser Destruktor aufgerufen.
     }
 
-header( "refresh:5;url=../../index.php" ); //Zur Startseite weiterleiten
+//header( "refresh:5;url=../../index.php" ); //Zur Startseite weiterleiten
 
 ?>

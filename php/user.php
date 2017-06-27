@@ -206,8 +206,16 @@ class User
     function setPassword($password, $password_verify)
     { //Passwort-Setzung nur mit Kontrolleingabe möglich
         //Verschlüssle Passwort
-        if (empty($password) || empty($password_verify) || $password === null || $password_verify === null || strcmp($password, $password_verify) != 0 //0 kommt raus, wenn beide Strings gleich
-            || $password < 4) {
+        if (empty($password) || empty($password_verify) || $password != $password_verify //0 kommt raus, wenn beide Strings gleich
+            || strlen($password) < 4) {
+            echo "Pwd: ".$password."; Ver: ".$password_verify;
+
+            var_dump(empty($password));
+            var_dump(empty($password_verify));
+            var_dump($password != $password_verify);
+            var_dump(strlen($password) < 4);
+
+
             //nur $password auf Länge zu prüfen, da er bei Ungleichheit ohnehin hier reinspringt
             //Wenn ein Passwort leer, den Sicherheitsbestimmungen nicht entspricht oder beide Passwörter ungleich sind gib false zurück.
             //Hier keinen Dummy-Wert setzen, da sonst im Fehlerfall das Passwort überschrieben wird.
@@ -233,7 +241,7 @@ class User
     }
 
 //Berechne Reputation/Ansehen (daraus wird die Rangfolge (=Ranking) bestimmt)
-    function calcReputation()
+    function calcReputation() //auch als static Variable in Highscore.php vorhanden
     { //Setter and Calculator of Reputation
         // WINS = 1 Punkte wert ; LOSSES = -1 Punkte wert ; DRAWS = 0 Punkt wert
         if (!isset($this->wins) || !isset($this->losses) || ($this->wins == 0 && $this->losses == 0)) { //wenn beide 0 sind auch, da sonst DIV/0
