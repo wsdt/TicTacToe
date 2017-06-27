@@ -1,16 +1,14 @@
 <?php
 
-class Highscore
-{
-//Definition der Eigenschaften name, email und password
-    private $highscore_row; //User_Object is an instance of user
+/*class Highscore
+{*/
 
-    static function calcReputation($wins,$losses)
+    function calcReputation($wins,$losses)
     { //Setter and Calculator of Reputation
         // WINS = 1 Punkte wert ; LOSSES = -1 Punkte wert ; DRAWS = 0 Punkt wert
         if (!isset($wins) || !isset($losses) || ($wins == 0 && $losses == 0)) { //wenn beide 0 sind auch, da sonst DIV/0
             //$this->reputation = "ERROR";
-            return false;
+            return 0;
         } else {
             $all_games = $wins + $losses;
             $rep = ($wins - $losses) / $all_games;
@@ -19,38 +17,10 @@ class Highscore
             } else if ($rep < -1) {
                 $rep = -1;
             } //Wenn komische Rep-Werte, hier evtl. Fehlerquelle
-            $this->reputation = $rep;
-            return true;
+            return $rep;
         }
     }
 
-
-
-    //Konstruktor
-    function __construct1($user_object) //Wenn saveToDatabase = true, dann wird DB_addUser() ausgeführt
-    {
-        if (!(
-            $this->setUsername($username) ||
-            $this->setWinsDrawsLosses($wins, $draws, $losses) ||
-            $this->setPassword($password, $password_verify) || //Wurde Passwort angenommen?
-            $this->calcReputation())
-        ) {
-            $this->__destruct();
-            echo "ERROR: User konnte nicht erstellt werden! (User.php, Class Error)";
-            return false;
-        } else {
-            if ($saveToDatabase) {
-                $this->DB_addUser(); //Adde User in der Datenbank
-            }
-            return true;
-        }
-    }
-
-    function __destruct()
-    { //Delete Highscore in PHP-Code
-        $this->highscore_row = null;
-        //$this->DB_deleteUser(); //Lösche User aus Datenbank
-    }
 
 //DB-Operationen
     function DB_refreshOrAddToHighscore()
@@ -58,12 +28,12 @@ class Highscore
         //TODO
     }
 
-    function hasUserEverPlayed()
+    function hasUserEverPlayed($username)
     {
         require "db/dbNewConnection.php"; //Nicht require_once da sonst evtl. nur einmal für diese Datei aufgerufen
 
         $control = 0;
-        $sql = "SELECT username FROM Highscore WHERE username = '" . $this->user_object->username . "'";
+        $sql = "SELECT username FROM Highscore WHERE username = '" . $username . "'";
         $result = mysqli_query($tunnel, $sql) or die("DB ERROR: Verbindung konnte nicht hergestellt werden! [in isUsernameAvailable()]");
         while ($row = mysqli_fetch_object($result)) {
             $control++;
@@ -88,13 +58,34 @@ class Highscore
     }
 
 //Getter/Setter definieren
-function setHighscoreRow($user_object) {
+/*function setHighscoreRow($user_object) {
         $this->highscore_row = $user_object;
 }
 
 function getHighscoreRow() {
         return $this->highscore_row;
-}
+}*/
+
+   /* function loadRow_from_DB($username) // = BENUTZERPROFIL aus Datenbank laden
+    {
+        require 'db/dbNewConnection.php';
+        $sql = "SELECT * FROM Highscore WHERE Username = '".$username."';";
+        $user = mysqli_query($tunnel, $sql);
+        if (empty($user)) {
+            $this->closeDBConnection($tunnel);
+            return false; //Say that user was not found
+        } else {
+            $tmp_user = new Highscore();
+
+            while ($tmp = mysqli_fetch_array($user)) {
+                $tmp_user->setUsername($tmp['Username']);
+                $tmp_user->setPasswordHash($tmp['Passwort']);
+            }
+            $this->closeDBConnection($tunnel);
+            return $tmp_user; //Gib User zurück für den übergebener Username passt, wenn keiner existiert wird false zurückgegeben
+        }
+    }*/
+
 
 //Vergleiche welche Reputation größer/kleiner ist als die Andere (Wichtig für Sortierung bei der Highscore Ausgabe)
     function repCompare($a, $b)
@@ -165,21 +156,24 @@ function getHighscoreRow() {
             $result = mysqli_query($tunnel, $sql) or die($ordiestring); //Tunnel unterstrichen, da bei debug nicht definiert.
 
             $result = mysqli_fetch_array($result);
-            //usort($result, $this->repCompare(calcReputation($result['Wins'], $result['Losses']), calcReputation($result['Wins'], $result['Losses']))); //nicht mit $row[''] weil ja für jedes Element zu vergleichen
+            if (empty($result)) {
+                echo "WARNING: Highscore konnte nicht sortiert werden!";
+            } else {
+                //usort($result, repCompare(calcReputation($result['Wins'], $result['Losses']), calcReputation($result['Wins'], $result['Losses']))); //nicht mit $row[''] weil ja für jedes Element zu vergleichen
 
-            $n = 0; //Ranking
-            foreach ($result as $row) {
-                //Declare variables
-                //$row = json_decode($row,true);
-                //$platzierung = $row->Platzierung;
-                $username = $row['Username']; //$row->Username; Wenn mysqli_fetch_object dann so
-                $wins = $row['Wins'];
-                $draws = $row['Draws'];
-                $losses = $row['Losses'];
-                $reputation = calcReputation($wins, $losses);
+                $n = 0; //Ranking
+                foreach ($result as $row) {
+                    //Declare variables
+                    //$row = json_decode($row,true);
+                    //$platzierung = $row->Platzierung;
+                    $username = $row['Username']; //$row->Username; Wenn mysqli_fetch_object dann so
+                    $wins = $row['Wins'];
+                    $draws = $row['Draws'];
+                    $losses = $row['Losses'];
+                    $reputation = calcReputation($wins, $losses);
 
-                //IMPORTANT: Sort user list after Reputation BEFORE ECHO in FOR!! (NICHT NOTWENDIG, da PLATZIERUNG IN DATENBANK GESPEICHERT!)
-                echo "<div class=\"highscore_table_row\">
+                    //IMPORTANT: Sort user list after Reputation BEFORE ECHO in FOR!! (NICHT NOTWENDIG, da PLATZIERUNG IN DATENBANK GESPEICHERT!)
+                    echo "<div class=\"highscore_table_row\">
                 <div class=\"highscore_table_cell\">" . (++$n) . "</div>
                 <div class=\"highscore_table_cell\">" . $username . "</div>
                 <div class=\"highscore_table_cell\">" . $wins . "</div>
@@ -187,7 +181,8 @@ function getHighscoreRow() {
                 <div class=\"highscore_table_cell\">" . $losses . "</div>
                 <div class=\"highscore_table_cell\">" . $reputation . "%</div>
             </div>"; //$platzierung (alt statt $n)
-                //Datenbanktabelle Highscore muss in Datenbank nicht sortiert sein!! (ORDER BY Platzierung bei Ausgabe möglich)
+                    //Datenbanktabelle Highscore muss in Datenbank nicht sortiert sein!! (ORDER BY Platzierung bei Ausgabe möglich)
+                }
             }
             mysqli_close($tunnel);
         } else {
@@ -200,5 +195,5 @@ function getHighscoreRow() {
     }
 
 
-}
+//}
 ?>

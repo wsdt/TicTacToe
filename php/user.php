@@ -65,7 +65,7 @@ class User
         require 'db/dbNewConnection.php';
         $sql = "SELECT * FROM Users WHERE Username = '".$username."';";
         $user = mysqli_query($tunnel, $sql);
-        if (empty($user) || $user == null) {
+        if (empty($user)) {
             $this->closeDBConnection($tunnel);
             return false; //Say that user was not found
         } else {
