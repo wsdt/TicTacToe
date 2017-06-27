@@ -7,14 +7,14 @@
     ?>
 
 </head>
-<body onload="showLoginForm()">
+<body> <!--onload="showLoginForm()" REMOVED HERE because JS from functions.php would be ignored. -->
 <!-- Following code should be the first code after body -->
 <?php
 //Create Notification Bar
 createNotificationBar();
 
-//Show Login Form
-createLoginForm();
+//Show Login Form or login automatically and return user_object or -1 if error occurred
+$user_object = createLoginForm();
 ?>
 <!-- END first code after body -->
 <!-- Login or Logout Button at the screen (OLD) -->
@@ -25,7 +25,7 @@ createLoginForm();
     <div class="row toprow">
         <div class="col-xs-11 col-md-11">
             <!-- Say who you are (only when you are logged in) [when not: class="hidden" OR class="show"-->
-            <span class="show_label" id="label_loggedinas">Logged in as <strong><?php echo $_COOKIE['ttt_username']; ?></strong></span>
+            <span class="show_label" id="label_loggedinas">Logged in as <strong><?php if ($user_object instanceof User) {echo $user_object->getUsername();} //-1 if login failed ?></strong></span>
         </div>
         <div class="col-xs-1 col-md-1">
             <!--<form name="logout_form" action="php/logout.php" onsubmit="showLoginForm()">-->
@@ -95,5 +95,6 @@ createLoginForm();
 
 
 </footer>
+
 </body>
 </html>

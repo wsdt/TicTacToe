@@ -12,18 +12,21 @@ require_once 'user.php';
 
 
 //NOTIFICATION BAR
-function createNotificationBar() {
-   echo "<div id=\"notification\"><span id=\"notification_text\">ERROR: This should not be shown. Please contact system-administrator. </span><div id=\"close_notfication\" onclick=\"close_notification();\">X</div></div>";
+function createNotificationBar()
+{
+    echo "<div id=\"notification\"><span id=\"notification_text\">ERROR: This should not be shown. Please contact system-administrator. </span><div id=\"close_notfication\" onclick=\"close_notification();\">X</div></div>";
 }
 
 //Generate TTT-Field
-function createTTTField() {
+function createTTTField()
+{
     $z = 0;
-    for ($i=1;$i<=3;$i++) {
-        echo "<div class='row ttt_row' id='ttt_row".$i."'>\n"; echo "<!-- ".$i.". Row of TTT-Field -->\n";
-        for ($j=1;$j<=3;$j++) {
+    for ($i = 1; $i <= 3; $i++) {
+        echo "<div class='row ttt_row' id='ttt_row" . $i . "'>\n";
+        echo "<!-- " . $i . ". Row of TTT-Field -->\n";
+        for ($j = 1; $j <= 3; $j++) {
             $z++;
-            echo "<div class='col-xs-4 col-md-4 ttt_square' id='ttt_square".($z)."' onclick=\"setZug('".($z)."');\">".
+            echo "<div class='col-xs-4 col-md-4 ttt_square' id='ttt_square" . ($z) . "' onclick=\"setZug('" . ($z) . "');\">" .
                 "</div>"; //<img src='images/trans_squarefield.png' class='ttt_square_img'/>
         }
         echo "</div>\n";
@@ -32,14 +35,15 @@ function createTTTField() {
 }
 
 //HIGHSCORE ---------------------------------------------------------------------------------
-function saveHighscoreEntry() {
+function saveHighscoreEntry()
+{
     //TODO: Hidden Form Field with all rounds results OR AJAX
     //erst aufrufen über formular
-	//Mit SQL Statement INSERT INTO (gleich wie eine Abfrage)
+    //Mit SQL Statement INSERT INTO (gleich wie eine Abfrage)
 
     require "db/dbNewConnection.php";
     //Spiel in die Highscore-Liste einfügen
-    if(isset($_GET['username']) && isset($_GET['score']) && isset($_GET['score'])) {
+    if (isset($_GET['username']) && isset($_GET['score']) && isset($_GET['score'])) {
 
         $username = strip_tags(mysqli_real_escape_string($tunnel, $_GET['username']));
         $wins = strip_tags(mysqli_real_escape_string($tunnel, $_GET['wins']));
@@ -47,20 +51,20 @@ function saveHighscoreEntry() {
         $losses = strip_tags(mysqli_real_escape_string($tunnel, $_GET['losses']));
         $sql = mysqli_query($tunnel, "INSERT INTO highscore (`platzierung`,`username`,`wins`, `draws`, `losses`, `ratio`) VALUES ('','$username','$wins', '$draws', '$losses');");
 
-        if($sql){
+        if ($sql) {
             echo 'Your score was saved. Congrats!';
-        }else{
-            echo 'There was a problem saving your score. Please try again later.'.mysqli_error($tunnel);;
+        } else {
+            echo 'There was a problem saving your score. Please try again later.' . mysqli_error($tunnel);;
         }
-    }else{
+    } else {
         echo 'Your name or score wasnt passed in the request.';
     }
 
 
-
 }
 
-function deleteHighscoreEntry() {
+function deleteHighscoreEntry()
+{
     //TODO
 }
 
@@ -115,9 +119,10 @@ function generateHighscoreTable()
         mysqli_close($tunnel);
     } else {
         echo "<div class='highscore_table_row'>";
-        for ($i=0;$i<5;$i++) {
+        for ($i = 0; $i < 5; $i++) {
             echo "<div class='highscore_table_db_err'><marquee>No DB Connection</marquee></div>";
-        } echo "</div>";
+        }
+        echo "</div>";
     }
 }
 
@@ -142,7 +147,9 @@ function createLoginForm()
         </div>
     </div>";
 
-    if (isset($_POST['login'])) { //Wenn Login-Form abgesendet, dann prüfe Login-Daten
+    echo "<script type='text/javascript'>showLoginForm();</script>"; //Lade LoginForm standardmäßig.
+
+    if (!empty($_POST['login']) || (!empty($_COOKIE['ttt_username']) && !empty($_COOKIE['ttt_password']))) { //Wenn Login-Form abgesendet oder cookie verfügbar dann prüfe Login-Daten
         /*
         Alternative Implementierung über CREATE USER in Datenbank, dann über SQL-Details direkt bei der Datenbank anmelden.
         So keine eigene User-Tabelle mehr notwendig (nur noch Highscore-Tabelle) und die Verschlüsselung wird ebenfalls nicht
@@ -151,41 +158,46 @@ function createLoginForm()
         */
 
         //Wenn etwas eingegeben wurde, wird Username und Passwort überprüft
-        if ((!empty($_POST['username']) && !empty($_POST['password'])) || (!empty($_COOKIE['ttt_username'] && !empty($_COOKIE['ttt_password'])))) {
+        //if ((!empty($_POST['username']) && !empty($_POST['password'])) || (!empty($_COOKIE['ttt_username'] && !empty($_COOKIE['ttt_password'])))) {
 
-            require("db/dbNewConnection.php"); //Wenn Datenbankverbindung gescheitert wird folgender Code durch die bzw. fatal error nicht mehr ausgeführt
+        require("db/dbNewConnection.php"); //Wenn Datenbankverbindung gescheitert wird folgender Code durch die bzw. fatal error nicht mehr ausgeführt
 
-            $loginFAILURE_msg = 'Ihr Username oder/und Passwort ist falsch!';
-            if ((!empty($_POST['username']) && !empty($_POST['password']))) {
-                $username = mysqli_real_escape_string($tunnel, $_POST['username']);
-                $password = mysqli_real_escape_string($tunnel, $_POST['password']);
-            } else {
-                $username = mysqli_real_escape_string($tunnel, $_COOKIE['ttt_username']);
-                $password = mysqli_real_escape_string($tunnel, $_COOKIE['ttt_password']);
-            }
-
-            $tmp_user = new User(); //Lade Nutzerprofil aus Datenbank
-            $result_usersuche = $tmp_user->loadUser_from_DB($username); //Prüfe ob User vorhanden und wenn vorhanden, dann gib ihn zurück (sonst false)
-            if ($result_usersuche != false) {
-                $tmp_user = $result_usersuche; //Weise DB_User unserem lokal erstellten User zu
-                if ($tmp_user->isPasswordValid($password)) {
-                    echo "<script type='text/javascript'>hideLoginForm();show_notification('#00aa00','Willkommen zurück \'" . $tmp_user->getUsername() . "\'!');</script>"; //Login erfolgreich
-                    //Verstecke Login-Formular NUR wenn Passwort und Username korrekt, sonst bleibt es geladen.
-
-                    //Speichere Authentifizierungsdaten als Cookie
-                    setcookie("ttt_username", $tmp_user->getUsername(), time()+86400); //Verfällt in 24h
-                    setcookie("ttt_password", $tmp_user->getPasswordHash(), time()+86400); //Verfällt in 24h
-                } else {
-                    echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . " (2)')</script>"; //Passwort stimmt nicht mit Username überein
-                }
-            } else {
-                echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . " (1)')</script>"; //Nutzer nicht verraten, dass User nicht gefunden
-            }
-            $tmp_user->closeDBConnection($tunnel);
+        $loginFAILURE_msg = 'Ihr Username oder/und Passwort ist falsch!';
+        if ((!empty($_POST['username']) && !empty($_POST['password']))) {
+            $username = mysqli_real_escape_string($tunnel, $_POST['username']);
+            $password = mysqli_real_escape_string($tunnel, $_POST['password']);
+        } else if ((!empty($_COOKIE['ttt_username']) && !empty($_COOKIE['ttt_password']))) {
+            $username = mysqli_real_escape_string($tunnel, $_COOKIE['ttt_username']);
+            $password = mysqli_real_escape_string($tunnel, $_COOKIE['ttt_password']);
+        } else {
+            echo "ERROR: Could not authentificate user. [in functions.php].";
+            $username = null;
+            $password = null; //Löse Exception aus
         }
-    }
+        $tmp_user = new User(); //Lade Nutzerprofil aus Datenbank
+        $result_usersuche = $tmp_user->loadUser_from_DB($username); //Prüfe ob User vorhanden und wenn vorhanden, dann gib ihn zurück (sonst false)
+        if ($result_usersuche != false) {
+            $tmp_user = $result_usersuche; //Weise DB_User unserem lokal erstellten User zu
+            if ($tmp_user->isPasswordValid($password)) {
+                echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $tmp_user->getUsername() . "\'!');"; //Login erfolgreich
+                echo "hideLoginForm();</script>"; //Verstecke Login-Formular NUR wenn Passwort und Username korrekt, sonst bleibt es geladen.
 
+                //Speichere Authentifizierungsdaten als Cookie
+                setcookie("ttt_username", $tmp_user->getUsername(), time() + 86400); //Verfällt in 24h
+                setcookie("ttt_password", $tmp_user->getPasswordHash(), time() + 86400); //Verfällt in 24h
+                return $tmp_user; //Gib User-Objekt zurück
+            } else {
+                echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . " (2)')</script>"; //Passwort stimmt nicht mit Username überein
+                return -1; //Gib Fehlercode -1 zurück
+            }
+        } else {
+            echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . " (1)')</script>"; //Nutzer nicht verraten, dass User nicht gefunden
+            return -1;
+        }
+        $tmp_user->closeDBConnection($tunnel);
+    }
 }
+
 ?>
 
 

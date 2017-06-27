@@ -156,7 +156,7 @@ class User
             $this->closeDBConnection($tunnel);
             return false;
         } else {
-            $this->username = mysqli_real_escape_string($tunnel, $username);
+            $this->username = mysqli_real_escape_string($tunnel, strtoupper($username)); //Speichere Usernamen in Grossbuchstaben in die Datenbank
             $this->closeDBConnection($tunnel);
             return true;
         }
