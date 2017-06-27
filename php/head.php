@@ -7,10 +7,10 @@ echo "<meta charset=\"utf-8\">
     <link href=\"bootstrap/bootstrap-social-gh-pages/bootstrap-social.css\" rel=\"stylesheet\"/>
     <link href=\"css/tictactoe.css\" rel=\"stylesheet\">
     <link rel='icon' href='images/ttt_icon_hp.ico'>
-    <script type=\"text/javascript\" src=\"js/tictactoe.js\"></script>
     <script type=\"text/javascript\" src=\"jquery/jquery-3.2.1.min.js\"></script>
     <script type=\"text/javascript\" src=\"bootstrap/dist/js/bootstrap.min.js\"></script>
     <script type=\"text/javascript\" src=\"js/ttt_gamelogic.js\"></script>
+    <script type=\"text/javascript\" src=\"js/tictactoe.js\"></script>
     <script type='text/javascript' src=\"js/login_register.js\"></script>";
     require_once 'functions.php'; //User Class will be called in functions.php
 

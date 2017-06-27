@@ -75,7 +75,7 @@ class User
                 $tmp_user->setUsername($tmp['Username']);
                 $tmp_user->setPasswordHash($tmp['Passwort']);
             }
-            $this->closeDBConnection($tunnel);
+            $this->closeDBConnection($tunnel); //use static method from Highscore.php
             return $tmp_user; //Gib User zurück für den übergebener Username passt, wenn keiner existiert wird false zurückgegeben
         }
     }
