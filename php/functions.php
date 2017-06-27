@@ -9,6 +9,7 @@
 //Require JS-Login-Register-Functions 
 //echo "<script type='text/javascript' src='js/login_register.js'></script>";
 require_once 'user.php';
+require_once 'highscore.php';
 
 
 //NOTIFICATION BAR
@@ -78,12 +79,14 @@ function createLoginForm()
         require("db/dbNewConnection.php"); //Wenn Datenbankverbindung gescheitert wird folgender Code durch die bzw. fatal error nicht mehr ausgeführt
 
         $loginFAILURE_msg = 'Ihr Username oder/und Passwort ist falsch!';
+        $isCookie = false;
         if ((!empty($_POST['username']) && !empty($_POST['password']))) {
             $username = mysqli_real_escape_string($tunnel, $_POST['username']);
             $password = mysqli_real_escape_string($tunnel, $_POST['password']);
         } else if ((!empty($_COOKIE['ttt_username']) && !empty($_COOKIE['ttt_password']))) {
             $username = mysqli_real_escape_string($tunnel, $_COOKIE['ttt_username']);
             $password = mysqli_real_escape_string($tunnel, $_COOKIE['ttt_password']);
+            $isCookie = true;
         } else {
             echo "ERROR: Could not authentificate user. [in functions.php].";
             $username = null;
@@ -93,7 +96,15 @@ function createLoginForm()
         $result_usersuche = $tmp_user->loadUser_from_DB($username); //Prüfe ob User vorhanden und wenn vorhanden, dann gib ihn zurück (sonst false)
         if ($result_usersuche != false) {
             $tmp_user = $result_usersuche; //Weise DB_User unserem lokal erstellten User zu
-            if ($tmp_user->isPasswordValid($password)) {
+
+            //Wenn Cookie vergleiche Hashes, sonst mit isPasswordValid()
+            if ($isCookie) {
+                ($tmp_user->getPasswordHash() == $password) ? $pw_valid = true : $pw_valid = false; //Prüfe ob Pwd dem Hash im User entspricht
+            } else {
+                ($tmp_user->isPasswordValid($password)) ? $pw_valid = true : $pw_valid = false;
+            }
+
+            if ($pw_valid) {
                 echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $tmp_user->getUsername() . "\'!');"; //Login erfolgreich
                 echo "hideLoginForm();</script>"; //Verstecke Login-Formular NUR wenn Passwort und Username korrekt, sonst bleibt es geladen.
 
