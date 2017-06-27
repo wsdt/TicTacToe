@@ -86,6 +86,7 @@ function createLoginForm()
             $username = null;
             $password = null; //Löse Exception aus
         }
+
         $tmp_user = new User(); //Lade Nutzerprofil aus Datenbank
         $result_usersuche = $tmp_user->loadUser_from_DB($username); //Prüfe ob User vorhanden und wenn vorhanden, dann gib ihn zurück (sonst false)
         if ($result_usersuche != false) {
@@ -97,6 +98,7 @@ function createLoginForm()
             } else {
                 ($tmp_user->isPasswordValid($password)) ? $pw_valid = true : $pw_valid = false; //Prüfe ob verschlüsseltes Pwd dem übergebenen Pwd (Klartext) entspricht
             }
+            $tmp_user->closeDBConnection($tunnel);
 
             if ($pw_valid) {
                 echo "<script type='text/javascript'>show_notification('#00aa00','Willkommen zurück \'" . $tmp_user->getUsername() . "\'!');"; //Login erfolgreich
@@ -114,7 +116,7 @@ function createLoginForm()
             echo "<script type='text/javascript'>show_notification('#ff0000','" . $loginFAILURE_msg . " (1)')</script>"; //Nutzer nicht verraten, dass User nicht gefunden
             return -1;
         }
-        $tmp_user->closeDBConnection($tunnel);
+
     }
 }
 

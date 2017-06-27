@@ -10,6 +10,7 @@
 <body> <!--onload="showLoginForm()" REMOVED HERE because JS from functions.php would be ignored. -->
 <!-- Following code should be the first code after body -->
 <?php
+
 //Create Notification Bar
 createNotificationBar();
 

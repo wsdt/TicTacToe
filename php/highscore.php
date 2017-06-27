@@ -93,7 +93,7 @@ function DB_saveHighscoreEntry($username,$wins, $draws, $losses)
 }
 
 function DB_deleteHighscoreEntry($username)
-{ //TODO: Testing
+{ //works (tested)
     require "db/dbNewConnection.php";
     //Spiel in die Highscore-Liste einfügen
     if (empty($username)) {
@@ -114,8 +114,6 @@ function DB_deleteHighscoreEntry($username)
 
 function DB_generateHighscoreTable()
 {
-    //require_once 'db/SQL2PHP.php'; //declare variables
-
     //Generate headings
     echo "<div class=\"highscore_table_row_caption\">
                 <div class=\"highscore_table_cell highscore_table_caption\">Ranking</div>
@@ -131,7 +129,7 @@ function DB_generateHighscoreTable()
     if (isset($tunnel)) {
         $ordiestring = "<p><strong>PHP Info: </strong>Abfrage war nicht möglich.</p>";
 
-        $sql = "SELECT *,Wins/(Wins+Losses+Draws)*100 AS Ranking FROM Highscore ORDER BY Ranking"; //ORDER BY Platzierung ASC, (Platzierung rausgenommen), da sonst bei neuem Eintrag evtl. alle Einträge neu reinzuspeichern
+        $sql = "SELECT *,Wins/(Wins+Losses+Draws)*100 AS Ranking FROM Highscore ORDER BY Ranking DESC"; //ORDER BY Ranking DESC (damit bester oben)
         $result = mysqli_query($tunnel, $sql) or die($ordiestring); //Tunnel unterstrichen, da bei debug nicht definiert.
 
         if (mysqli_num_rows($result) == 0) {
@@ -157,7 +155,7 @@ function DB_generateHighscoreTable()
                         <div class=\"highscore_table_cell\">" . $draws . "</div>
                         <div class=\"highscore_table_cell\">" . $losses . "</div>
                         <div class=\"highscore_table_cell\">" . $reputation . "%</div>
-                    </div>"; //$platzierung (alt statt $n)
+                    </div>";
                 //Datenbanktabelle Highscore muss in Datenbank nicht sortiert sein!! (ORDER BY Platzierung bei Ausgabe möglich)
             }
 

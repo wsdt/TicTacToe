@@ -7,7 +7,7 @@ USE tictactoe;
 CREATE TABLE Users(
 	Username VARCHAR(50),
     Passwort VARCHAR(255), /* 60 at the minimum, 255 recommended */
-    isAdmin BOOLEAN, /* normal = false, true = Admin */
+    /*isAdmin BOOLEAN,  normal = false, true = Admin */
     PRIMARY KEY(Username)
     );
     
@@ -22,4 +22,3 @@ CREATE TABLE Highscore(
     PRIMARY KEY(Username), /* Da Username ohnehin nur einmal vorkommen darf */
     FOREIGN KEY (Username) REFERENCES Users(Username)
     );
-	

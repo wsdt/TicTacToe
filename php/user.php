@@ -7,6 +7,7 @@ class User
     private $wins, $draws, $losses;
     private $password;
     private $reputation;
+    //private $isAdmin=false; //Standardmaeßig false außer explizit über Setter gesetzt
 
     //Konstruktor
     function __construct1($username, $wins, $draws, $losses, $password, $password_verify, $saveToDatabase) //Wenn saveToDatabase = true, dann wird DB_addUser() ausgeführt
@@ -74,6 +75,9 @@ class User
             while ($tmp = mysqli_fetch_array($user)) {
                 $tmp_user->setUsername($tmp['Username']);
                 $tmp_user->setPasswordHash($tmp['Passwort']);
+                /*if ($tmp['isAdmin'] == true) {
+                    $tmp_user->makeAdmin();
+                }*/
             }
             $this->closeDBConnection($tunnel); //use static method from Highscore.php
             return $tmp_user; //Gib User zurück für den übergebener Username passt, wenn keiner existiert wird false zurückgegeben
@@ -102,10 +106,10 @@ class User
     }
 
     function DB_deleteUser()
-    {
+    { //works, tested
         require 'db/dbNewConnection.php';
-        $sql_hc = "DELETE FROM Highscore WHERE username='".$this->getUsername()."';'"; //Lösche auch Highscore-Eintrag
-        $sql_us = "DELETE FROM Users WHERE username='".$this->getUsername()."';";
+        $sql_hc = "DELETE FROM Highscore WHERE Username='".$this->getUsername()."';"; //Lösche auch Highscore-Eintrag
+        $sql_us = "DELETE FROM Users WHERE Username='".$this->getUsername()."';";
         $result = mysqli_query($tunnel, $sql_hc);
         $result2 = mysqli_query($tunnel, $sql_us);
         if (!$result || !$result2) {
@@ -146,6 +150,15 @@ class User
     }
 
 //Getter/Setter definieren
+    /*function makeAdmin() {
+    /*function makeAdmin() {
+        $this->isAdmin = true;
+    }
+
+    function isAdmin() { // = GETTER
+        return $this->isAdmin;
+    }*/
+
     function setUsername($username)
     {
         require 'db/dbNewConnection.php';
