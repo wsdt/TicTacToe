@@ -38,23 +38,13 @@ $user_object = createLoginForm();
 </header>
 <main>
     <div class="row"> <!-- ROW: TicTacToe-Heading -->
-        <div class="col-xs-4 col-md-4"><!-- let empty --></div>
-        <div class="col-xs-3 col-md-3"><h1 id="label_tictactoe">Tic Tac Toe</h1></div>
-        <div class="col-xs-4 col-md-4"><!-- let empty --></div>
-    </div>
-    <div class="row">
-        <div class="col-xs-4 col-md-4"><!-- let emtpy --></div>
-        <div class="col-xs-1 col-md-1"><!-- ABORTED: WHICH ROUND FROM ROUNDS? (PHP/JS) -->
-        </div>
-        <div class="col-xs-6 col-md-6"><!-- let empty --></div>
+        <div class="col-xs-3 col-xs-offset-4 col-md-3 col-md-offset-4"><h1 id="label_tictactoe">Tic Tac Toe</h1></div>
     </div>
     <div class="row"><!-- TicTacToe positionieren-->
-        <div class="col-xs-4 col-md-4"><!-- let empty --></div>
-        <div class="col-xs-3 col-md-3" id="ttt_field">
+        <div class="col-xs-3 col-xs-offset-4 col-md-3 col-md-offset-4" id="ttt_field">
             <!-- FIELD HERE -->
             <?php createTTTField(); ?>
         </div>
-        <div class="col-xs-5 col-md-5"><!-- let empty --></div>
     </div>
 
     <!-- TTT-Mode -->
@@ -69,30 +59,23 @@ $user_object = createLoginForm();
     <!-- HIGHSCORE
     TODO: Use DivID 'highscore_anchor' as an anchor (lightbox etc.) and scroll with a transition down -->
     <div id="highscore_anchor" class="row"> <!-- Highscore is placed in one 'row' -->
-        <div class="col-xs-2 col-md-2"><!-- let empty --></div>
-        <div class="col-xs-8 col-md-8" id="highscore_table">
+        <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3" id="highscore_table">
             <!-- HERE is the highscore table placed (table layout as div) -->
             <?php DB_generateHighscoreTable(); ?>
 
         </div>
-        <div class="col-xs-2 col-md-2"><!-- let empty --></div>
     </div>
 </main>
 <footer>
-    <!-- Follow us - Social Buttons -->
-    <div class="col-md-4"><!-- let empty --></div>
-    <div id="socialbuttons" class="col-xs-12 col-md-8">
-        <!-- TODO: Social-Icons werden nicht angezeigt -->
-        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//localhost/tictactoe/index.php" target="_blank"><div id="fb_button" class="btn btn-block btn-social btn-facebook"><span class="fa fa-facebook"></span> Facebook</div></a>&nbsp;
-        <a href="https://twitter.com/home?status=You%20have%20to%20try%20this%20awesome%20tic%20tac%20toe%20game!" target="_blank"><div id="tw_button" class="btn btn-block btn-social btn-twitter"><span class="fa fa-twitter"></span> Twitter</div></a>&nbsp;
-        <a href="http://github.com/wsdt/tictactoe" target="_blank"><div id="gh_button" class="btn btn-block btn-social btn-github"><span class="fa fa-github"></span> Github</div></a>&nbsp;
-        <a href="https://www.instagram.com/kevkevin_greenhat/" target="_blank"><div id="ig_button" class="btn btn-block btn-social btn-instagram"><span class="fa fa-instagram"></span> Instagram</div></a>
-        <!-- If you want more Social-Media-Buttons: (Classes here)
-        https://lipis.github.io/bootstrap-social/
-        -->
-    </div>
-    <div class="col-md-4"><!-- let empty --></div>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <div id="socialbuttons" class="col-xs-12 col-md-12">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//localhost/tictactoe/index.php" target="_blank" class="fa fa-facebook"></a>
+    <a href="https://twitter.com/home?status=You%20have%20to%20try%20this%20awesome%20tic%20tac%20toe%20game!" target="_blank" class="fa fa-twitter"></a>
+    <a href="http://github.com/wsdt/tictactoe" target="_blank" class="fa fa-github"></a>
+    <a href="https://www.instagram.com/kevkevin_greenhat/" class="fa fa-instagram"></a>
+    </div>
 
 </footer>
 

@@ -17,7 +17,7 @@ $ttt_square_bgcolor_hover: #aaa;
 //Highscore-Variables
 $hs_bordercolor: #ccc;
 $hs_borderwidth: 1px;
-$hs_abstandzuspielfeld: 50px;
+$hs_abstandzuspielfeld: 30px;
 
 // Überschriften (USE ONLY FOR SPECIAL FORMATTING)
 // H1
@@ -113,10 +113,6 @@ header {
 }
 
 
-
-
-
-
 // <MAIN>
 main {
   #label_tictactoe { // H1 Label
@@ -125,31 +121,26 @@ main {
     //font-size: $h1_fsize;
     text-align: $h1_talign;
     margin-left: -20px;
-    @media only screen and (max-width: 890px) {
+    @media only screen and (max-width: 980px) {
       font-size: 20px;
     }
     @media only screen and (max-width: 710px) {
       font-size: 14px;
     }
   }
-  #label_roundofrounds { // H3 Label
-    //color:$h3_color;
-    //font-weight: $h3_fweight;
-    //font-size: $h3_fsize;
-    text-align: $h3_talign;
-    margin-top: -10px;
-    margin-left: -20px;
-    @media only screen and (max-width: 890px) {
-      font-size: 16px;
-    }
-    @media only screen and (max-width: 710px) {
-      font-size: 10px;
-    }
-  }
+
   #ttt_field {
     height: $ttt_field_height+px; //auto;
     background-color: $ttt_field_bgcolor;
     width: 33.3333333%;
+    @media only screen and (max-width: 980px) {
+      height: 270px;
+    }
+    @media only screen and (max-width: 710px) {
+      height: 210px;
+    }
+  }
+
     /*:nth-child(1) { margin-right:2px;margin-bottom:2px; } //Mache Abstände zwischen Kästchen gleichmaessig
     :nth-child(2) { margin-left:2px;margin-bottom:2px;margin-right:2px; }
     :nth-child(3) { margin-left:2px;margin-bottom:2px; }
@@ -167,6 +158,12 @@ main {
     color:#fff;
     font-size:100px;
     text-align:center;
+    @media only screen and (max-width: 980px) {
+      font-size: 80px;
+    }
+    @media only screen and (max-width: 710px) {
+      font-size: 60px;
+    }
     //margin:4px 4px 4px 4px;
     //Following Transition for: HOVER OUT
     @include transition-property(background-color);
@@ -181,15 +178,16 @@ main {
       @include transition-duration(200ms);
       @include transition-timing-function(linear);
     }
-	
-	.ttt_square_img {
-	width:100%;
-	height:auto;
-	}
 
   }
   .ttt_row {
     height: $ttt_square_height+px; // = same height as width by Bootstrap ; auto;
+    @media only screen and (max-width: 980px) {
+      height: 90px;
+    }
+    @media only screen and (max-width: 710px) {
+      height: 70px;
+    }
   }
 
 
@@ -208,7 +206,6 @@ main {
     height:34px;
     background: url('/tictactoe/images/skull_difficulty.png') no-repeat !important;
   }
-
 
   //HIGHSCORE --> Create Table-layout without tables
   #highscore_table {
@@ -275,30 +272,53 @@ main {
       }
     }
   }
-}
 
 #socialbuttons {
-  margin-top:10px;
-  margin-right:auto;
-  margin-left:auto;
-  @media only screen and (max-width: 500px) {
-    display:none;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:25px;
+}
 
-  div {
-    width: 150px;
-    display: inline;
-    //float: left;
-    margin-right: 6px;
-    /*float: none;
-    margin-left: auto;
-    margin-right: auto;
-    display:flex;
-    height: 34px;*/
-
+/* Style all font awesome icons */
+.fa {
+  padding: 20px;
+  width: 100px;
+  text-align: center;
+  color: white;
+  @media only screen and (max-width: 710px) {
+    width:50px;
   }
 }
 
+/* Add a hover effect if you want */
+.fa:hover {
+  opacity: 0.8;
+  color: white;
+  text-decoration:none;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-facebook {
+  background: #3B5998;
+}
+
+/* Twitter */
+.fa-twitter {
+  background: #55ACEE;
+}
+
+/* Github */
+.fa-github {
+  background: #000000;
+}
+
+/* Instagram */
+.fa-instagram {
+  background: #e95950;
+}
 
 body {
   padding: 30px 0px;

@@ -27,7 +27,7 @@ function createTTTField()
         echo "<!-- " . $i . ". Row of TTT-Field -->\n";
         for ($j = 1; $j <= 3; $j++) {
             $z++;
-            echo "<div class='col-xs-4 col-md-4 ttt_square' id='ttt_square" . ($z) . "' onclick=\"setZug('" . ($z) . "');\">" .
+            echo "<div class='col-xs-8 col-md-4 ttt_square' id='ttt_square" . ($z) . "' onclick=\"setZug('" . ($z) . "');\">" .
                 "</div>"; //<img src='images/trans_squarefield.png' class='ttt_square_img'/>
         }
         echo "</div>\n";
