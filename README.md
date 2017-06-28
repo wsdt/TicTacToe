@@ -9,5 +9,5 @@ Todo:
 - [X] Projektvorstellung (PowerPoint, Layout)
 - [X] Datenbankdesign (ER-Modell) bis 30.05.2017
 - [X] Single/Multiplayer
-- [ ] Höhe TTT-Feld
-- [ ] Lightbox BT
+- [X] Höhe TTT-Feld
+- [X] Lightbox BT
