@@ -179,7 +179,8 @@ class User
 
     function setWinsDrawsLosses($wins, $draws, $losses)
     { //Sollen nicht einzeln befüllt werden können
-        if (empty($wins) || empty($draws) || empty($losses) || $wins == null || $draws == null || $losses == null) { //empty = "" aber nicht null
+
+        if (!is_numeric($wins) || !is_numeric($draws) || !is_numeric($losses) || $wins === null || $draws === null || $losses === null) { //isset = "" aber nicht 0
             return false;
         } else {
             $this->wins = $wins;

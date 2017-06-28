@@ -62,19 +62,21 @@ function DB_saveHighscoreEntry($username,$wins, $draws, $losses)
 
     require "db/dbNewConnection.php";
     //Spiel in die Highscore-Liste einfügen
-    if (!empty($username) && isset($wins) && isset($draws) && isset($losses)) { //Use isset for wins/draws/losses instead of empty, because value can be 0!
+    if (!empty($username) && is_numeric($wins) && is_numeric($draws) && is_numeric($losses)) { //Use isset for wins/draws/losses instead of empty, because value can be 0!
         $username = strip_tags(mysqli_real_escape_string($tunnel, $username));
         $wins = intval(strip_tags(mysqli_real_escape_string($tunnel, $wins)));
         $draws = intval(strip_tags(mysqli_real_escape_string($tunnel, $draws)));
         $losses = intval(strip_tags(mysqli_real_escape_string($tunnel, $losses)));
+        $score_setter = true; //Gehe davon aus, dass Score-Setter funktioniert
+
 
         //Insert if Username noch nicht vorhanden, ansonsten adde Wins, Draws etc. zu bestehenden Werten!
         if(DB_hasUserEverPlayed($username)) { //Update Row, when User has already an Highscore-Entry
             //Get User from Database
             $active_user = DB_getHighscoreRow($username); //Gibt User-Objekt zurück und speichert diesen
-
+            
             //Wins etc. mit alten Werten addieren, auftoppen
-            $active_user->setWinsDrawsLosses($active_user->getWins()+$wins, $active_user->getDraws()+$draws, $active_user->getLosses()+$losses);
+            $score_setter = $active_user->setWinsDrawsLosses(($active_user->getWins() + $wins), ($active_user->getDraws() + $draws), ($active_user->getLosses() + $losses));
 
             //Wins, draws, losses does not need '' in sql, because it is INT, trotzdem mit '' falls wie komischerweise vorgekommen null Werte drin und MySQL ohnehin automatisch einen String zu Int castet wenn der Datentyp ein Integer ist
             $sql = mysqli_query($tunnel, "UPDATE Highscore SET Wins = '".$active_user->getWins()."', Draws = '".$active_user->getDraws()."', Losses = '".$active_user->getLosses()."' WHERE Username = '".$username."';");
@@ -82,9 +84,10 @@ function DB_saveHighscoreEntry($username,$wins, $draws, $losses)
             $sql = mysqli_query($tunnel, "INSERT INTO highscore (Username,Wins, Draws, Losses) VALUES ('" . $username . "','" . $wins . "', '" . $draws . "', '" . $losses . "');");
         }
 
-        if ($sql) {
+        if ($sql && $score_setter) {
             echo "SUCCESS: Ihr Highscore wurde in unsere Datenbank übertragen!"; //SUCCESS = Schlüsselwort in Ajax, damit später eine JS-Notification bei Success angezeigt wird.
         } else {
+            echo "UPDATE Highscore SET Wins = '".$active_user->getWins()."', Draws = '".$active_user->getDraws()."', Losses = '".$active_user->getLosses()."' WHERE Username = '".$username."';";
             echo 'FAIL: There was a problem saving your score. Please try again later. Maybe User has already an entry. This message should not be shown. ' . mysqli_error($tunnel);;
         }
     } else {
