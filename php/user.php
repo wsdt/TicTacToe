@@ -222,13 +222,6 @@ class User
         //Verschlüssle Passwort
         if (empty($password) || empty($password_verify) || $password != $password_verify //0 kommt raus, wenn beide Strings gleich
             || strlen($password) < 4) {
-            echo "Pwd: ".$password."; Ver: ".$password_verify;
-
-            var_dump(empty($password));
-            var_dump(empty($password_verify));
-            var_dump($password != $password_verify);
-            var_dump(strlen($password) < 4);
-
 
             //nur $password auf Länge zu prüfen, da er bei Ungleichheit ohnehin hier reinspringt
             //Wenn ein Passwort leer, den Sicherheitsbestimmungen nicht entspricht oder beide Passwörter ungleich sind gib false zurück.
