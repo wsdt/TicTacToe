@@ -48,6 +48,7 @@ div.show {
 
 body {
   background-color: #ddd;
+  padding: 30px 0px;
 }
 
 // <HEADER>
@@ -273,6 +274,7 @@ main {
     }
   }
 
+/* SOCIAL-BUTTONS */
 #socialbuttons {
   display: flex;
   align-items: center;
@@ -280,7 +282,6 @@ main {
   margin-top:25px;
 }
 
-/* Style all font awesome icons */
 .fa {
   padding: 20px;
   width: 100px;
@@ -291,14 +292,11 @@ main {
   }
 }
 
-/* Add a hover effect if you want */
 .fa:hover {
   opacity: 0.8;
   color: white;
   text-decoration:none;
 }
-
-/* Set a specific color for each brand */
 
 /* Facebook */
 .fa-facebook {
@@ -320,16 +318,8 @@ main {
   background: #e95950;
 }
 
-body {
-  padding: 30px 0px;
-}
 
-#lightbox .modal-content {
-  display: inline-block;
-  text-align: center;
-}
-
-/****** LOGIN MODAL ******/
+/* LOGIN AND REGISTER MODAL */
 .loginmodal-container {
   padding: 30px;
   max-width: 350px;

@@ -56,8 +56,7 @@ $user_object = createLoginForm();
         <input type="button" onclick="restartGame()" value="Restart Game" class="btn btn-danger" id="bt_restart"/>
     </div>
 
-    <!-- HIGHSCORE
-    TODO: Use DivID 'highscore_anchor' as an anchor (lightbox etc.) and scroll with a transition down -->
+    <!-- HIGHSCORE -->
     <div id="highscore_anchor" class="row"> <!-- Highscore is placed in one 'row' -->
         <div class="col-xs-8 col-xs-offset-2 col-md-6 col-md-offset-3" id="highscore_table">
             <!-- HERE is the highscore table placed (table layout as div) -->
@@ -67,14 +66,14 @@ $user_object = createLoginForm();
     </div>
 </main>
 <footer>
-
+    <!-- SOCIAL-BUTTONS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <div id="socialbuttons" class="col-xs-12 col-md-12">
     <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//localhost/tictactoe/index.php" target="_blank" class="fa fa-facebook"></a>
     <a href="https://twitter.com/home?status=You%20have%20to%20try%20this%20awesome%20tic%20tac%20toe%20game!" target="_blank" class="fa fa-twitter"></a>
     <a href="http://github.com/wsdt/tictactoe" target="_blank" class="fa fa-github"></a>
-    <a href="https://www.instagram.com/kevkevin_greenhat/" class="fa fa-instagram"></a>
+    <a href="https://www.instagram.com/explore/tags/tictactoe/?hl=de" class="fa fa-instagram"></a>
     </div>
 
 </footer>

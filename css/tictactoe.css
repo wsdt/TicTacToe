@@ -13,23 +13,24 @@ div.show {
 /* line 49, ../sass/tictactoe.scss */
 body {
   background-color: #ddd;
+  padding: 30px 0px;
 }
 
-/* line 55, ../sass/tictactoe.scss */
+/* line 56, ../sass/tictactoe.scss */
 header .toprow {
   margin-top: 5px;
 }
-/* line 59, ../sass/tictactoe.scss */
+/* line 60, ../sass/tictactoe.scss */
 header .hidden {
   display: none;
 }
-/* line 63, ../sass/tictactoe.scss */
+/* line 64, ../sass/tictactoe.scss */
 header #label_loggedinas {
   color: #c12e2a;
   margin-left: 5px;
 }
 
-/* line 71, ../sass/tictactoe.scss */
+/* line 72, ../sass/tictactoe.scss */
 #notification {
   position: absolute;
   top: -23px;
@@ -61,7 +62,7 @@ header #label_loggedinas {
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
-/* line 93, ../sass/tictactoe.scss */
+/* line 94, ../sass/tictactoe.scss */
 #notification .notification_active {
   top: 0;
   -moz-transition-property: top;
@@ -82,7 +83,7 @@ header #label_loggedinas {
   transition-timing-function: ease-in;
 }
 
-/* line 103, ../sass/tictactoe.scss */
+/* line 104, ../sass/tictactoe.scss */
 #close_notfication {
   color: #ff0000;
   float: right;
@@ -94,7 +95,7 @@ header #label_loggedinas {
   cursor: pointer;
 }
 
-/* line 117, ../sass/tictactoe.scss */
+/* line 118, ../sass/tictactoe.scss */
 main {
   /*:nth-child(1) { margin-right:2px;margin-bottom:2px; } //Mache Abstände zwischen Kästchen gleichmaessig
   :nth-child(2) { margin-left:2px;margin-bottom:2px;margin-right:2px; }
@@ -102,44 +103,44 @@ main {
   :nth-child(4) { margin-right:2px;margin-bottom:2px;margin-top:2px; }
   :nth-child(5) { margin-right:2px;margin-bottom:2px;margin-top:2px;margin-left:2px; }*/
 }
-/* line 118, ../sass/tictactoe.scss */
+/* line 119, ../sass/tictactoe.scss */
 main #label_tictactoe {
   font-weight: bold !important;
   text-align: left !important;
   margin-left: -20px;
 }
 @media only screen and (max-width: 980px) {
-  /* line 118, ../sass/tictactoe.scss */
+  /* line 119, ../sass/tictactoe.scss */
   main #label_tictactoe {
     font-size: 20px;
   }
 }
 @media only screen and (max-width: 710px) {
-  /* line 118, ../sass/tictactoe.scss */
+  /* line 119, ../sass/tictactoe.scss */
   main #label_tictactoe {
     font-size: 14px;
   }
 }
-/* line 132, ../sass/tictactoe.scss */
+/* line 133, ../sass/tictactoe.scss */
 main #ttt_field {
   height: 400px;
   background-color: #000;
   width: 33.3333333%;
 }
 @media only screen and (max-width: 980px) {
-  /* line 132, ../sass/tictactoe.scss */
+  /* line 133, ../sass/tictactoe.scss */
   main #ttt_field {
     height: 270px;
   }
 }
 @media only screen and (max-width: 710px) {
-  /* line 132, ../sass/tictactoe.scss */
+  /* line 133, ../sass/tictactoe.scss */
   main #ttt_field {
     height: 210px;
   }
 }
 
-/* line 151, ../sass/tictactoe.scss */
+/* line 152, ../sass/tictactoe.scss */
 .ttt_square {
   background-color: #444;
   height: 100%;
@@ -168,18 +169,18 @@ main #ttt_field {
   transition-timing-function: linear;
 }
 @media only screen and (max-width: 980px) {
-  /* line 151, ../sass/tictactoe.scss */
+  /* line 152, ../sass/tictactoe.scss */
   .ttt_square {
     font-size: 80px;
   }
 }
 @media only screen and (max-width: 710px) {
-  /* line 151, ../sass/tictactoe.scss */
+  /* line 152, ../sass/tictactoe.scss */
   .ttt_square {
     font-size: 60px;
   }
 }
-/* line 173, ../sass/tictactoe.scss */
+/* line 174, ../sass/tictactoe.scss */
 .ttt_square:hover {
   background-color: #aaa;
   -moz-transition-property: background-color;
@@ -200,24 +201,24 @@ main #ttt_field {
   transition-timing-function: linear;
 }
 
-/* line 183, ../sass/tictactoe.scss */
+/* line 184, ../sass/tictactoe.scss */
 .ttt_row {
   height: 133.33333px;
 }
 @media only screen and (max-width: 980px) {
-  /* line 183, ../sass/tictactoe.scss */
+  /* line 184, ../sass/tictactoe.scss */
   .ttt_row {
     height: 90px;
   }
 }
 @media only screen and (max-width: 710px) {
-  /* line 183, ../sass/tictactoe.scss */
+  /* line 184, ../sass/tictactoe.scss */
   .ttt_row {
     height: 70px;
   }
 }
 
-/* line 195, ../sass/tictactoe.scss */
+/* line 196, ../sass/tictactoe.scss */
 #play_buttons {
   text-align: center;
   margin-top: 4px;
@@ -225,7 +226,7 @@ main #ttt_field {
   margin-right:auto;*/
 }
 
-/* line 202, ../sass/tictactoe.scss */
+/* line 203, ../sass/tictactoe.scss */
 #bt_difficulty {
   background-size: 100%;
   width: 34px;
@@ -233,7 +234,7 @@ main #ttt_field {
   background: url("/tictactoe/images/skull_difficulty.png") no-repeat !important;
 }
 
-/* line 211, ../sass/tictactoe.scss */
+/* line 212, ../sass/tictactoe.scss */
 #highscore_table {
   margin-top: 30px;
   margin-bottom: 10px;
@@ -242,7 +243,7 @@ main #ttt_field {
   border-width: 1px;
   border-color: #ccc;
 }
-/* line 219, ../sass/tictactoe.scss */
+/* line 220, ../sass/tictactoe.scss */
 #highscore_table .highscore_table_row {
   display: table-row;
   -moz-transition-property: background-color;
@@ -262,7 +263,7 @@ main #ttt_field {
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
 }
-/* line 226, ../sass/tictactoe.scss */
+/* line 227, ../sass/tictactoe.scss */
 #highscore_table .highscore_table_row:hover {
   background-color: #ccc;
   -moz-transition-property: background-color;
@@ -282,14 +283,14 @@ main #ttt_field {
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
 }
-/* line 235, ../sass/tictactoe.scss */
+/* line 236, ../sass/tictactoe.scss */
 #highscore_table .highscore_table_row .highscore_table_db_err {
   text-align: center;
   display: table-cell;
   color: #ee0000;
   font-style: italic;
 }
-/* line 242, ../sass/tictactoe.scss */
+/* line 243, ../sass/tictactoe.scss */
 #highscore_table .highscore_table_row .highscore_table_cell {
   text-align: center;
   display: table-cell;
@@ -297,22 +298,22 @@ main #ttt_field {
   border-width: 1px;
   border-color: #ccc;
 }
-/* line 246, ../sass/tictactoe.scss */
+/* line 247, ../sass/tictactoe.scss */
 #highscore_table .highscore_table_row .highscore_table_cell:last-child {
   border-right: none;
 }
-/* line 253, ../sass/tictactoe.scss */
+/* line 254, ../sass/tictactoe.scss */
 #highscore_table .highscore_table_row_caption {
   display: table-row;
 }
-/* line 255, ../sass/tictactoe.scss */
+/* line 256, ../sass/tictactoe.scss */
 #highscore_table .highscore_table_row_caption .highscore_table_caption {
   font-weight: bold;
   border-bottom: solid;
   border-color: #ccc;
   border-width: 1px;
 }
-/* line 263, ../sass/tictactoe.scss */
+/* line 264, ../sass/tictactoe.scss */
 #highscore_table .highscore_table_row_caption .highscore_table_cell {
   text-align: center;
   display: table-cell;
@@ -320,12 +321,13 @@ main #ttt_field {
   border-width: 1px;
   border-color: #ccc;
 }
-/* line 267, ../sass/tictactoe.scss */
+/* line 268, ../sass/tictactoe.scss */
 #highscore_table .highscore_table_row_caption .highscore_table_cell:last-child {
   border-right: none;
 }
 
-/* line 276, ../sass/tictactoe.scss */
+/* SOCIAL-BUTTONS */
+/* line 278, ../sass/tictactoe.scss */
 #socialbuttons {
   display: flex;
   align-items: center;
@@ -333,8 +335,7 @@ main #ttt_field {
   margin-top: 25px;
 }
 
-/* Style all font awesome icons */
-/* line 284, ../sass/tictactoe.scss */
+/* line 285, ../sass/tictactoe.scss */
 .fa {
   padding: 20px;
   width: 100px;
@@ -342,13 +343,12 @@ main #ttt_field {
   color: white;
 }
 @media only screen and (max-width: 710px) {
-  /* line 284, ../sass/tictactoe.scss */
+  /* line 285, ../sass/tictactoe.scss */
   .fa {
     width: 50px;
   }
 }
 
-/* Add a hover effect if you want */
 /* line 295, ../sass/tictactoe.scss */
 .fa:hover {
   opacity: 0.8;
@@ -356,44 +356,32 @@ main #ttt_field {
   text-decoration: none;
 }
 
-/* Set a specific color for each brand */
 /* Facebook */
-/* line 304, ../sass/tictactoe.scss */
+/* line 302, ../sass/tictactoe.scss */
 .fa-facebook {
   background: #3B5998;
 }
 
 /* Twitter */
-/* line 309, ../sass/tictactoe.scss */
+/* line 307, ../sass/tictactoe.scss */
 .fa-twitter {
   background: #55ACEE;
 }
 
 /* Github */
-/* line 314, ../sass/tictactoe.scss */
+/* line 312, ../sass/tictactoe.scss */
 .fa-github {
   background: #000000;
 }
 
 /* Instagram */
-/* line 319, ../sass/tictactoe.scss */
+/* line 317, ../sass/tictactoe.scss */
 .fa-instagram {
   background: #e95950;
 }
 
+/* LOGIN AND REGISTER MODAL */
 /* line 323, ../sass/tictactoe.scss */
-body {
-  padding: 30px 0px;
-}
-
-/* line 327, ../sass/tictactoe.scss */
-#lightbox .modal-content {
-  display: inline-block;
-  text-align: center;
-}
-
-/****** LOGIN MODAL ******/
-/* line 333, ../sass/tictactoe.scss */
 .loginmodal-container {
   padding: 30px;
   max-width: 350px;
@@ -405,14 +393,14 @@ body {
   overflow: hidden;
 }
 
-/* line 344, ../sass/tictactoe.scss */
+/* line 334, ../sass/tictactoe.scss */
 .loginmodal-container h1 {
   text-align: center;
   font-size: 1.8em;
   font-family: Arial;
 }
 
-/* line 350, ../sass/tictactoe.scss */
+/* line 340, ../sass/tictactoe.scss */
 .loginmodal-container input[type=submit] {
   width: 100%;
   display: block;
@@ -420,7 +408,7 @@ body {
   position: relative;
 }
 
-/* line 357, ../sass/tictactoe.scss */
+/* line 347, ../sass/tictactoe.scss */
 .loginmodal-container input[type=text], input[type=password] {
   height: 44px;
   font-size: 16px;
@@ -436,7 +424,7 @@ body {
   -moz-box-sizing: border-box;
 }
 
-/* line 372, ../sass/tictactoe.scss */
+/* line 362, ../sass/tictactoe.scss */
 .loginmodal-container input[type=text], input[type=password] {
   height: 44px;
   font-size: 16px;
@@ -452,7 +440,7 @@ body {
   -moz-box-sizing: border-box;
 }
 
-/* line 387, ../sass/tictactoe.scss */
+/* line 377, ../sass/tictactoe.scss */
 .loginmodal-container input[type=text]:hover, input[type=password]:hover {
   border: 1px solid #b9b9b9;
   border-top: 1px solid #a0a0a0;
@@ -461,7 +449,7 @@ body {
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-/* line 395, ../sass/tictactoe.scss */
+/* line 385, ../sass/tictactoe.scss */
 .loginmodal {
   text-align: center;
   font-size: 14px;
@@ -474,7 +462,7 @@ body {
     user-select: none; */
 }
 
-/* line 407, ../sass/tictactoe.scss */
+/* line 397, ../sass/tictactoe.scss */
 .loginmodal-submit {
   /* border: 1px solid #3079ed; */
   border: 0px;
@@ -486,7 +474,7 @@ body {
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
 }
 
-/* line 418, ../sass/tictactoe.scss */
+/* line 408, ../sass/tictactoe.scss */
 .loginmodal-submit:hover {
   /* border: 1px solid #2f5bb7; */
   border: 0px;
@@ -495,7 +483,7 @@ body {
   /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
 }
 
-/* line 426, ../sass/tictactoe.scss */
+/* line 416, ../sass/tictactoe.scss */
 .loginmodal-container a {
   text-decoration: none;
   color: #666;
@@ -506,7 +494,7 @@ body {
   transition: opacity ease 0.5s;
 }
 
-/* line 436, ../sass/tictactoe.scss */
+/* line 426, ../sass/tictactoe.scss */
 .login-help {
   font-size: 12px;
 }
